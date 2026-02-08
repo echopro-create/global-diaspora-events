@@ -38,6 +38,28 @@ class AuthService {
   Future<void> signOut() async {
     await _supabase.auth.signOut();
   }
+
+  Future<void> updateProfile({
+    String? fullName,
+    String? originCountry,
+    String? avatarUrl,
+    bool? spotifyConnected,
+    Map<String, dynamic>? location,
+  }) async {
+    final user = currentUser;
+    if (user == null) throw Exception('User not logged in');
+
+    final updates = {
+      if (fullName != null) 'full_name': fullName,
+      if (originCountry != null) 'origin_country': originCountry,
+      if (avatarUrl != null) 'avatar_url': avatarUrl,
+      if (spotifyConnected != null) 'spotify_connected': spotifyConnected,
+      if (location != null) 'current_location': location,
+      'updated_at': DateTime.now().toIso8601String(),
+    };
+
+    await _supabase.from('profiles').update(updates).eq('id', user.id);
+  }
 }
 
 @riverpod

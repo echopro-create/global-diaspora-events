@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:global_diaspora_events/src/core/app_colors.dart';
+import 'package:global_diaspora_events/src/features/auth/auth_service.dart';
 
 class CurrentCityScreen extends ConsumerWidget {
   const CurrentCityScreen({super.key});
@@ -35,7 +36,7 @@ class CurrentCityScreen extends ConsumerWidget {
               _ActionButton(
                 label: 'Использовать GPS',
                 icon: Icons.my_location,
-                onTap: () => _useGPS(context),
+                onTap: () => _useGPS(context, ref),
               ),
               const SizedBox(height: 16),
               const Center(
@@ -53,7 +54,7 @@ class CurrentCityScreen extends ConsumerWidget {
                     borderSide: BorderSide.none,
                   ),
                 ),
-                onSubmitted: (value) => _selectCity(context, value),
+                onSubmitted: (value) => _selectCity(context, ref, value),
               ),
             ],
           ),
@@ -62,27 +63,69 @@ class CurrentCityScreen extends ConsumerWidget {
     );
   }
 
-  Future<void> _useGPS(BuildContext context) async {
-    bool serviceEnabled;
-    LocationPermission permission;
+  Future<void> _useGPS(BuildContext context, WidgetRef ref) async {
+    try {
+      bool serviceEnabled;
+      LocationPermission permission;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) return;
+      serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Службы геолокации отключены')),
+          );
+        }
+        return;
+      }
 
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) return;
+      permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) return;
+      }
+
+      final position = await Geolocator.getCurrentPosition();
+
+      // Сохраняем координаты в формате GeoJSON для PostGIS
+      final location = {
+        'type': 'Point',
+        'coordinates': [position.longitude, position.latitude],
+      };
+
+      await ref.read(authServiceProvider).updateProfile(location: location);
+
+      if (context.mounted) {
+        context.push('/onboarding/spotify');
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Ошибка GPS: $e')));
+      }
     }
-
-    await Geolocator.getCurrentPosition();
-    if (!context.mounted) return;
-    // TODO: Reverse geocoding or save coordinates to Supabase
-    _selectCity(context, 'Current Location');
   }
 
-  void _selectCity(BuildContext context, String city) {
-    context.push('/onboarding/spotify');
+  void _selectCity(BuildContext context, WidgetRef ref, String city) async {
+    try {
+      // Здесь мы просто сохраняем название города.
+      // В будущем можно добавить поиск координат по названию.
+      await ref
+          .read(authServiceProvider)
+          .updateProfile(
+            fullName: city,
+          ); // Используем fullName как временное хранилище или добавим поле city
+
+      if (context.mounted) {
+        context.push('/onboarding/spotify');
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Ошибка сохранения города: $e')));
+      }
+    }
   }
 }
 

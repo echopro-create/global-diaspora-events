@@ -43,3 +43,33 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Секреты и конфигурации
+.env
+.env.*
+! .env.example
+*.pubxml
+*.keystore
+*.jks
+
+# IDE - VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# Сгенерированные файлы (опционально, но лучше оставить для CI)
+# *.g.dart
+# *.freezed.dart
+
+# Web
+.web/
+build/web/
+
+# Windows
+build/windows/
+/windows/flutter/ephemeral/
+
+# macOS
+build/macos/
+/macos/Flutter/ephemeral/
+

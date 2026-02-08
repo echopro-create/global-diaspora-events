@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:global_diaspora_events/src/features/auth/auth_service.dart';
 import 'package:go_router/go_router.dart';
 
 class OriginCountryScreen extends ConsumerWidget {
@@ -35,19 +36,19 @@ class OriginCountryScreen extends ConsumerWidget {
                   children: [
                     _CountryTile(
                       label: 'Украина 🇺🇦',
-                      onTap: () => _selectCountry(context, 'Ukraine'),
+                      onTap: () => _selectCountry(context, ref, 'Ukraine'),
                     ),
                     _CountryTile(
                       label: 'Казахстан 🇰🇿',
-                      onTap: () => _selectCountry(context, 'Kazakhstan'),
+                      onTap: () => _selectCountry(context, ref, 'Kazakhstan'),
                     ),
                     _CountryTile(
                       label: 'Грузия 🇬🇪',
-                      onTap: () => _selectCountry(context, 'Georgia'),
+                      onTap: () => _selectCountry(context, ref, 'Georgia'),
                     ),
                     _CountryTile(
                       label: 'Армения 🇦🇲',
-                      onTap: () => _selectCountry(context, 'Armenia'),
+                      onTap: () => _selectCountry(context, ref, 'Armenia'),
                     ),
                     // More countries can be added or fetched from DB
                   ],
@@ -60,9 +61,23 @@ class OriginCountryScreen extends ConsumerWidget {
     );
   }
 
-  void _selectCountry(BuildContext context, String country) {
-    // TODO: Save selection to Supabase Profile
-    context.push('/onboarding/city');
+  void _selectCountry(
+    BuildContext context,
+    WidgetRef ref,
+    String country,
+  ) async {
+    try {
+      await ref.read(authServiceProvider).updateProfile(originCountry: country);
+      if (context.mounted) {
+        context.push('/onboarding/city');
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Ошибка сохранения: $e')));
+      }
+    }
   }
 }
 
