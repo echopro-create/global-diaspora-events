@@ -85,6 +85,35 @@ class EventsRepository {
 
     await _supabase.from('events').insert(data);
   }
+
+  Future<void> joinEvent(String eventId) async {
+    final user = _supabase.auth.currentUser;
+    if (user == null) throw Exception('User not logged in');
+
+    await _supabase.from('event_participants').insert({
+      'event_id': eventId,
+      'user_id': user.id,
+    });
+  }
+
+  Future<void> leaveEvent(String eventId) async {
+    final user = _supabase.auth.currentUser;
+    if (user == null) throw Exception('User not logged in');
+
+    await _supabase.from('event_participants').delete().match({
+      'event_id': eventId,
+      'user_id': user.id,
+    });
+  }
+
+  Future<Event> getEventById(String id) async {
+    final response = await _supabase
+        .from('events')
+        .select('*, categories(*), event_tags(tags(*))')
+        .eq('id', id)
+        .single();
+    return Event.fromJson(response);
+  }
 }
 
 @riverpod

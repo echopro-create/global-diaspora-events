@@ -49,3 +49,44 @@ final class AuthServiceProvider
 }
 
 String _$authServiceHash() => r'9b27ea123f23c505f90d11212d559d94e3e2b903';
+
+@ProviderFor(userProfile)
+final userProfileProvider = UserProfileProvider._();
+
+final class UserProfileProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<Map<String, dynamic>>,
+          Map<String, dynamic>,
+          FutureOr<Map<String, dynamic>>
+        >
+    with
+        $FutureModifier<Map<String, dynamic>>,
+        $FutureProvider<Map<String, dynamic>> {
+  UserProfileProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'userProfileProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$userProfileHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<Map<String, dynamic>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<Map<String, dynamic>> create(Ref ref) {
+    return userProfile(ref);
+  }
+}
+
+String _$userProfileHash() => r'4bc1ea2a71e69002a40cf0f6d12de8b336b26d68';

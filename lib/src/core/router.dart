@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:global_diaspora_events/src/features/events/event_details_screen.dart';
 import 'package:global_diaspora_events/src/features/events/suggest_event_screen.dart';
 import 'package:global_diaspora_events/src/features/events/events_feed_screen.dart';
 import 'package:global_diaspora_events/src/features/auth/current_city_screen.dart';
@@ -30,6 +31,11 @@ GoRouter router(Ref ref) {
       GoRoute(
         path: '/suggest-event',
         builder: (context, state) => const SuggestEventScreen(),
+      ),
+      GoRoute(
+        path: '/event/:id',
+        builder: (context, state) =>
+            EventDetailsScreen(eventId: state.pathParameters['id']!),
       ),
       ShellRoute(
         builder: (context, state, child) => MainShell(child: child),

@@ -84,7 +84,7 @@ class _EventsFeedScreenState extends ConsumerState<EventsFeedScreen> {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => EventCard(
                     event: events[index],
-                    onTap: () {},
+                    onTap: () => context.push('/event/${events[index].id}'),
                     onJoinTap: () {},
                   ),
                   childCount: events.length,
@@ -139,55 +139,58 @@ class _EventsFeedScreenState extends ConsumerState<EventsFeedScreen> {
   }
 
   Widget _buildShortCard(BuildContext context, Event event) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white10,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(16),
+    return GestureDetector(
+      onTap: () => context.push('/event/${event.id}'),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white10,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(16),
+                  ),
+                  image: event.imageUrl != null
+                      ? DecorationImage(
+                          image: NetworkImage(event.imageUrl!),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
                 ),
-                image: event.imageUrl != null
-                    ? DecorationImage(
-                        image: NetworkImage(event.imageUrl!),
-                        fit: BoxFit.cover,
-                      )
+                child: event.imageUrl == null
+                    ? const Center(child: Icon(Icons.event, size: 40))
                     : null,
               ),
-              child: event.imageUrl == null
-                  ? const Center(child: Icon(Icons.event, size: 40))
-                  : null,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  event.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  event.address ?? 'Адрес не указан',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Colors.white70, fontSize: 12),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    event.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    event.address ?? 'Адрес не указан',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(color: Colors.white70, fontSize: 12),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

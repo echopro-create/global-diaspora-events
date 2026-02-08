@@ -67,9 +67,20 @@ class AuthService {
       redirectTo: 'global-diaspora-events://login-callback',
     );
   }
+
+  Future<Map<String, dynamic>> getProfile() async {
+    final user = currentUser;
+    if (user == null) throw Exception('User not logged in');
+    return await _supabase.from('profiles').select().eq('id', user.id).single();
+  }
 }
 
 @riverpod
 AuthService authService(Ref ref) {
   return AuthService(Supabase.instance.client);
+}
+
+@riverpod
+Future<Map<String, dynamic>> userProfile(Ref ref) async {
+  return ref.watch(authServiceProvider).getProfile();
 }
