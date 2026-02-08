@@ -1,10 +1,14 @@
 import 'package:latlong2/latlong.dart';
+import 'package:global_diaspora_events/src/shared/models/category.dart';
+import 'package:global_diaspora_events/src/shared/models/tag.dart';
 
 class Event {
   final String id;
   final String title;
   final String? description;
   final String categoryId;
+  final Category? category;
+  final List<Tag> tags;
   final DateTime startTime;
   final LatLng? location;
   final String? address;
@@ -19,6 +23,8 @@ class Event {
     required this.title,
     this.description,
     required this.categoryId,
+    this.category,
+    this.tags = const [],
     required this.startTime,
     this.location,
     this.address,
@@ -37,11 +43,23 @@ class Event {
       loc = LatLng(coords[1].toDouble(), coords[0].toDouble());
     }
 
+    final categoryJson = json['categories'];
+    final category = categoryJson != null
+        ? Category.fromJson(categoryJson)
+        : null;
+
+    final tagsJson = json['event_tags'] as List?;
+    final tags = tagsJson != null
+        ? tagsJson.map((t) => Tag.fromJson(t['tags'])).toList()
+        : <Tag>[];
+
     return Event(
       id: json['id'],
       title: json['title'],
       description: json['description'],
       categoryId: json['category_id'].toString(),
+      category: category,
+      tags: tags,
       startTime: DateTime.parse(json['start_time']),
       location: loc,
       address: json['address'],
