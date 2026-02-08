@@ -1,14 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:global_diaspora_events/src/features/events/events_providers.dart';
 import 'package:global_diaspora_events/src/features/events/widgets/event_card.dart';
+import 'package:global_diaspora_events/src/features/events/widgets/tags_filter.dart';
 import 'package:global_diaspora_events/src/shared/models/event.dart';
+import 'package:go_router/go_router.dart';
 
-class EventsFeedScreen extends ConsumerWidget {
+class EventsFeedScreen extends ConsumerStatefulWidget {
   const EventsFeedScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<EventsFeedScreen> createState() => _EventsFeedScreenState();
+}
+
+class _EventsFeedScreenState extends ConsumerState<EventsFeedScreen> {
+  final List<String> _selectedTagIds = [];
+
+  void _onTagTap(String tagId) {
+    setState(() {
+      if (_selectedTagIds.contains(tagId)) {
+        _selectedTagIds.remove(tagId);
+      } else {
+        _selectedTagIds.add(tagId);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final promotedAsync = ref.watch(promotedEventsProvider);
+    final nearbyAsync = ref.watch(nearbyEventsProvider);
+    final personalizedAsync = ref.watch(personalizedEventsProvider);
+
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => context.push('/suggest-event'),
+        label: const Text('Предложить'),
+        icon: const Icon(Icons.add),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -25,113 +55,140 @@ class EventsFeedScreen extends ConsumerWidget {
             ],
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Для вас',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: 280,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 3,
-                      itemBuilder: (context, index) {
-                        return SizedBox(
-                          width: 300,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 16.0),
-                            child: _buildShortCard(context),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-                  const Text(
-                    'События рядом',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16),
-                ],
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 16),
+                TagsFilter(
+                  selectedTagIds: _selectedTagIds,
+                  onTagTap: _onTagTap,
+                ),
+                const SizedBox(height: 24),
+                _buildSectionHeader('Тренды'),
+                const SizedBox(height: 12),
+                _buildHorizontalSection(promotedAsync),
+                const SizedBox(height: 32),
+                _buildSectionHeader('Для вас'),
+                const SizedBox(height: 12),
+                _buildHorizontalSection(personalizedAsync),
+                const SizedBox(height: 32),
+                _buildSectionHeader('События рядом'),
+                const SizedBox(height: 12),
+              ],
             ),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return EventCard(
-                  event: _mockEvent(),
-                  onTap: () {},
-                  onJoinTap: () {},
-                );
-              }, childCount: 5),
+          nearbyAsync.when(
+            data: (events) => SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => EventCard(
+                    event: events[index],
+                    onTap: () {},
+                    onJoinTap: () {},
+                  ),
+                  childCount: events.length,
+                ),
+              ),
             ),
+            loading: () => const SliverFillRemaining(
+              child: Center(child: CircularProgressIndicator()),
+            ),
+            error: (e, _) =>
+                SliverFillRemaining(child: Center(child: Text('Ошибка: $e'))),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildShortCard(BuildContext context) {
+  Widget _buildSectionHeader(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Text(
+        title,
+        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  Widget _buildHorizontalSection(AsyncValue<List<Event>> asyncData) {
+    return SizedBox(
+      height: 250,
+      child: asyncData.when(
+        data: (events) => events.isEmpty
+            ? const Center(child: Text('Нет событий по вашим интересам'))
+            : ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                itemCount: events.length,
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    width: 280,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: _buildShortCard(context, events[index]),
+                    ),
+                  );
+                },
+              ),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (e, _) => Center(child: Text('Ошибка: $e')),
+      ),
+    );
+  }
+
+  Widget _buildShortCard(BuildContext context, Event event) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white10,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                image: DecorationImage(
-                  image: NetworkImage('https://via.placeholder.com/300x150'),
-                  fit: BoxFit.cover,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(16),
                 ),
+                image: event.imageUrl != null
+                    ? DecorationImage(
+                        image: NetworkImage(event.imageUrl!),
+                        fit: BoxFit.cover,
+                      )
+                    : null,
               ),
+              child: event.imageUrl == null
+                  ? const Center(child: Icon(Icons.event, size: 40))
+                  : null,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(12.0),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Stand-up Charity Night',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  event.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
+                const SizedBox(height: 4),
                 Text(
-                  'Завтра, 19:00',
-                  style: TextStyle(color: Colors.white70, fontSize: 12),
+                  event.address ?? 'Адрес не указан',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(color: Colors.white70, fontSize: 12),
                 ),
               ],
             ),
           ),
         ],
       ),
-    );
-  }
-
-  Event _mockEvent() {
-    return Event(
-      id: '1',
-      title: 'Charity Stand-up Night',
-      categoryId: '2',
-      startTime: DateTime.now().add(const Duration(days: 1)),
-      address: 'Berlin, Kulturbrauerei',
-      imageUrl:
-          'https://images.unsplash.com/photo-1514525253361-bee0438d7df3?q=80&w=300&auto=format&fit=crop',
-      isPromoted: true,
-      participantsCount: 124,
-      isUserJoined: false,
     );
   }
 }

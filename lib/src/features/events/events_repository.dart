@@ -72,13 +72,14 @@ class EventsRepository {
       'description': description,
       'category_id': int.parse(categoryId),
       'start_time': startTime.toIso8601String(),
-      if (location != null)
-        'location': {
-          'type': 'Point',
-          'coordinates': [location.longitude, location.latitude],
-        },
-      if (address != null) 'address': address,
-      if (imageUrl != null) 'image_url': imageUrl,
+      'location': ?location != null
+          ? {
+              'type': 'Point',
+              'coordinates': [location.longitude, location.latitude],
+            }
+          : null,
+      'address': ?address,
+      'image_url': ?imageUrl,
       'is_approved': false, // Событие требует модерации
     };
 

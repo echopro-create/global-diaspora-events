@@ -102,7 +102,7 @@ class _SuggestEventScreenState extends ConsumerState<SuggestEventScreen> {
                     ),
                     const SizedBox(height: 16),
                     DropdownButtonFormField<String>(
-                      value: _selectedCategoryId,
+                      initialValue: _selectedCategoryId,
                       items: _categories
                           .map(
                             (c) => DropdownMenuItem(
