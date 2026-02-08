@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:global_diaspora_events/src/features/auth/auth_service.dart';
 import 'package:go_router/go_router.dart';
 
 class SpotifySyncScreen extends ConsumerWidget {
@@ -38,7 +39,7 @@ class SpotifySyncScreen extends ConsumerWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
-                  onPressed: () => _syncSpotify(context),
+                  onPressed: () => _syncSpotify(context, ref),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF1DB954),
                     foregroundColor: Colors.white,
@@ -69,9 +70,20 @@ class SpotifySyncScreen extends ConsumerWidget {
     );
   }
 
-  void _syncSpotify(BuildContext context) {
-    // TODO: Implement OAuth Spotify
-    _completeOnboarding(context);
+  void _syncSpotify(BuildContext context, WidgetRef ref) async {
+    try {
+      await ref.read(authServiceProvider).signInWithSpotify();
+      // Вызываем завершение в зависимости от политики приложения (обычно слушаем auth state)
+      if (context.mounted) {
+        _completeOnboarding(context);
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Ошибка Spotify: $e')));
+      }
+    }
   }
 
   void _skip(BuildContext context) {

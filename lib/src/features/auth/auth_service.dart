@@ -60,6 +60,13 @@ class AuthService {
 
     await _supabase.from('profiles').update(updates).eq('id', user.id);
   }
+
+  Future<void> signInWithSpotify() async {
+    await _supabase.auth.signInWithOAuth(
+      OAuthProvider.spotify,
+      redirectTo: 'global-diaspora-events://login-callback',
+    );
+  }
 }
 
 @riverpod
