@@ -39,6 +39,6 @@ class EventsRepository {
 }
 
 @riverpod
-EventsRepository eventsRepository(EventsRepositoryRef ref) {
+EventsRepository eventsRepository(Ref ref) {
   return EventsRepository(Supabase.instance.client);
 }

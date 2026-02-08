@@ -41,6 +41,6 @@ class AuthService {
 }
 
 @riverpod
-AuthService authService(AuthServiceRef ref) {
+AuthService authService(Ref ref) {
   return AuthService(Supabase.instance.client);
 }
