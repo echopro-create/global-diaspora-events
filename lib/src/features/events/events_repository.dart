@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:latlong2/latlong.dart';
@@ -19,33 +20,46 @@ class EventsRepository {
     double? lat,
     double? lon,
   }) async {
-    // Включаем связанные таблицы в запрос select
-    var query = _supabase
-        .from('events')
-        .select('*, categories(*), event_tags(tags(*))');
+    try {
+      // Включаем связанные таблицы в запрос select
+      var query = _supabase
+          .from('events')
+          .select('*, categories(*), event_tags(tags(*))');
 
-    if (categoryId != null) {
-      query = query.eq('category_id', categoryId);
+      if (categoryId != null) {
+        query = query.eq('category_id', categoryId);
+      }
+
+      // Если переданы теги, фильтруем через вложенный запрос или фильтр по связанной таблице
+      if (tagIds != null && tagIds.isNotEmpty) {
+        query = query.inFilter('event_tags.tag_id', tagIds);
+      }
+
+      final response = await query.order('start_time');
+
+      return (response as List).map((e) => Event.fromJson(e)).toList();
+    } catch (e) {
+      debugPrint(
+        'Offline mode: Fetching events failed. Returning dummy data. Error: $e',
+      );
+      return _getDummyEvents();
     }
-
-    // Если переданы теги, фильтруем через вложенный запрос или фильтр по связанной таблице
-    // Supabase позволяет фильтровать по связанным таблицам через .filter или .eq с путем
-    if (tagIds != null && tagIds.isNotEmpty) {
-      query = query.inFilter('event_tags.tag_id', tagIds);
-    }
-
-    final response = await query.order('start_time');
-
-    return (response as List).map((e) => Event.fromJson(e)).toList();
   }
 
   Future<List<Event>> getPromotedEvents() async {
-    final response = await _supabase
-        .from('events')
-        .select('*, categories(*), event_tags(tags(*))')
-        .eq('is_promoted', true)
-        .limit(5);
-    return (response as List).map((e) => Event.fromJson(e)).toList();
+    try {
+      final response = await _supabase
+          .from('events')
+          .select('*, categories(*), event_tags(tags(*))')
+          .eq('is_promoted', true)
+          .limit(5);
+      return (response as List).map((e) => Event.fromJson(e)).toList();
+    } catch (e) {
+      debugPrint(
+        'Offline mode: Fetching promoted events failed. Returning dummy data. Error: $e',
+      );
+      return _getDummyEvents().take(3).toList();
+    }
   }
 
   Future<List<Category>> getCategories() async {
@@ -113,6 +127,58 @@ class EventsRepository {
         .eq('id', id)
         .single();
     return Event.fromJson(response);
+  }
+
+  List<Event> _getDummyEvents() {
+    return [
+      Event(
+        id: '1',
+        title: 'Украинский Пикник',
+        description: 'Встреча диаспоры в парке',
+        categoryId: '1',
+        startTime: DateTime.now().add(const Duration(days: 2)),
+        location: const LatLng(52.5200, 13.4050),
+        address: 'Berlin, Treptower Park',
+        imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1',
+        isPromoted: true,
+        tags: [
+          Tag(id: '1', name: 'Семья'),
+          Tag(id: '2', name: 'Еда'),
+        ],
+        category: Category(id: '1', name: 'Встречи'),
+      ),
+      Event(
+        id: '2',
+        title: 'Концерт Океан Ельзы',
+        description: 'Большой концерт в поддержку Украины',
+        categoryId: '2',
+        startTime: DateTime.now().add(const Duration(days: 5)),
+        location: const LatLng(52.5000, 13.4000),
+        address: 'Berlin, Mercedes-Benz Arena',
+        imageUrl:
+            'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4',
+        isPromoted: true,
+        tags: [Tag(id: '3', name: 'Музыка')],
+        category: Category(id: '2', name: 'Культура'),
+      ),
+      Event(
+        id: '3',
+        title: 'IT Networking',
+        description: 'Встреча IT специалистов',
+        categoryId: '3',
+        startTime: DateTime.now().add(const Duration(days: 1)),
+        location: const LatLng(52.5100, 13.3800),
+        address: 'Berlin, Coworking Space',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515187029135-18ee286d815b',
+        isPromoted: false,
+        tags: [
+          Tag(id: '4', name: 'IT'),
+          Tag(id: '5', name: 'Networking'),
+        ],
+        category: Category(id: '3', name: 'Образование'),
+      ),
+    ];
   }
 }
 

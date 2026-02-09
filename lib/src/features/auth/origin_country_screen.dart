@@ -67,7 +67,11 @@ class OriginCountryScreen extends ConsumerWidget {
     String country,
   ) async {
     try {
-      await ref.read(authServiceProvider).updateProfile(originCountry: country);
+      final authService = ref.read(authServiceProvider);
+      if (authService.currentUser == null) {
+        await authService.signInAnonymously();
+      }
+      await authService.updateProfile(originCountry: country);
       if (context.mounted) {
         context.push('/onboarding/city');
       }

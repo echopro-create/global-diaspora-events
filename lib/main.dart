@@ -12,5 +12,15 @@ void main() async {
     anonKey: SupabaseConfig.anonKey,
   );
 
+  // Initialize anonymous session if needed
+  try {
+    final session = Supabase.instance.client.auth.currentSession;
+    if (session == null) {
+      await Supabase.instance.client.auth.signInAnonymously();
+    }
+  } catch (e) {
+    debugPrint('Anonymous auth failed: $e');
+  }
+
   runApp(const ProviderScope(child: GlobalDiasporaApp()));
 }

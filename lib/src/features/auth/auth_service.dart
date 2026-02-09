@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,6 +12,9 @@ class AuthService {
   Session? get currentSession => _supabase.auth.currentSession;
   User? get currentUser => _supabase.auth.currentUser;
   Stream<AuthState> get authStateChanges => _supabase.auth.onAuthStateChange;
+
+  // Local mock storage for offline mode
+  final Map<String, dynamic> _localProfile = {};
 
   Future<AuthResponse> signInWithEmail({
     required String email,
@@ -46,19 +50,30 @@ class AuthService {
     bool? spotifyConnected,
     Map<String, dynamic>? location,
   }) async {
-    final user = currentUser;
-    if (user == null) throw Exception('User not logged in');
-
-    final updates = {
-      'full_name': ?fullName,
-      'origin_country': ?originCountry,
-      'avatar_url': ?avatarUrl,
-      'spotify_connected': ?spotifyConnected,
-      'current_location': ?location,
+    final Map<String, dynamic> updates = {
+      'full_name': fullName,
+      'origin_country': originCountry,
+      'avatar_url': avatarUrl,
+      'spotify_connected': spotifyConnected,
+      'current_location': location,
       'updated_at': DateTime.now().toIso8601String(),
     };
+    updates.removeWhere((key, value) => value == null);
 
-    await _supabase.from('profiles').update(updates).eq('id', user.id);
+    // Update local mock profile
+    _localProfile.addAll(updates);
+
+    final user = currentUser;
+    if (user != null) {
+      try {
+        await _supabase.from('profiles').update(updates).eq('id', user.id);
+      } catch (e) {
+        // Ignore Supabase errors in offline mode
+        debugPrint('Offline mode: Profile updated locally only. Error: $e');
+      }
+    } else {
+      debugPrint('Offline mode: User is null, profile updated locally only.');
+    }
   }
 
   Future<void> signInWithSpotify() async {
@@ -68,10 +83,32 @@ class AuthService {
     );
   }
 
+  Future<AuthResponse?> signInAnonymously() async {
+    try {
+      return await _supabase.auth.signInAnonymously();
+    } catch (e) {
+      debugPrint('Offline mode: Anonymous sign-in failed/skipped. Error: $e');
+      return null; // Return null to indicate offline mode
+    }
+  }
+
   Future<Map<String, dynamic>> getProfile() async {
     final user = currentUser;
-    if (user == null) throw Exception('User not logged in');
-    return await _supabase.from('profiles').select().eq('id', user.id).single();
+    if (user != null) {
+      try {
+        final data = await _supabase
+            .from('profiles')
+            .select()
+            .eq('id', user.id)
+            .single();
+        // Update local cache
+        _localProfile.addAll(data);
+        return data;
+      } catch (e) {
+        debugPrint('Offline mode: Fetching local profile. Error: $e');
+      }
+    }
+    return _localProfile;
   }
 }
 
