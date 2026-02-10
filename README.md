@@ -1,3 +1,1 @@
-# global_diaspora_events
-
-A new Flutter project.
+# Global Diaspora Events
