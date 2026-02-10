@@ -1,14 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../core/providers/core_providers.dart';
 import '../../data/datasources/events_remote_datasource.dart';
 import '../../data/repositories/events_repository_impl.dart';
 import '../../domain/entities/event.dart';
-
-/// Provider для Supabase client.
-final supabaseClientProvider = Provider<SupabaseClient>((ref) {
-  return Supabase.instance.client;
-});
 
 /// Provider для EventsRemoteDataSource.
 final eventsRemoteDataSourceProvider = Provider<EventsRemoteDataSource>((ref) {
@@ -20,7 +15,7 @@ final eventsRepositoryProvider = Provider<EventsRepository>((ref) {
   return EventsRepository(ref.watch(eventsRemoteDataSourceProvider));
 });
 
-/// Provider для списка событий.
+/// Provider для списка событий (фильтр по категории — nullable).
 final eventsProvider = FutureProvider.family<List<Event>, String?>((
   ref,
   categoryId,
