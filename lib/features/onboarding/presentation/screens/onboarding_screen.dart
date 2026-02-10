@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/theme.dart';
 
@@ -154,7 +155,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     } else {
       // Завершение онбординга → переход на главную
-      Navigator.of(context).pushReplacementNamed('/');
+      context.go('/');
     }
   }
 

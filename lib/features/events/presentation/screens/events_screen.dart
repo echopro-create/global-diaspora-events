@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/theme.dart';
+import '../../../categories/presentation/providers/categories_providers.dart';
 import '../providers/events_providers.dart';
 import '../widgets/event_card.dart';
 
@@ -17,6 +18,7 @@ class EventsScreen extends ConsumerStatefulWidget {
 class _EventsScreenState extends ConsumerState<EventsScreen>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
+  String? _selectedCategoryId;
 
   static const _tabs = ['For You', 'Nearby', 'Categories'];
 
@@ -71,40 +73,52 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                             ],
                           ),
                         ),
-                        // Аватар пользователя
-                        CircleAvatar(
-                          radius: 22,
-                          backgroundColor: AppColors.primary,
-                          child: const Icon(
-                            Icons.person_rounded,
-                            color: Colors.white,
+                        // Аватар — тап → профиль
+                        GestureDetector(
+                          onTap: () => context.go('/profile'),
+                          child: const CircleAvatar(
+                            radius: 22,
+                            backgroundColor: AppColors.primary,
+                            child: Icon(
+                              Icons.person_rounded,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
 
-                    // Поиск
-                    Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.cardDark,
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(color: AppColors.divider),
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search events, artists, venues...',
-                          prefixIcon: const Icon(
-                            Icons.search_rounded,
-                            color: AppColors.textMuted,
-                          ),
-                          border: InputBorder.none,
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 14,
-                          ),
+                    // Поиск → переход на Search Tab
+                    GestureDetector(
+                      onTap: () => context.go('/search'),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 14,
                         ),
-                        style: const TextStyle(color: AppColors.textPrimary),
+                        decoration: BoxDecoration(
+                          color: AppColors.cardDark,
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(color: AppColors.divider),
+                        ),
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Icons.search_rounded,
+                              color: AppColors.textMuted,
+                              size: 22,
+                            ),
+                            SizedBox(width: 12),
+                            Text(
+                              'Search events, artists, venues...',
+                              style: TextStyle(
+                                color: AppColors.textMuted,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -163,7 +177,7 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
               color: AppColors.textMuted,
             ),
             const SizedBox(height: 16),
-            Text(
+            const Text(
               'Failed to load events',
               style: TextStyle(color: AppColors.textSecondary),
             ),
@@ -200,37 +214,183 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
   }
 
   Widget _buildNearbyTab() {
-    // TODO: Implement with actual user location
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.location_on_rounded, size: 48, color: AppColors.textMuted),
-          SizedBox(height: 16),
-          Text(
-            'Enable location to see\nevents near you',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: AppColors.textSecondary, fontSize: 16),
-          ),
-        ],
+    // Заглушка — будет GPS-определение после подключения geolocator
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: AppColors.secondary.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(
+                Icons.location_on_rounded,
+                size: 48,
+                color: AppColors.secondary,
+              ),
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              'Events near you',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Enable location access to discover\nevents happening around you',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: AppColors.textSecondary, fontSize: 15),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              onPressed: () {
+                // TODO: Request location permission
+              },
+              icon: const Icon(Icons.my_location_rounded),
+              label: const Text('Enable Location'),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildCategoriesTab() {
-    // TODO: Implement with categories
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.category_rounded, size: 48, color: AppColors.textMuted),
-          SizedBox(height: 16),
-          Text(
-            'Browse by category',
-            style: TextStyle(color: AppColors.textSecondary, fontSize: 16),
-          ),
-        ],
+    final categoriesAsync = ref.watch(categoriesProvider);
+
+    return categoriesAsync.when(
+      loading: () => const Center(
+        child: CircularProgressIndicator(color: AppColors.primary),
       ),
+      error: (_, __) => const Center(
+        child: Text(
+          'Failed to load categories',
+          style: TextStyle(color: AppColors.textSecondary),
+        ),
+      ),
+      data: (categories) {
+        return Column(
+          children: [
+            // Горизонтальная полоска категорий
+            SizedBox(
+              height: 56,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                itemCount: categories.length + 1, // +1 для "All"
+                itemBuilder: (context, index) {
+                  final isAll = index == 0;
+                  final isSelected = isAll
+                      ? _selectedCategoryId == null
+                      : _selectedCategoryId == categories[index - 1].id;
+
+                  final label = isAll ? 'All' : categories[index - 1].name;
+                  final icon = isAll
+                      ? '🌍'
+                      : (categories[index - 1].icon ?? '📋');
+
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectedCategoryId = isAll
+                            ? null
+                            : categories[index - 1].id;
+                      });
+                    },
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      margin: const EdgeInsets.only(right: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? AppColors.primary
+                            : AppColors.cardDark,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: isSelected
+                              ? AppColors.primary
+                              : AppColors.divider,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(icon, style: const TextStyle(fontSize: 16)),
+                          const SizedBox(width: 6),
+                          Text(
+                            label,
+                            style: TextStyle(
+                              color: isSelected
+                                  ? Colors.white
+                                  : AppColors.textSecondary,
+                              fontSize: 14,
+                              fontWeight: isSelected
+                                  ? FontWeight.w600
+                                  : FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            // Список событий фильтрованный по категории
+            Expanded(child: _buildCategoryEvents()),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildCategoryEvents() {
+    final eventsAsync = ref.watch(eventsProvider(_selectedCategoryId));
+
+    return eventsAsync.when(
+      loading: () => const Center(
+        child: CircularProgressIndicator(color: AppColors.primary),
+      ),
+      error: (_, __) => const Center(
+        child: Text(
+          'Failed to load events',
+          style: TextStyle(color: AppColors.textSecondary),
+        ),
+      ),
+      data: (events) {
+        if (events.isEmpty) return _buildEmptyState();
+
+        return RefreshIndicator(
+          onRefresh: () async {
+            ref.invalidate(eventsProvider(_selectedCategoryId));
+          },
+          child: ListView.builder(
+            padding: const EdgeInsets.only(bottom: 100),
+            itemCount: events.length,
+            itemBuilder: (context, index) {
+              final event = events[index];
+              return EventCard(
+                event: event,
+                onTap: () => context.push('/event/${event.id}'),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 
