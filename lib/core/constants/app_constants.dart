@@ -20,7 +20,14 @@ abstract final class AppConstants {
   static const prefCurrentCity = 'current_city';
 }
 
-/// URL и ключи Supabase — загружаются из .env.
+/// URL и ключи Supabase — передаются через --dart-define при сборке.
+///
+/// Пример запуска:
+/// ```
+/// flutter run \
+///   --dart-define=SUPABASE_URL=https://xxx.supabase.co \
+///   --dart-define=SUPABASE_ANON_KEY=eyJ...
+/// ```
 abstract final class SupabaseConfig {
   static const supabaseUrl = String.fromEnvironment(
     'SUPABASE_URL',
@@ -30,4 +37,8 @@ abstract final class SupabaseConfig {
     'SUPABASE_ANON_KEY',
     defaultValue: '',
   );
+
+  /// Проверка, что ключи сконфигурированы.
+  static bool get isConfigured =>
+      supabaseUrl.isNotEmpty && supabaseAnonKey.isNotEmpty;
 }

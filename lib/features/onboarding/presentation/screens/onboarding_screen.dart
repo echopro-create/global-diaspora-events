@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/theme.dart';
+import '../../../../core/utils/country_utils.dart';
 
 /// Экран онбординга — выбор страны и интересов.
 class OnboardingScreen extends StatefulWidget {
@@ -15,24 +16,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final _pageController = PageController();
   int _currentPage = 0;
 
-  // Список стран (можно расширить)
-  final _countries = [
-    '🇺🇦 Ukraine',
-    '🇷🇺 Russia',
-    '🇵🇱 Poland',
-    '🇩🇪 Germany',
-    '🇫🇷 France',
-    '🇪🇸 Spain',
-    '🇮🇹 Italy',
-    '🇬🇧 United Kingdom',
-    '🇺🇸 United States',
-    '🇨🇦 Canada',
-    '🇹🇷 Turkey',
-    '🇬🇪 Georgia',
-    '🇰🇿 Kazakhstan',
-    '🇮🇱 Israel',
-    '🇦🇪 UAE',
-  ];
+  // ISO-коды стран из country_utils.dart
+  final _countryCodes = countries.keys.toList();
 
   String? _selectedCountry;
 
@@ -231,13 +216,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           const SizedBox(height: 20),
           Expanded(
             child: ListView.builder(
-              itemCount: _countries.length,
+              itemCount: _countryCodes.length,
               itemBuilder: (context, index) {
-                final country = _countries[index];
-                final isSelected = _selectedCountry == country;
+                final code = _countryCodes[index];
+                final isSelected = _selectedCountry == code;
+                final display = countryDisplay(code);
 
                 return GestureDetector(
-                  onTap: () => setState(() => _selectedCountry = country),
+                  onTap: () => setState(() => _selectedCountry = code),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
                     margin: const EdgeInsets.only(bottom: 8),
@@ -260,7 +246,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Row(
                       children: [
                         Text(
-                          country,
+                          display,
                           style: TextStyle(
                             color: isSelected
                                 ? AppColors.textPrimary

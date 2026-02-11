@@ -175,3 +175,61 @@ class CategoryChipsSkeleton extends StatelessWidget {
     );
   }
 }
+
+/// Shimmer-скелетон для экрана профиля.
+class ProfileSkeleton extends StatelessWidget {
+  const ProfileSkeleton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: AppColors.cardDark,
+      highlightColor: AppColors.surfaceDark.withValues(alpha: 0.8),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            // Аватар
+            const CircleAvatar(radius: 48, backgroundColor: Colors.white),
+            const SizedBox(height: 16),
+            // Имя
+            Container(
+              width: 160,
+              height: 22,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(6),
+              ),
+            ),
+            const SizedBox(height: 8),
+            // Подпись
+            Container(
+              width: 120,
+              height: 14,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+            const SizedBox(height: 32),
+            // Info-карточки (3 штуки)
+            ...List.generate(
+              3,
+              (index) => Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Container(
+                  height: 64,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/theme.dart';
+import '../../../../core/utils/country_utils.dart';
+import '../../../../core/widgets/shimmer_skeletons.dart';
 import '../../../profile/presentation/providers/profile_providers.dart';
 
 /// Экран профиля пользователя.
@@ -16,9 +18,7 @@ class ProfileScreen extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: profileAsync.when(
-          loading: () => const Center(
-            child: CircularProgressIndicator(color: AppColors.primary),
-          ),
+          loading: () => const ProfileSkeleton(),
           error: (_, _) => _buildAuthPrompt(context),
           data: (profile) {
             if (profile == null) return _buildAuthPrompt(context);
@@ -61,7 +61,7 @@ class ProfileScreen extends ConsumerWidget {
                         Text(
                           [
                             if (profile.originCountry != null)
-                              'From ${profile.originCountry}',
+                              'From ${countryDisplay(profile.originCountry!)}',
                             if (profile.currentCity != null)
                               'in ${profile.currentCity}',
                           ].join(' · '),
@@ -77,7 +77,9 @@ class ProfileScreen extends ConsumerWidget {
                           icon: Icons.public_rounded,
                           color: AppColors.primary,
                           label: 'Origin Country',
-                          value: profile.originCountry ?? 'Not set',
+                          value: profile.originCountry != null
+                              ? countryDisplay(profile.originCountry!)
+                              : 'Not set',
                         ),
                         const SizedBox(height: 12),
                         _buildInfoCard(

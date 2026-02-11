@@ -1,0 +1,51 @@
+{
+  "@@locale": "uk",
+  "appTitle": "Global Diaspora Events",
+  "welcomeTitle": "Ласкаво просимо до\nGlobal Diaspora Events",
+  "welcomeSubtitle": "Знайди своїх людей.\nЗнайди свої події.\nЗалишайся на зв'язку зі своєю культурою.",
+  "whereAreYouFrom": "Звідки ви?",
+  "countryHint": "Це допоможе нам знайти події вашої культури",
+  "whatAreYouInto": "Чим цікавитесь?",
+  "interestsHint": "Оберіть принаймні одне для персоналізації стрічки",
+  "next": "Далі",
+  "back": "Назад",
+  "letsGo": "Поїхали!",
+  "eventsTitle": "Події",
+  "searchTitle": "Пошук",
+  "profileTitle": "Профіль",
+  "signIn": "Увійти",
+  "signOut": "Вийти",
+  "editProfile": "Редагувати профіль",
+  "originCountry": "Країна походження",
+  "currentCity": "Поточне місто",
+  "joined": "Приєднався",
+  "notSet": "Не вказано",
+  "fromCountry": "З {country}",
+  "@fromCountry": {
+    "placeholders": {
+      "country": {"type": "String"}
+    }
+  },
+  "inCity": "у {city}",
+  "@inCity": {
+    "placeholders": {
+      "city": {"type": "String"}
+    }
+  },
+  "joinToDiscover": "Приєднуйтесь до спільноти, щоб знаходити події",
+  "createAccount": "Створити акаунт",
+  "concerts": "Концерти",
+  "sports": "Спорт",
+  "standUp": "Стендап",
+  "business": "Бізнес",
+  "kids": "Діти",
+  "theatre": "Театр",
+  "festivals": "Фестивалі",
+  "artExhibitions": "Мистецтво і виставки",
+  "buyTicket": "Купити квиток",
+  "eventDetails": "Деталі події",
+  "noEventsFound": "Подій не знайдено",
+  "loading": "Завантаження...",
+  "error": "Щось пішло не так",
+  "retry": "Повторити"
+}

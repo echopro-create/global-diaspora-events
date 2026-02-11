@@ -1,0 +1,51 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Global Diaspora Events",
+  "welcomeTitle": "Добро пожаловать в\nGlobal Diaspora Events",
+  "welcomeSubtitle": "Найди своих людей.\nНайди свои события.\nОставайся на связи со своей культурой.",
+  "whereAreYouFrom": "Откуда вы?",
+  "countryHint": "Это поможет нам найти события вашей культуры",
+  "whatAreYouInto": "Что вас интересует?",
+  "interestsHint": "Выберите хотя бы одно для персонализации ленты",
+  "next": "Далее",
+  "back": "Назад",
+  "letsGo": "Поехали!",
+  "eventsTitle": "События",
+  "searchTitle": "Поиск",
+  "profileTitle": "Профиль",
+  "signIn": "Войти",
+  "signOut": "Выйти",
+  "editProfile": "Редактировать профиль",
+  "originCountry": "Страна происхождения",
+  "currentCity": "Текущий город",
+  "joined": "Присоединился",
+  "notSet": "Не указано",
+  "fromCountry": "Из {country}",
+  "@fromCountry": {
+    "placeholders": {
+      "country": {"type": "String"}
+    }
+  },
+  "inCity": "в {city}",
+  "@inCity": {
+    "placeholders": {
+      "city": {"type": "String"}
+    }
+  },
+  "joinToDiscover": "Присоединяйтесь к сообществу, чтобы находить события",
+  "createAccount": "Создать аккаунт",
+  "concerts": "Концерты",
+  "sports": "Спорт",
+  "standUp": "Стендап",
+  "business": "Бизнес",
+  "kids": "Дети",
+  "theatre": "Театр",
+  "festivals": "Фестивали",
+  "artExhibitions": "Искусство и выставки",
+  "buyTicket": "Купить билет",
+  "eventDetails": "Подробности события",
+  "noEventsFound": "Событий не найдено",
+  "loading": "Загрузка...",
+  "error": "Что-то пошло не так",
+  "retry": "Повторить"
+}

@@ -33,9 +33,7 @@ abstract final class AppColors {
 /// Тема приложения.
 abstract final class AppTheme {
   static ThemeData get darkTheme {
-    final textTheme = GoogleFonts.interTextTheme(
-      ThemeData.dark().textTheme,
-    );
+    final textTheme = GoogleFonts.interTextTheme(ThemeData.dark().textTheme);
 
     return ThemeData(
       useMaterial3: true,
@@ -78,18 +76,35 @@ abstract final class AppTheme {
         secondary: AppColors.secondary,
         secondaryContainer: AppColors.secondaryLight,
         surface: AppColors.surfaceDark,
+        surfaceContainerHighest: AppColors.cardDark,
+        outline: AppColors.divider,
+        outlineVariant: AppColors.textMuted,
         error: AppColors.error,
         onPrimary: Colors.white,
         onSecondary: Colors.white,
         onSurface: AppColors.textPrimary,
         onError: Colors.white,
       ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: AppColors.cardDark,
+        contentTextStyle: const TextStyle(color: AppColors.textPrimary),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        behavior: SnackBarBehavior.floating,
+      ),
+      dialogTheme: DialogThemeData(
+        backgroundColor: AppColors.surfaceDark,
+        titleTextStyle: const TextStyle(
+          color: AppColors.textPrimary,
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
+        ),
+        contentTextStyle: const TextStyle(color: AppColors.textSecondary),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      ),
       cardTheme: CardThemeData(
         color: AppColors.cardDark,
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
       appBarTheme: AppBarTheme(
@@ -119,10 +134,7 @@ abstract final class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          textStyle: const TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
+          textStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(

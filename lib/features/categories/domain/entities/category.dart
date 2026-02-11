@@ -1,35 +1,19 @@
-/// Модель категории события.
-class Category {
-  final String id;
-  final String name;
-  final String slug;
-  final String? icon;
-  final int sortOrder;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const Category({
-    required this.id,
-    required this.name,
-    required this.slug,
-    this.icon,
-    this.sortOrder = 0,
-  });
+part 'category.freezed.dart';
+part 'category.g.dart';
 
-  factory Category.fromJson(Map<String, dynamic> json) {
-    return Category(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      slug: json['slug'] as String,
-      icon: json['icon'] as String?,
-      sortOrder: json['sort_order'] as int? ?? 0,
-    );
-  }
+/// Модель категории событий.
+@freezed
+abstract class Category with _$Category {
+  const factory Category({
+    required String id,
+    required String name,
+    required String slug,
+    String? icon,
+    @Default(0) int sortOrder,
+  }) = _Category;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'slug': slug,
-      if (icon != null) 'icon': icon,
-      'sort_order': sortOrder,
-    };
-  }
+  factory Category.fromJson(Map<String, dynamic> json) =>
+      _$CategoryFromJson(json);
 }

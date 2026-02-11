@@ -1,27 +1,17 @@
-/// Модель тега события.
-class Tag {
-  final String id;
-  final String name;
-  final String slug;
-  final DateTime createdAt;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const Tag({
-    required this.id,
-    required this.name,
-    required this.slug,
-    required this.createdAt,
-  });
+part 'tag.freezed.dart';
+part 'tag.g.dart';
 
-  factory Tag.fromJson(Map<String, dynamic> json) {
-    return Tag(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      slug: json['slug'] as String,
-      createdAt: DateTime.parse(json['created_at'] as String),
-    );
-  }
+/// Модель тега.
+@freezed
+abstract class Tag with _$Tag {
+  const factory Tag({
+    required String id,
+    required String name,
+    required String slug,
+    required DateTime createdAt,
+  }) = _Tag;
 
-  Map<String, dynamic> toJson() {
-    return {'name': name, 'slug': slug};
-  }
+  factory Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);
 }
