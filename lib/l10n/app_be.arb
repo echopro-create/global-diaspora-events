@@ -1,78 +1,319 @@
 {
   "@@locale": "be",
   "appTitle": "Global Diaspora Events",
+  "@appTitle": {
+    "description": "Auto-generated description for appTitle"
+  },
   "welcomeTitle": "Вітаем у\nGlobal Diaspora Events",
+  "@welcomeTitle": {
+    "description": "Auto-generated description for welcomeTitle"
+  },
   "welcomeSubtitle": "Знайдзі сваіх людзей.\nЗнайдзі свае падзеі.\nЗаставайся на сувязі са сваёй культурай.",
+  "@welcomeSubtitle": {
+    "description": "Auto-generated description for welcomeSubtitle"
+  },
   "whereAreYouFrom": "Адкуль вы?",
+  "@whereAreYouFrom": {
+    "description": "Auto-generated description for whereAreYouFrom"
+  },
   "countryHint": "Гэта дапаможа нам знайсці падзеі вашай культуры",
+  "@countryHint": {
+    "description": "Auto-generated description for countryHint"
+  },
   "whatAreYouInto": "Чым цікавіцеся?",
+  "@whatAreYouInto": {
+    "description": "Auto-generated description for whatAreYouInto"
+  },
   "interestsHint": "Абярыце хоць бы адно для персаналізацыі стужкі",
+  "@interestsHint": {
+    "description": "Auto-generated description for interestsHint"
+  },
   "next": "Далей",
+  "@next": {
+    "description": "Auto-generated description for next"
+  },
   "back": "Назад",
+  "@back": {
+    "description": "Auto-generated description for back"
+  },
   "letsGo": "Паехалі!",
+  "@letsGo": {
+    "description": "Auto-generated description for letsGo"
+  },
   "eventsTitle": "Падзеі",
+  "@eventsTitle": {
+    "description": "Auto-generated description for eventsTitle"
+  },
   "searchTitle": "Пошук",
+  "@searchTitle": {
+    "description": "Auto-generated description for searchTitle"
+  },
   "profileTitle": "Профіль",
+  "@profileTitle": {
+    "description": "Auto-generated description for profileTitle"
+  },
   "signIn": "Увайсці",
+  "@signIn": {
+    "description": "Auto-generated description for signIn"
+  },
   "signOut": "Выйсці",
+  "@signOut": {
+    "description": "Auto-generated description for signOut"
+  },
   "editProfile": "Рэдагаваць профіль",
+  "@editProfile": {
+    "description": "Auto-generated description for editProfile"
+  },
   "originCountry": "Краіна паходжання",
+  "@originCountry": {
+    "description": "Auto-generated description for originCountry"
+  },
   "currentCity": "Бягучы горад",
+  "@currentCity": {
+    "description": "Auto-generated description for currentCity"
+  },
   "joined": "Далучыўся",
+  "@joined": {
+    "description": "Auto-generated description for joined"
+  },
   "notSet": "Не ўказана",
+  "@notSet": {
+    "description": "Auto-generated description for notSet"
+  },
   "fromCountry": "З {country}",
+  "@fromCountry": {
+    "placeholders": {
+      "country": {
+        "type": "String"
+      }
+    }
+  },
   "inCity": "у {city}",
+  "@inCity": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
   "joinToDiscover": "Далучайцеся да супольнасці, каб знаходзіць падзеі",
+  "@joinToDiscover": {
+    "description": "Auto-generated description for joinToDiscover"
+  },
   "createAccount": "Стварыць акаўнт",
+  "@createAccount": {
+    "description": "Auto-generated description for createAccount"
+  },
   "concerts": "Канцэрты",
+  "@concerts": {
+    "description": "Auto-generated description for concerts"
+  },
   "sports": "Спорт",
+  "@sports": {
+    "description": "Auto-generated description for sports"
+  },
   "standUp": "Стэндап",
+  "@standUp": {
+    "description": "Auto-generated description for standUp"
+  },
   "business": "Бізнес",
+  "@business": {
+    "description": "Auto-generated description for business"
+  },
   "kids": "Дзеці",
+  "@kids": {
+    "description": "Auto-generated description for kids"
+  },
   "theatre": "Тэатр",
+  "@theatre": {
+    "description": "Auto-generated description for theatre"
+  },
   "festivals": "Фестывалі",
+  "@festivals": {
+    "description": "Auto-generated description for festivals"
+  },
   "artExhibitions": "Мастацтва і выставы",
+  "@artExhibitions": {
+    "description": "Auto-generated description for artExhibitions"
+  },
   "buyTicket": "Купіць білет",
+  "@buyTicket": {
+    "description": "Auto-generated description for buyTicket"
+  },
   "eventDetails": "Падрабязнасці падзеі",
+  "@eventDetails": {
+    "description": "Auto-generated description for eventDetails"
+  },
   "noEventsFound": "Падзей не знойдзена",
+  "@noEventsFound": {
+    "description": "Auto-generated description for noEventsFound"
+  },
   "loading": "Загрузка...",
+  "@loading": {
+    "description": "Auto-generated description for loading"
+  },
   "error": "Нешта пайшло не так",
+  "@error": {
+    "description": "Auto-generated description for error"
+  },
   "retry": "Паўтарыць",
+  "@retry": {
+    "description": "Auto-generated description for retry"
+  },
   "discoverEvents": "Адкрывай падзеі",
+  "@discoverEvents": {
+    "description": "Auto-generated description for discoverEvents"
+  },
   "discoverSubtitle": "Знайдзі сваіх людзей, знайдзі свае падзеі",
+  "@discoverSubtitle": {
+    "description": "Auto-generated description for discoverSubtitle"
+  },
   "searchHint": "Пошук падзей, артыстаў, пляцовак...",
+  "@searchHint": {
+    "description": "Auto-generated description for searchHint"
+  },
   "forYou": "Для вас",
+  "@forYou": {
+    "description": "Auto-generated description for forYou"
+  },
   "nearby": "Побач",
+  "@nearby": {
+    "description": "Auto-generated description for nearby"
+  },
   "categories": "Катэгорыі",
+  "@categories": {
+    "description": "Auto-generated description for categories"
+  },
   "featuredEvents": "Рэкамендаваныя",
+  "@featuredEvents": {
+    "description": "Auto-generated description for featuredEvents"
+  },
   "allEvents": "Усе падзеі",
+  "@allEvents": {
+    "description": "Auto-generated description for allEvents"
+  },
   "failedToLoad": "Не атрымалася загрузіць падзеі",
+  "@failedToLoad": {
+    "description": "Auto-generated description for failedToLoad"
+  },
   "tryAgain": "Паспрабаваць зноў",
+  "@tryAgain": {
+    "description": "Auto-generated description for tryAgain"
+  },
   "noEventsYet": "Падзей пакуль няма",
+  "@noEventsYet": {
+    "description": "Auto-generated description for noEventsYet"
+  },
   "checkBackLater": "Завітайце пазней — новыя падзеі з'явяцца хутка",
+  "@checkBackLater": {
+    "description": "Auto-generated description for checkBackLater"
+  },
   "eventsNearYou": "Падзеі побач з вамі",
+  "@eventsNearYou": {
+    "description": "Auto-generated description for eventsNearYou"
+  },
   "enableLocationHint": "Дазвольце доступ да геалакацыі, каб\nзнаходзіць падзеі паблізу",
+  "@enableLocationHint": {
+    "description": "Auto-generated description for enableLocationHint"
+  },
   "enableLocation": "Уключыць геалакацыю",
+  "@enableLocation": {
+    "description": "Auto-generated description for enableLocation"
+  },
   "all": "Усе",
+  "@all": {
+    "description": "Auto-generated description for all"
+  },
   "searchForEvents": "Пошук падзей",
+  "@searchForEvents": {
+    "description": "Auto-generated description for searchForEvents"
+  },
   "searchSubtitle": "Знайдзіце канцэрты, фестывалі, выставы\nі шмат іншага ў вашым раёне",
+  "@searchSubtitle": {
+    "description": "Auto-generated description for searchSubtitle"
+  },
   "noResults": "Нічога не знойдзена",
+  "@noResults": {
+    "description": "Auto-generated description for noResults"
+  },
   "tryDifferentKeywords": "Паспрабуйце іншыя ключавыя словы для «{query}»",
+  "@tryDifferentKeywords": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
   "searchUnavailable": "Пошук недаступны",
+  "@searchUnavailable": {
+    "description": "Auto-generated description for searchUnavailable"
+  },
   "promotedEvent": "⭐ Рэкамендаваная падзея",
+  "@promotedEvent": {
+    "description": "Auto-generated description for promotedEvent"
+  },
   "promoted": "⭐ Рэкамендаваная",
+  "@promoted": {
+    "description": "Auto-generated description for promoted"
+  },
   "about": "Апісанне",
+  "@about": {
+    "description": "Auto-generated description for about"
+  },
   "peopleGoing": "{count} удзельнікаў",
+  "@peopleGoing": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "imGoing": "Я іду",
+  "@imGoing": {
+    "description": "Auto-generated description for imGoing"
+  },
   "imGoingExcited": "Я іду!",
+  "@imGoingExcited": {
+    "description": "Auto-generated description for imGoingExcited"
+  },
   "beFirstToJoin": "Будзьце першым!",
+  "@beFirstToJoin": {
+    "description": "Auto-generated description for beFirstToJoin"
+  },
   "going": "ідуць",
+  "@going": {
+    "description": "Auto-generated description for going"
+  },
   "joinCommunity": "Далучайцеся",
+  "@joinCommunity": {
+    "description": "Auto-generated description for joinCommunity"
+  },
   "signInSubtitle": "Увайдзіце, каб захоўваць падзеі,\nзносіцца з дыяспарай і не толькі",
+  "@signInSubtitle": {
+    "description": "Auto-generated description for signInSubtitle"
+  },
   "navDiscover": "Агляд",
+  "@navDiscover": {
+    "description": "Auto-generated description for navDiscover"
+  },
   "navSearch": "Пошук",
+  "@navSearch": {
+    "description": "Auto-generated description for navSearch"
+  },
   "navProfile": "Профіль",
+  "@navProfile": {
+    "description": "Auto-generated description for navProfile"
+  },
   "failedToLoadEvent": "Не атрымалася загрузіць падзею",
+  "@failedToLoadEvent": {
+    "description": "Auto-generated description for failedToLoadEvent"
+  },
   "failedToLoadCategories": "Не атрымалася загрузіць катэгорыі",
-  "diasporaMember": "Удзельнік дыяспары"
+  "@failedToLoadCategories": {
+    "description": "Auto-generated description for failedToLoadCategories"
+  },
+  "diasporaMember": "Удзельнік дыяспары",
+  "@diasporaMember": {
+    "description": "Auto-generated description for diasporaMember"
+  }
 }

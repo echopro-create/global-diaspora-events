@@ -1,25 +1,85 @@
 {
   "@@locale": "ru",
   "appTitle": "Global Diaspora Events",
+  "@appTitle": {
+    "description": "Auto-generated description for appTitle"
+  },
   "welcomeTitle": "Добро пожаловать в\nGlobal Diaspora Events",
+  "@welcomeTitle": {
+    "description": "Auto-generated description for welcomeTitle"
+  },
   "welcomeSubtitle": "Найди своих людей.\nНайди свои события.\nОставайся на связи со своей культурой.",
+  "@welcomeSubtitle": {
+    "description": "Auto-generated description for welcomeSubtitle"
+  },
   "whereAreYouFrom": "Откуда вы?",
+  "@whereAreYouFrom": {
+    "description": "Auto-generated description for whereAreYouFrom"
+  },
   "countryHint": "Это поможет нам найти события вашей культуры",
+  "@countryHint": {
+    "description": "Auto-generated description for countryHint"
+  },
   "whatAreYouInto": "Что вас интересует?",
+  "@whatAreYouInto": {
+    "description": "Auto-generated description for whatAreYouInto"
+  },
   "interestsHint": "Выберите хотя бы одно для персонализации ленты",
+  "@interestsHint": {
+    "description": "Auto-generated description for interestsHint"
+  },
   "next": "Далее",
+  "@next": {
+    "description": "Auto-generated description for next"
+  },
   "back": "Назад",
+  "@back": {
+    "description": "Auto-generated description for back"
+  },
   "letsGo": "Поехали!",
+  "@letsGo": {
+    "description": "Auto-generated description for letsGo"
+  },
   "eventsTitle": "События",
+  "@eventsTitle": {
+    "description": "Auto-generated description for eventsTitle"
+  },
   "searchTitle": "Поиск",
+  "@searchTitle": {
+    "description": "Auto-generated description for searchTitle"
+  },
   "profileTitle": "Профиль",
+  "@profileTitle": {
+    "description": "Auto-generated description for profileTitle"
+  },
   "signIn": "Войти",
+  "@signIn": {
+    "description": "Auto-generated description for signIn"
+  },
   "signOut": "Выйти",
+  "@signOut": {
+    "description": "Auto-generated description for signOut"
+  },
   "editProfile": "Редактировать профиль",
+  "@editProfile": {
+    "description": "Auto-generated description for editProfile"
+  },
   "originCountry": "Страна происхождения",
+  "@originCountry": {
+    "description": "Auto-generated description for originCountry"
+  },
   "currentCity": "Текущий город",
+  "@currentCity": {
+    "description": "Auto-generated description for currentCity"
+  },
   "joined": "Присоединился",
+  "@joined": {
+    "description": "Auto-generated description for joined"
+  },
   "notSet": "Не указано",
+  "@notSet": {
+    "description": "Auto-generated description for notSet"
+  },
   "fromCountry": "Из {country}",
   "@fromCountry": {
     "placeholders": {
@@ -37,40 +97,145 @@
     }
   },
   "joinToDiscover": "Присоединяйтесь к сообществу, чтобы находить события",
+  "@joinToDiscover": {
+    "description": "Auto-generated description for joinToDiscover"
+  },
   "createAccount": "Создать аккаунт",
+  "@createAccount": {
+    "description": "Auto-generated description for createAccount"
+  },
   "concerts": "Концерты",
+  "@concerts": {
+    "description": "Auto-generated description for concerts"
+  },
   "sports": "Спорт",
+  "@sports": {
+    "description": "Auto-generated description for sports"
+  },
   "standUp": "Стендап",
+  "@standUp": {
+    "description": "Auto-generated description for standUp"
+  },
   "business": "Бизнес",
+  "@business": {
+    "description": "Auto-generated description for business"
+  },
   "kids": "Дети",
+  "@kids": {
+    "description": "Auto-generated description for kids"
+  },
   "theatre": "Театр",
+  "@theatre": {
+    "description": "Auto-generated description for theatre"
+  },
   "festivals": "Фестивали",
+  "@festivals": {
+    "description": "Auto-generated description for festivals"
+  },
   "artExhibitions": "Искусство и выставки",
+  "@artExhibitions": {
+    "description": "Auto-generated description for artExhibitions"
+  },
   "buyTicket": "Купить билет",
+  "@buyTicket": {
+    "description": "Auto-generated description for buyTicket"
+  },
   "eventDetails": "Подробности события",
+  "@eventDetails": {
+    "description": "Auto-generated description for eventDetails"
+  },
   "noEventsFound": "Событий не найдено",
+  "@noEventsFound": {
+    "description": "Auto-generated description for noEventsFound"
+  },
   "loading": "Загрузка...",
+  "@loading": {
+    "description": "Auto-generated description for loading"
+  },
   "error": "Что-то пошло не так",
+  "@error": {
+    "description": "Auto-generated description for error"
+  },
   "retry": "Повторить",
+  "@retry": {
+    "description": "Auto-generated description for retry"
+  },
   "discoverEvents": "Открывай события",
+  "@discoverEvents": {
+    "description": "Auto-generated description for discoverEvents"
+  },
   "discoverSubtitle": "Найди своих людей, найди свои события",
+  "@discoverSubtitle": {
+    "description": "Auto-generated description for discoverSubtitle"
+  },
   "searchHint": "Поиск событий, артистов, площадок...",
+  "@searchHint": {
+    "description": "Auto-generated description for searchHint"
+  },
   "forYou": "Для вас",
+  "@forYou": {
+    "description": "Auto-generated description for forYou"
+  },
   "nearby": "Рядом",
+  "@nearby": {
+    "description": "Auto-generated description for nearby"
+  },
   "categories": "Категории",
+  "@categories": {
+    "description": "Auto-generated description for categories"
+  },
   "featuredEvents": "Рекомендуемые",
+  "@featuredEvents": {
+    "description": "Auto-generated description for featuredEvents"
+  },
   "allEvents": "Все события",
+  "@allEvents": {
+    "description": "Auto-generated description for allEvents"
+  },
   "failedToLoad": "Не удалось загрузить события",
+  "@failedToLoad": {
+    "description": "Auto-generated description for failedToLoad"
+  },
   "tryAgain": "Попробовать снова",
+  "@tryAgain": {
+    "description": "Auto-generated description for tryAgain"
+  },
   "noEventsYet": "Событий пока нет",
+  "@noEventsYet": {
+    "description": "Auto-generated description for noEventsYet"
+  },
   "checkBackLater": "Загляните позже — новые события появятся скоро",
+  "@checkBackLater": {
+    "description": "Auto-generated description for checkBackLater"
+  },
   "eventsNearYou": "События рядом с вами",
+  "@eventsNearYou": {
+    "description": "Auto-generated description for eventsNearYou"
+  },
   "enableLocationHint": "Разрешите доступ к геолокации, чтобы\nнаходить события поблизости",
+  "@enableLocationHint": {
+    "description": "Auto-generated description for enableLocationHint"
+  },
   "enableLocation": "Включить геолокацию",
+  "@enableLocation": {
+    "description": "Auto-generated description for enableLocation"
+  },
   "all": "Все",
+  "@all": {
+    "description": "Auto-generated description for all"
+  },
   "searchForEvents": "Поиск событий",
+  "@searchForEvents": {
+    "description": "Auto-generated description for searchForEvents"
+  },
   "searchSubtitle": "Найдите концерты, фестивали, выставки\nи многое другое в вашем районе",
+  "@searchSubtitle": {
+    "description": "Auto-generated description for searchSubtitle"
+  },
   "noResults": "Ничего не найдено",
+  "@noResults": {
+    "description": "Auto-generated description for noResults"
+  },
   "tryDifferentKeywords": "Попробуйте другие ключевые слова для «{query}»",
   "@tryDifferentKeywords": {
     "placeholders": {
@@ -80,9 +245,21 @@
     }
   },
   "searchUnavailable": "Поиск недоступен",
+  "@searchUnavailable": {
+    "description": "Auto-generated description for searchUnavailable"
+  },
   "promotedEvent": "⭐ Рекомендуемое событие",
+  "@promotedEvent": {
+    "description": "Auto-generated description for promotedEvent"
+  },
   "promoted": "⭐ Рекомендуемое",
+  "@promoted": {
+    "description": "Auto-generated description for promoted"
+  },
   "about": "Описание",
+  "@about": {
+    "description": "Auto-generated description for about"
+  },
   "peopleGoing": "{count} участников",
   "@peopleGoing": {
     "placeholders": {
@@ -92,15 +269,51 @@
     }
   },
   "imGoing": "Я иду",
+  "@imGoing": {
+    "description": "Auto-generated description for imGoing"
+  },
   "imGoingExcited": "Я иду!",
+  "@imGoingExcited": {
+    "description": "Auto-generated description for imGoingExcited"
+  },
   "beFirstToJoin": "Будьте первым!",
+  "@beFirstToJoin": {
+    "description": "Auto-generated description for beFirstToJoin"
+  },
   "going": "идут",
+  "@going": {
+    "description": "Auto-generated description for going"
+  },
   "joinCommunity": "Присоединяйтесь",
+  "@joinCommunity": {
+    "description": "Auto-generated description for joinCommunity"
+  },
   "signInSubtitle": "Войдите, чтобы сохранять события,\nобщаться с диаспорой и не только",
+  "@signInSubtitle": {
+    "description": "Auto-generated description for signInSubtitle"
+  },
   "navDiscover": "Обзор",
+  "@navDiscover": {
+    "description": "Auto-generated description for navDiscover"
+  },
   "navSearch": "Поиск",
+  "@navSearch": {
+    "description": "Auto-generated description for navSearch"
+  },
   "navProfile": "Профиль",
+  "@navProfile": {
+    "description": "Auto-generated description for navProfile"
+  },
   "failedToLoadEvent": "Не удалось загрузить событие",
+  "@failedToLoadEvent": {
+    "description": "Auto-generated description for failedToLoadEvent"
+  },
   "failedToLoadCategories": "Не удалось загрузить категории",
-  "diasporaMember": "Участник диаспоры"
+  "@failedToLoadCategories": {
+    "description": "Auto-generated description for failedToLoadCategories"
+  },
+  "diasporaMember": "Участник диаспоры",
+  "@diasporaMember": {
+    "description": "Auto-generated description for diasporaMember"
+  }
 }

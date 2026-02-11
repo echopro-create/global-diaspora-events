@@ -124,121 +124,121 @@ abstract class AppLocalizations {
     Locale('uz'),
   ];
 
-  /// No description provided for @appTitle.
+  /// Auto-generated description for appTitle
   ///
   /// In en, this message translates to:
   /// **'Global Diaspora Events'**
   String get appTitle;
 
-  /// No description provided for @welcomeTitle.
+  /// Auto-generated description for welcomeTitle
   ///
   /// In en, this message translates to:
   /// **'Welcome to\nGlobal Diaspora Events'**
   String get welcomeTitle;
 
-  /// No description provided for @welcomeSubtitle.
+  /// Auto-generated description for welcomeSubtitle
   ///
   /// In en, this message translates to:
   /// **'Find your people.\nFind your events.\nStay connected to your culture.'**
   String get welcomeSubtitle;
 
-  /// No description provided for @whereAreYouFrom.
+  /// Auto-generated description for whereAreYouFrom
   ///
   /// In en, this message translates to:
   /// **'Where are you from?'**
   String get whereAreYouFrom;
 
-  /// No description provided for @countryHint.
+  /// Auto-generated description for countryHint
   ///
   /// In en, this message translates to:
   /// **'This helps us find events from your culture'**
   String get countryHint;
 
-  /// No description provided for @whatAreYouInto.
+  /// Auto-generated description for whatAreYouInto
   ///
   /// In en, this message translates to:
   /// **'What are you into?'**
   String get whatAreYouInto;
 
-  /// No description provided for @interestsHint.
+  /// Auto-generated description for interestsHint
   ///
   /// In en, this message translates to:
   /// **'Pick at least one to personalize your feed'**
   String get interestsHint;
 
-  /// No description provided for @next.
+  /// Auto-generated description for next
   ///
   /// In en, this message translates to:
   /// **'Next'**
   String get next;
 
-  /// No description provided for @back.
+  /// Auto-generated description for back
   ///
   /// In en, this message translates to:
   /// **'Back'**
   String get back;
 
-  /// No description provided for @letsGo.
+  /// Auto-generated description for letsGo
   ///
   /// In en, this message translates to:
   /// **'Let\'s go!'**
   String get letsGo;
 
-  /// No description provided for @eventsTitle.
+  /// Auto-generated description for eventsTitle
   ///
   /// In en, this message translates to:
   /// **'Events'**
   String get eventsTitle;
 
-  /// No description provided for @searchTitle.
+  /// Auto-generated description for searchTitle
   ///
   /// In en, this message translates to:
   /// **'Search'**
   String get searchTitle;
 
-  /// No description provided for @profileTitle.
+  /// Auto-generated description for profileTitle
   ///
   /// In en, this message translates to:
   /// **'Profile'**
   String get profileTitle;
 
-  /// No description provided for @signIn.
+  /// Auto-generated description for signIn
   ///
   /// In en, this message translates to:
   /// **'Sign In'**
   String get signIn;
 
-  /// No description provided for @signOut.
+  /// Auto-generated description for signOut
   ///
   /// In en, this message translates to:
   /// **'Sign Out'**
   String get signOut;
 
-  /// No description provided for @editProfile.
+  /// Auto-generated description for editProfile
   ///
   /// In en, this message translates to:
   /// **'Edit Profile'**
   String get editProfile;
 
-  /// No description provided for @originCountry.
+  /// Auto-generated description for originCountry
   ///
   /// In en, this message translates to:
   /// **'Origin Country'**
   String get originCountry;
 
-  /// No description provided for @currentCity.
+  /// Auto-generated description for currentCity
   ///
   /// In en, this message translates to:
   /// **'Current City'**
   String get currentCity;
 
-  /// No description provided for @joined.
+  /// Auto-generated description for joined
   ///
   /// In en, this message translates to:
   /// **'Joined'**
   String get joined;
 
-  /// No description provided for @notSet.
+  /// Auto-generated description for notSet
   ///
   /// In en, this message translates to:
   /// **'Not set'**
@@ -256,211 +256,211 @@ abstract class AppLocalizations {
   /// **'in {city}'**
   String inCity(String city);
 
-  /// No description provided for @joinToDiscover.
+  /// Auto-generated description for joinToDiscover
   ///
   /// In en, this message translates to:
   /// **'Join our community to discover events'**
   String get joinToDiscover;
 
-  /// No description provided for @createAccount.
+  /// Auto-generated description for createAccount
   ///
   /// In en, this message translates to:
   /// **'Create Account'**
   String get createAccount;
 
-  /// No description provided for @concerts.
+  /// Auto-generated description for concerts
   ///
   /// In en, this message translates to:
   /// **'Concerts'**
   String get concerts;
 
-  /// No description provided for @sports.
+  /// Auto-generated description for sports
   ///
   /// In en, this message translates to:
   /// **'Sports'**
   String get sports;
 
-  /// No description provided for @standUp.
+  /// Auto-generated description for standUp
   ///
   /// In en, this message translates to:
   /// **'Stand-Up'**
   String get standUp;
 
-  /// No description provided for @business.
+  /// Auto-generated description for business
   ///
   /// In en, this message translates to:
   /// **'Business'**
   String get business;
 
-  /// No description provided for @kids.
+  /// Auto-generated description for kids
   ///
   /// In en, this message translates to:
   /// **'Kids'**
   String get kids;
 
-  /// No description provided for @theatre.
+  /// Auto-generated description for theatre
   ///
   /// In en, this message translates to:
   /// **'Theatre'**
   String get theatre;
 
-  /// No description provided for @festivals.
+  /// Auto-generated description for festivals
   ///
   /// In en, this message translates to:
   /// **'Festivals'**
   String get festivals;
 
-  /// No description provided for @artExhibitions.
+  /// Auto-generated description for artExhibitions
   ///
   /// In en, this message translates to:
   /// **'Art & Exhibitions'**
   String get artExhibitions;
 
-  /// No description provided for @buyTicket.
+  /// Auto-generated description for buyTicket
   ///
   /// In en, this message translates to:
   /// **'Buy Ticket'**
   String get buyTicket;
 
-  /// No description provided for @eventDetails.
+  /// Auto-generated description for eventDetails
   ///
   /// In en, this message translates to:
   /// **'Event Details'**
   String get eventDetails;
 
-  /// No description provided for @noEventsFound.
+  /// Auto-generated description for noEventsFound
   ///
   /// In en, this message translates to:
   /// **'No events found'**
   String get noEventsFound;
 
-  /// No description provided for @loading.
+  /// Auto-generated description for loading
   ///
   /// In en, this message translates to:
   /// **'Loading...'**
   String get loading;
 
-  /// No description provided for @error.
+  /// Auto-generated description for error
   ///
   /// In en, this message translates to:
   /// **'Something went wrong'**
   String get error;
 
-  /// No description provided for @retry.
+  /// Auto-generated description for retry
   ///
   /// In en, this message translates to:
   /// **'Retry'**
   String get retry;
 
-  /// No description provided for @discoverEvents.
+  /// Auto-generated description for discoverEvents
   ///
   /// In en, this message translates to:
   /// **'Discover Events'**
   String get discoverEvents;
 
-  /// No description provided for @discoverSubtitle.
+  /// Auto-generated description for discoverSubtitle
   ///
   /// In en, this message translates to:
   /// **'Find your people, find your events'**
   String get discoverSubtitle;
 
-  /// No description provided for @searchHint.
+  /// Auto-generated description for searchHint
   ///
   /// In en, this message translates to:
   /// **'Search events, artists, venues...'**
   String get searchHint;
 
-  /// No description provided for @forYou.
+  /// Auto-generated description for forYou
   ///
   /// In en, this message translates to:
   /// **'For You'**
   String get forYou;
 
-  /// No description provided for @nearby.
+  /// Auto-generated description for nearby
   ///
   /// In en, this message translates to:
   /// **'Nearby'**
   String get nearby;
 
-  /// No description provided for @categories.
+  /// Auto-generated description for categories
   ///
   /// In en, this message translates to:
   /// **'Categories'**
   String get categories;
 
-  /// No description provided for @featuredEvents.
+  /// Auto-generated description for featuredEvents
   ///
   /// In en, this message translates to:
   /// **'Featured Events'**
   String get featuredEvents;
 
-  /// No description provided for @allEvents.
+  /// Auto-generated description for allEvents
   ///
   /// In en, this message translates to:
   /// **'All Events'**
   String get allEvents;
 
-  /// No description provided for @failedToLoad.
+  /// Auto-generated description for failedToLoad
   ///
   /// In en, this message translates to:
   /// **'Failed to load events'**
   String get failedToLoad;
 
-  /// No description provided for @tryAgain.
+  /// Auto-generated description for tryAgain
   ///
   /// In en, this message translates to:
   /// **'Try again'**
   String get tryAgain;
 
-  /// No description provided for @noEventsYet.
+  /// Auto-generated description for noEventsYet
   ///
   /// In en, this message translates to:
   /// **'No events yet'**
   String get noEventsYet;
 
-  /// No description provided for @checkBackLater.
+  /// Auto-generated description for checkBackLater
   ///
   /// In en, this message translates to:
   /// **'Check back later for upcoming events'**
   String get checkBackLater;
 
-  /// No description provided for @eventsNearYou.
+  /// Auto-generated description for eventsNearYou
   ///
   /// In en, this message translates to:
   /// **'Events near you'**
   String get eventsNearYou;
 
-  /// No description provided for @enableLocationHint.
+  /// Auto-generated description for enableLocationHint
   ///
   /// In en, this message translates to:
   /// **'Enable location access to discover\nevents happening around you'**
   String get enableLocationHint;
 
-  /// No description provided for @enableLocation.
+  /// Auto-generated description for enableLocation
   ///
   /// In en, this message translates to:
   /// **'Enable Location'**
   String get enableLocation;
 
-  /// No description provided for @all.
+  /// Auto-generated description for all
   ///
   /// In en, this message translates to:
   /// **'All'**
   String get all;
 
-  /// No description provided for @searchForEvents.
+  /// Auto-generated description for searchForEvents
   ///
   /// In en, this message translates to:
   /// **'Search for events'**
   String get searchForEvents;
 
-  /// No description provided for @searchSubtitle.
+  /// Auto-generated description for searchSubtitle
   ///
   /// In en, this message translates to:
   /// **'Find concerts, festivals, exhibitions\nand more in your area'**
   String get searchSubtitle;
 
-  /// No description provided for @noResults.
+  /// Auto-generated description for noResults
   ///
   /// In en, this message translates to:
   /// **'No results found'**
@@ -472,25 +472,25 @@ abstract class AppLocalizations {
   /// **'Try different keywords for \"{query}\"'**
   String tryDifferentKeywords(String query);
 
-  /// No description provided for @searchUnavailable.
+  /// Auto-generated description for searchUnavailable
   ///
   /// In en, this message translates to:
   /// **'Search unavailable'**
   String get searchUnavailable;
 
-  /// No description provided for @promotedEvent.
+  /// Auto-generated description for promotedEvent
   ///
   /// In en, this message translates to:
   /// **'⭐ Promoted Event'**
   String get promotedEvent;
 
-  /// No description provided for @promoted.
+  /// Auto-generated description for promoted
   ///
   /// In en, this message translates to:
   /// **'⭐ Promoted'**
   String get promoted;
 
-  /// No description provided for @about.
+  /// Auto-generated description for about
   ///
   /// In en, this message translates to:
   /// **'About'**
@@ -502,73 +502,73 @@ abstract class AppLocalizations {
   /// **'{count} people going'**
   String peopleGoing(int count);
 
-  /// No description provided for @imGoing.
+  /// Auto-generated description for imGoing
   ///
   /// In en, this message translates to:
   /// **'I\'m going'**
   String get imGoing;
 
-  /// No description provided for @imGoingExcited.
+  /// Auto-generated description for imGoingExcited
   ///
   /// In en, this message translates to:
   /// **'I\'m going!'**
   String get imGoingExcited;
 
-  /// No description provided for @beFirstToJoin.
+  /// Auto-generated description for beFirstToJoin
   ///
   /// In en, this message translates to:
   /// **'Be the first to join!'**
   String get beFirstToJoin;
 
-  /// No description provided for @going.
+  /// Auto-generated description for going
   ///
   /// In en, this message translates to:
   /// **'going'**
   String get going;
 
-  /// No description provided for @joinCommunity.
+  /// Auto-generated description for joinCommunity
   ///
   /// In en, this message translates to:
   /// **'Join the community'**
   String get joinCommunity;
 
-  /// No description provided for @signInSubtitle.
+  /// Auto-generated description for signInSubtitle
   ///
   /// In en, this message translates to:
   /// **'Sign in to save events, connect\nwith your diaspora and more'**
   String get signInSubtitle;
 
-  /// No description provided for @navDiscover.
+  /// Auto-generated description for navDiscover
   ///
   /// In en, this message translates to:
   /// **'Discover'**
   String get navDiscover;
 
-  /// No description provided for @navSearch.
+  /// Auto-generated description for navSearch
   ///
   /// In en, this message translates to:
   /// **'Search'**
   String get navSearch;
 
-  /// No description provided for @navProfile.
+  /// Auto-generated description for navProfile
   ///
   /// In en, this message translates to:
   /// **'Profile'**
   String get navProfile;
 
-  /// No description provided for @failedToLoadEvent.
+  /// Auto-generated description for failedToLoadEvent
   ///
   /// In en, this message translates to:
   /// **'Failed to load event'**
   String get failedToLoadEvent;
 
-  /// No description provided for @failedToLoadCategories.
+  /// Auto-generated description for failedToLoadCategories
   ///
   /// In en, this message translates to:
   /// **'Failed to load categories'**
   String get failedToLoadCategories;
 
-  /// No description provided for @diasporaMember.
+  /// Auto-generated description for diasporaMember
   ///
   /// In en, this message translates to:
   /// **'Diaspora Member'**
