@@ -6,6 +6,7 @@ import '../features/events/presentation/screens/events_screen.dart';
 import '../features/events/presentation/screens/search_screen.dart';
 import '../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../features/profile/presentation/screens/profile_screen.dart';
+import '../features/splash/presentation/screens/splash_screen.dart';
 import 'widgets/main_shell.dart';
 
 /// Маршрутизация приложения.
@@ -17,6 +18,7 @@ abstract final class AppRouter {
   static final _profileKey = GlobalKey<NavigatorState>(debugLabel: 'profile');
 
   /// Именованные маршруты.
+  static const splash = '/splash';
   static const home = '/';
   static const eventDetail = '/event/:id';
   static const onboarding = '/onboarding';
@@ -24,8 +26,13 @@ abstract final class AppRouter {
 
   static final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: home,
+    initialLocation: splash,
     routes: [
+      GoRoute(
+        path: splash,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const SplashScreen(),
+      ),
       // Онбординг — без BottomNavigationBar
       GoRoute(
         path: onboarding,

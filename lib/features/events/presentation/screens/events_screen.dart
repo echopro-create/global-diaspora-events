@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/theme.dart';
+import '../../../../core/widgets/shimmer_skeletons.dart';
 import '../../../categories/presentation/providers/categories_providers.dart';
 import '../providers/events_providers.dart';
 import '../widgets/event_card.dart';
+import '../widgets/hero_carousel.dart';
 
 /// Главный экран — лента событий с сегментацией.
 class EventsScreen extends ConsumerStatefulWidget {
@@ -40,120 +42,133 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Заголовок
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Discover Events',
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.headlineLarge,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.backgroundDark,
+              AppColors.primary.withValues(alpha: 0.05),
+              AppColors.secondary.withValues(alpha: 0.05),
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Заголовок
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Discover Events',
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.headlineLarge,
+                                ),
+                                const SizedBox(height: 4),
+                                const Text(
+                                  'Find your people, find your events',
+                                  style: TextStyle(
+                                    color: AppColors.textSecondary,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Аватар — тап → профиль
+                          GestureDetector(
+                            onTap: () => context.go('/profile'),
+                            child: const CircleAvatar(
+                              radius: 22,
+                              backgroundColor: AppColors.primary,
+                              child: Icon(
+                                Icons.person_rounded,
+                                color: Colors.white,
                               ),
-                              const SizedBox(height: 4),
-                              const Text(
-                                'Find your people, find your events',
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+
+                      // Поиск → переход на Search Tab
+                      GestureDetector(
+                        onTap: () => context.go('/search'),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 14,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.cardDark,
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(color: AppColors.divider),
+                          ),
+                          child: const Row(
+                            children: [
+                              Icon(
+                                Icons.search_rounded,
+                                color: AppColors.textMuted,
+                                size: 22,
+                              ),
+                              SizedBox(width: 12),
+                              Text(
+                                'Search events, artists, venues...',
                                 style: TextStyle(
-                                  color: AppColors.textSecondary,
-                                  fontSize: 14,
+                                  color: AppColors.textMuted,
+                                  fontSize: 15,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        // Аватар — тап → профиль
-                        GestureDetector(
-                          onTap: () => context.go('/profile'),
-                          child: const CircleAvatar(
-                            radius: 22,
-                            backgroundColor: AppColors.primary,
-                            child: Icon(
-                              Icons.person_rounded,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Поиск → переход на Search Tab
-                    GestureDetector(
-                      onTap: () => context.go('/search'),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 14,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.cardDark,
-                          borderRadius: BorderRadius.circular(14),
-                          border: Border.all(color: AppColors.divider),
-                        ),
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Icons.search_rounded,
-                              color: AppColors.textMuted,
-                              size: 22,
-                            ),
-                            SizedBox(width: 12),
-                            Text(
-                              'Search events, artists, venues...',
-                              style: TextStyle(
-                                color: AppColors.textMuted,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ],
-                        ),
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                  ],
-                ),
-              ),
-            ),
-
-            // Табы
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: _TabBarDelegate(
-                TabBar(
-                  controller: _tabController,
-                  labelColor: AppColors.primary,
-                  unselectedLabelColor: AppColors.textMuted,
-                  indicatorColor: AppColors.primary,
-                  indicatorWeight: 3,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  labelStyle: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15,
+                      const SizedBox(height: 16),
+                    ],
                   ),
-                  tabs: _tabs.map((t) => Tab(text: t)).toList(),
                 ),
               ),
-            ),
-          ],
-          body: TabBarView(
-            controller: _tabController,
-            children: [
-              _buildForYouTab(),
-              _buildNearbyTab(),
-              _buildCategoriesTab(),
+
+              // Табы
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: _TabBarDelegate(
+                  TabBar(
+                    controller: _tabController,
+                    labelColor: AppColors.primary,
+                    unselectedLabelColor: AppColors.textMuted,
+                    indicatorColor: AppColors.primary,
+                    indicatorWeight: 3,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    labelStyle: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                    ),
+                    tabs: _tabs.map((t) => Tab(text: t)).toList(),
+                  ),
+                ),
+              ),
             ],
+            body: TabBarView(
+              controller: _tabController,
+              children: [
+                _buildForYouTab(),
+                _buildNearbyTab(),
+                _buildCategoriesTab(),
+              ],
+            ),
           ),
         ),
       ),
@@ -164,9 +179,7 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
     final eventsAsync = ref.watch(eventsProvider(null));
 
     return eventsAsync.when(
-      loading: () => const Center(
-        child: CircularProgressIndicator(color: AppColors.primary),
-      ),
+      loading: () => const EventListSkeleton(),
       error: (error, stack) => Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -193,15 +206,52 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
         if (events.isEmpty) {
           return _buildEmptyState();
         }
+        final featuredEvents = events.take(3).toList();
+        final otherEvents = events.skip(3).toList();
+
         return RefreshIndicator(
           onRefresh: () async {
             ref.invalidate(eventsProvider(null));
           },
           child: ListView.builder(
             padding: const EdgeInsets.only(top: 8, bottom: 100),
-            itemCount: events.length,
+            itemCount: 1 + otherEvents.length, // 1 for Carousel
             itemBuilder: (context, index) {
-              final event = events[index];
+              if (index == 0) {
+                if (featuredEvents.isNotEmpty) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+                        child: Text(
+                          'Featured Events',
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      HeroCarousel(
+                        events: featuredEvents,
+                        onTap: (event) => context.push('/event/${event.id}'),
+                      ),
+                      const SizedBox(height: 24),
+                      if (otherEvents.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'All Events',
+                            style: Theme.of(context).textTheme.titleLarge
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                    ],
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
+              }
+
+              final event = otherEvents[index - 1];
               return EventCard(
                 event: event,
                 onTap: () => context.push('/event/${event.id}'),
@@ -266,10 +316,8 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
     final categoriesAsync = ref.watch(categoriesProvider);
 
     return categoriesAsync.when(
-      loading: () => const Center(
-        child: CircularProgressIndicator(color: AppColors.primary),
-      ),
-      error: (_, __) => const Center(
+      loading: () => const CategoryChipsSkeleton(),
+      error: (_, _) => const Center(
         child: Text(
           'Failed to load categories',
           style: TextStyle(color: AppColors.textSecondary),
@@ -362,10 +410,8 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
     final eventsAsync = ref.watch(eventsProvider(_selectedCategoryId));
 
     return eventsAsync.when(
-      loading: () => const Center(
-        child: CircularProgressIndicator(color: AppColors.primary),
-      ),
-      error: (_, __) => const Center(
+      loading: () => const EventListSkeleton(),
+      error: (_, _) => const Center(
         child: Text(
           'Failed to load events',
           style: TextStyle(color: AppColors.textSecondary),

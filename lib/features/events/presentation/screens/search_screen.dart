@@ -77,7 +77,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 loading: () => const Center(
                   child: CircularProgressIndicator(color: AppColors.primary),
                 ),
-                error: (_, __) => const Center(
+                error: (_, _) => const Center(
                   child: Text(
                     'Search unavailable',
                     style: TextStyle(color: AppColors.textSecondary),

@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../domain/entities/event.dart';
 import '../../../../app/theme.dart';
+import '../../../../core/widgets/glass_container.dart';
 
 /// Карточка события с social proof.
 class EventCard extends StatelessWidget {
@@ -42,8 +43,8 @@ class EventCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Изображение
-            _buildImage(),
+            // Изображение + Countdown
+            Stack(children: [_buildImage(), _buildCountdown()]),
 
             Padding(
               padding: const EdgeInsets.all(16),
@@ -227,7 +228,7 @@ class EventCard extends StatelessWidget {
   Widget _buildSocialProof() {
     if (event.participantsCount == 0) {
       return const Text(
-        'Be the first to go!',
+        'Be the first to join!',
         style: TextStyle(
           color: AppColors.textMuted,
           fontSize: 12,
@@ -238,16 +239,68 @@ class EventCard extends StatelessWidget {
 
     return Row(
       children: [
-        const Icon(
-          Icons.people_rounded,
-          size: 16,
-          color: AppColors.primaryLight,
+        SizedBox(
+          height: 24,
+          width:
+              24.0 +
+              (event.participantsCount > 1 ? 12.0 : 0) +
+              (event.participantsCount > 2 ? 12.0 : 0),
+          child: Stack(
+            children: [
+              if (event.participantsCount > 0)
+                const Positioned(
+                  left: 0,
+                  child: CircleAvatar(
+                    radius: 12,
+                    backgroundColor: AppColors.primary,
+                    child: Icon(Icons.person, size: 14, color: Colors.white),
+                  ),
+                ),
+              if (event.participantsCount > 1)
+                Positioned(
+                  left: 16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: AppColors.cardDark, width: 2),
+                    ),
+                    child: const CircleAvatar(
+                      radius: 11, // 12 - border
+                      backgroundColor: AppColors.secondary,
+                      child: Icon(Icons.person, size: 12, color: Colors.white),
+                    ),
+                  ),
+                ),
+              if (event.participantsCount > 2)
+                Positioned(
+                  left: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: AppColors.cardDark, width: 2),
+                    ),
+                    child: CircleAvatar(
+                      radius: 11,
+                      backgroundColor: AppColors.surfaceDark,
+                      child: Text(
+                        '+${event.participantsCount - 2}',
+                        style: const TextStyle(
+                          fontSize: 9,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
         ),
-        const SizedBox(width: 4),
+        const SizedBox(width: 8),
         Text(
-          '${event.participantsCount} going',
-          style: const TextStyle(
-            color: AppColors.primaryLight,
+          'going',
+          style: TextStyle(
+            color: AppColors.textSecondary.withValues(alpha: 0.8),
             fontSize: 13,
             fontWeight: FontWeight.w500,
           ),
@@ -298,6 +351,40 @@ class EventCard extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCountdown() {
+    final now = DateTime.now();
+    final diff = event.dateStart.difference(now);
+
+    if (diff.isNegative) return const SizedBox.shrink();
+
+    String label;
+    if (diff.inDays > 0) {
+      label = 'in ${diff.inDays}d';
+    } else if (diff.inHours > 0) {
+      label = 'in ${diff.inHours}h';
+    } else {
+      label = 'soon';
+    }
+
+    return Positioned(
+      top: 12,
+      right: 12,
+      child: GlassContainer(
+        borderRadius: BorderRadius.circular(12),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        color: Colors.black.withValues(alpha: 0.3),
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),

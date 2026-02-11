@@ -19,7 +19,7 @@ class ProfileScreen extends ConsumerWidget {
           loading: () => const Center(
             child: CircularProgressIndicator(color: AppColors.primary),
           ),
-          error: (_, __) => _buildAuthPrompt(context),
+          error: (_, _) => _buildAuthPrompt(context),
           data: (profile) {
             if (profile == null) return _buildAuthPrompt(context);
 
