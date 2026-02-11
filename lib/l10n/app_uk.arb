@@ -1,319 +1,78 @@
 {
   "@@locale": "uk",
   "appTitle": "Global Diaspora Events",
-  "@appTitle": {
-    "description": "Auto-generated description for appTitle"
-  },
   "welcomeTitle": "Ласкаво просимо до\nGlobal Diaspora Events",
-  "@welcomeTitle": {
-    "description": "Auto-generated description for welcomeTitle"
-  },
   "welcomeSubtitle": "Знайди своїх людей.\nЗнайди свої події.\nЗалишайся на зв'язку зі своєю культурою.",
-  "@welcomeSubtitle": {
-    "description": "Auto-generated description for welcomeSubtitle"
-  },
   "whereAreYouFrom": "Звідки ви?",
-  "@whereAreYouFrom": {
-    "description": "Auto-generated description for whereAreYouFrom"
-  },
   "countryHint": "Це допоможе нам знайти події вашої культури",
-  "@countryHint": {
-    "description": "Auto-generated description for countryHint"
-  },
   "whatAreYouInto": "Чим цікавитесь?",
-  "@whatAreYouInto": {
-    "description": "Auto-generated description for whatAreYouInto"
-  },
   "interestsHint": "Оберіть принаймні одне для персоналізації стрічки",
-  "@interestsHint": {
-    "description": "Auto-generated description for interestsHint"
-  },
   "next": "Далі",
-  "@next": {
-    "description": "Auto-generated description for next"
-  },
   "back": "Назад",
-  "@back": {
-    "description": "Auto-generated description for back"
-  },
   "letsGo": "Поїхали!",
-  "@letsGo": {
-    "description": "Auto-generated description for letsGo"
-  },
   "eventsTitle": "Події",
-  "@eventsTitle": {
-    "description": "Auto-generated description for eventsTitle"
-  },
   "searchTitle": "Пошук",
-  "@searchTitle": {
-    "description": "Auto-generated description for searchTitle"
-  },
   "profileTitle": "Профіль",
-  "@profileTitle": {
-    "description": "Auto-generated description for profileTitle"
-  },
   "signIn": "Увійти",
-  "@signIn": {
-    "description": "Auto-generated description for signIn"
-  },
   "signOut": "Вийти",
-  "@signOut": {
-    "description": "Auto-generated description for signOut"
-  },
   "editProfile": "Редагувати профіль",
-  "@editProfile": {
-    "description": "Auto-generated description for editProfile"
-  },
   "originCountry": "Країна походження",
-  "@originCountry": {
-    "description": "Auto-generated description for originCountry"
-  },
   "currentCity": "Поточне місто",
-  "@currentCity": {
-    "description": "Auto-generated description for currentCity"
-  },
   "joined": "Приєднався",
-  "@joined": {
-    "description": "Auto-generated description for joined"
-  },
   "notSet": "Не вказано",
-  "@notSet": {
-    "description": "Auto-generated description for notSet"
-  },
   "fromCountry": "З {country}",
-  "@fromCountry": {
-    "placeholders": {
-      "country": {
-        "type": "String"
-      }
-    }
-  },
   "inCity": "у {city}",
-  "@inCity": {
-    "placeholders": {
-      "city": {
-        "type": "String"
-      }
-    }
-  },
   "joinToDiscover": "Приєднуйтесь до спільноти, щоб знаходити події",
-  "@joinToDiscover": {
-    "description": "Auto-generated description for joinToDiscover"
-  },
   "createAccount": "Створити акаунт",
-  "@createAccount": {
-    "description": "Auto-generated description for createAccount"
-  },
   "concerts": "Концерти",
-  "@concerts": {
-    "description": "Auto-generated description for concerts"
-  },
   "sports": "Спорт",
-  "@sports": {
-    "description": "Auto-generated description for sports"
-  },
   "standUp": "Стендап",
-  "@standUp": {
-    "description": "Auto-generated description for standUp"
-  },
   "business": "Бізнес",
-  "@business": {
-    "description": "Auto-generated description for business"
-  },
   "kids": "Діти",
-  "@kids": {
-    "description": "Auto-generated description for kids"
-  },
   "theatre": "Театр",
-  "@theatre": {
-    "description": "Auto-generated description for theatre"
-  },
   "festivals": "Фестивалі",
-  "@festivals": {
-    "description": "Auto-generated description for festivals"
-  },
   "artExhibitions": "Мистецтво і виставки",
-  "@artExhibitions": {
-    "description": "Auto-generated description for artExhibitions"
-  },
   "buyTicket": "Купити квиток",
-  "@buyTicket": {
-    "description": "Auto-generated description for buyTicket"
-  },
   "eventDetails": "Деталі події",
-  "@eventDetails": {
-    "description": "Auto-generated description for eventDetails"
-  },
   "noEventsFound": "Подій не знайдено",
-  "@noEventsFound": {
-    "description": "Auto-generated description for noEventsFound"
-  },
   "loading": "Завантаження...",
-  "@loading": {
-    "description": "Auto-generated description for loading"
-  },
   "error": "Щось пішло не так",
-  "@error": {
-    "description": "Auto-generated description for error"
-  },
   "retry": "Повторити",
-  "@retry": {
-    "description": "Auto-generated description for retry"
-  },
   "discoverEvents": "Відкривай події",
-  "@discoverEvents": {
-    "description": "Auto-generated description for discoverEvents"
-  },
   "discoverSubtitle": "Знайди своїх людей, знайди свої події",
-  "@discoverSubtitle": {
-    "description": "Auto-generated description for discoverSubtitle"
-  },
   "searchHint": "Пошук подій, артистів, майданчиків...",
-  "@searchHint": {
-    "description": "Auto-generated description for searchHint"
-  },
   "forYou": "Для вас",
-  "@forYou": {
-    "description": "Auto-generated description for forYou"
-  },
   "nearby": "Поруч",
-  "@nearby": {
-    "description": "Auto-generated description for nearby"
-  },
   "categories": "Категорії",
-  "@categories": {
-    "description": "Auto-generated description for categories"
-  },
   "featuredEvents": "Рекомендовані",
-  "@featuredEvents": {
-    "description": "Auto-generated description for featuredEvents"
-  },
   "allEvents": "Усі події",
-  "@allEvents": {
-    "description": "Auto-generated description for allEvents"
-  },
   "failedToLoad": "Не вдалося завантажити події",
-  "@failedToLoad": {
-    "description": "Auto-generated description for failedToLoad"
-  },
   "tryAgain": "Спробувати знову",
-  "@tryAgain": {
-    "description": "Auto-generated description for tryAgain"
-  },
   "noEventsYet": "Подій поки немає",
-  "@noEventsYet": {
-    "description": "Auto-generated description for noEventsYet"
-  },
   "checkBackLater": "Завітайте пізніше — нові події з'являться незабаром",
-  "@checkBackLater": {
-    "description": "Auto-generated description for checkBackLater"
-  },
   "eventsNearYou": "Події поруч з вами",
-  "@eventsNearYou": {
-    "description": "Auto-generated description for eventsNearYou"
-  },
   "enableLocationHint": "Дозвольте доступ до геолокації, щоб\nзнаходити події поблизу",
-  "@enableLocationHint": {
-    "description": "Auto-generated description for enableLocationHint"
-  },
   "enableLocation": "Увімкнути геолокацію",
-  "@enableLocation": {
-    "description": "Auto-generated description for enableLocation"
-  },
   "all": "Усі",
-  "@all": {
-    "description": "Auto-generated description for all"
-  },
   "searchForEvents": "Пошук подій",
-  "@searchForEvents": {
-    "description": "Auto-generated description for searchForEvents"
-  },
   "searchSubtitle": "Знайдіть концерти, фестивалі, виставки\nта багато іншого у вашому районі",
-  "@searchSubtitle": {
-    "description": "Auto-generated description for searchSubtitle"
-  },
   "noResults": "Нічого не знайдено",
-  "@noResults": {
-    "description": "Auto-generated description for noResults"
-  },
   "tryDifferentKeywords": "Спробуйте інші ключові слова для «{query}»",
-  "@tryDifferentKeywords": {
-    "placeholders": {
-      "query": {
-        "type": "String"
-      }
-    }
-  },
   "searchUnavailable": "Пошук недоступний",
-  "@searchUnavailable": {
-    "description": "Auto-generated description for searchUnavailable"
-  },
   "promotedEvent": "⭐ Рекомендована подія",
-  "@promotedEvent": {
-    "description": "Auto-generated description for promotedEvent"
-  },
   "promoted": "⭐ Рекомендована",
-  "@promoted": {
-    "description": "Auto-generated description for promoted"
-  },
   "about": "Опис",
-  "@about": {
-    "description": "Auto-generated description for about"
-  },
   "peopleGoing": "{count} учасників",
-  "@peopleGoing": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "imGoing": "Я йду",
-  "@imGoing": {
-    "description": "Auto-generated description for imGoing"
-  },
   "imGoingExcited": "Я йду!",
-  "@imGoingExcited": {
-    "description": "Auto-generated description for imGoingExcited"
-  },
   "beFirstToJoin": "Будьте першим!",
-  "@beFirstToJoin": {
-    "description": "Auto-generated description for beFirstToJoin"
-  },
   "going": "йдуть",
-  "@going": {
-    "description": "Auto-generated description for going"
-  },
   "joinCommunity": "Приєднуйтесь",
-  "@joinCommunity": {
-    "description": "Auto-generated description for joinCommunity"
-  },
   "signInSubtitle": "Увійдіть, щоб зберігати події,\nспілкуватися з діаспорою та не тільки",
-  "@signInSubtitle": {
-    "description": "Auto-generated description for signInSubtitle"
-  },
   "navDiscover": "Огляд",
-  "@navDiscover": {
-    "description": "Auto-generated description for navDiscover"
-  },
   "navSearch": "Пошук",
-  "@navSearch": {
-    "description": "Auto-generated description for navSearch"
-  },
   "navProfile": "Профіль",
-  "@navProfile": {
-    "description": "Auto-generated description for navProfile"
-  },
   "failedToLoadEvent": "Не вдалося завантажити подію",
-  "@failedToLoadEvent": {
-    "description": "Auto-generated description for failedToLoadEvent"
-  },
   "failedToLoadCategories": "Не вдалося завантажити категорії",
-  "@failedToLoadCategories": {
-    "description": "Auto-generated description for failedToLoadCategories"
-  },
-  "diasporaMember": "Учасник діаспори",
-  "@diasporaMember": {
-    "description": "Auto-generated description for diasporaMember"
-  }
+  "diasporaMember": "Учасник діаспори"
 }

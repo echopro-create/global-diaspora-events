@@ -1,319 +1,78 @@
 {
   "@@locale": "ka",
   "appTitle": "Global Diaspora Events",
-  "@appTitle": {
-    "description": "Auto-generated description for appTitle"
-  },
   "welcomeTitle": "კეთილი იყოს თქვენი მობრძანება\nGlobal Diaspora Events-ში",
-  "@welcomeTitle": {
-    "description": "Auto-generated description for welcomeTitle"
-  },
   "welcomeSubtitle": "იპოვე შენი ხალხი.\nიპოვე შენი ღონისძიებები.\nდარჩი კავშირზე შენს კულტურასთან.",
-  "@welcomeSubtitle": {
-    "description": "Auto-generated description for welcomeSubtitle"
-  },
   "whereAreYouFrom": "საიდან ხართ?",
-  "@whereAreYouFrom": {
-    "description": "Auto-generated description for whereAreYouFrom"
-  },
   "countryHint": "ეს დაგვეხმარება თქვენი კულტურის ღონისძიებების პოვნაში",
-  "@countryHint": {
-    "description": "Auto-generated description for countryHint"
-  },
   "whatAreYouInto": "რა გაინტერესებთ?",
-  "@whatAreYouInto": {
-    "description": "Auto-generated description for whatAreYouInto"
-  },
   "interestsHint": "აირჩიეთ მინიმუმ ერთი ფიდის პერსონალიზაციისთვის",
-  "@interestsHint": {
-    "description": "Auto-generated description for interestsHint"
-  },
   "next": "შემდეგი",
-  "@next": {
-    "description": "Auto-generated description for next"
-  },
   "back": "უკან",
-  "@back": {
-    "description": "Auto-generated description for back"
-  },
   "letsGo": "წავედით!",
-  "@letsGo": {
-    "description": "Auto-generated description for letsGo"
-  },
   "eventsTitle": "ღონისძიებები",
-  "@eventsTitle": {
-    "description": "Auto-generated description for eventsTitle"
-  },
   "searchTitle": "ძიება",
-  "@searchTitle": {
-    "description": "Auto-generated description for searchTitle"
-  },
   "profileTitle": "პროფილი",
-  "@profileTitle": {
-    "description": "Auto-generated description for profileTitle"
-  },
   "signIn": "შესვლა",
-  "@signIn": {
-    "description": "Auto-generated description for signIn"
-  },
   "signOut": "გასვლა",
-  "@signOut": {
-    "description": "Auto-generated description for signOut"
-  },
   "editProfile": "პროფილის რედაქტირება",
-  "@editProfile": {
-    "description": "Auto-generated description for editProfile"
-  },
   "originCountry": "წარმოშობის ქვეყანა",
-  "@originCountry": {
-    "description": "Auto-generated description for originCountry"
-  },
   "currentCity": "მიმდინარე ქალაქი",
-  "@currentCity": {
-    "description": "Auto-generated description for currentCity"
-  },
   "joined": "შეუერთდა",
-  "@joined": {
-    "description": "Auto-generated description for joined"
-  },
   "notSet": "არ არის მითითებული",
-  "@notSet": {
-    "description": "Auto-generated description for notSet"
-  },
   "fromCountry": "{country}-დან",
-  "@fromCountry": {
-    "placeholders": {
-      "country": {
-        "type": "String"
-      }
-    }
-  },
   "inCity": "{city}-ში",
-  "@inCity": {
-    "placeholders": {
-      "city": {
-        "type": "String"
-      }
-    }
-  },
   "joinToDiscover": "შეუერთდით საზოგადოებას ღონისძიებების აღმოსაჩენად",
-  "@joinToDiscover": {
-    "description": "Auto-generated description for joinToDiscover"
-  },
   "createAccount": "ანგარიშის შექმნა",
-  "@createAccount": {
-    "description": "Auto-generated description for createAccount"
-  },
   "concerts": "კონცერტები",
-  "@concerts": {
-    "description": "Auto-generated description for concerts"
-  },
   "sports": "სპორტი",
-  "@sports": {
-    "description": "Auto-generated description for sports"
-  },
   "standUp": "სტენდაპი",
-  "@standUp": {
-    "description": "Auto-generated description for standUp"
-  },
   "business": "ბიზნესი",
-  "@business": {
-    "description": "Auto-generated description for business"
-  },
   "kids": "ბავშვები",
-  "@kids": {
-    "description": "Auto-generated description for kids"
-  },
   "theatre": "თეატრი",
-  "@theatre": {
-    "description": "Auto-generated description for theatre"
-  },
   "festivals": "ფესტივალები",
-  "@festivals": {
-    "description": "Auto-generated description for festivals"
-  },
   "artExhibitions": "ხელოვნება და გამოფენები",
-  "@artExhibitions": {
-    "description": "Auto-generated description for artExhibitions"
-  },
   "buyTicket": "ბილეთის ყიდვა",
-  "@buyTicket": {
-    "description": "Auto-generated description for buyTicket"
-  },
   "eventDetails": "ღონისძიების დეტალები",
-  "@eventDetails": {
-    "description": "Auto-generated description for eventDetails"
-  },
   "noEventsFound": "ღონისძიებები ვერ მოიძებნა",
-  "@noEventsFound": {
-    "description": "Auto-generated description for noEventsFound"
-  },
   "loading": "იტვირთება...",
-  "@loading": {
-    "description": "Auto-generated description for loading"
-  },
   "error": "რაღაც შეცდომა მოხდა",
-  "@error": {
-    "description": "Auto-generated description for error"
-  },
   "retry": "ხელახლა ცდა",
-  "@retry": {
-    "description": "Auto-generated description for retry"
-  },
   "discoverEvents": "აღმოაჩინე ღონისძიებები",
-  "@discoverEvents": {
-    "description": "Auto-generated description for discoverEvents"
-  },
   "discoverSubtitle": "იპოვე შენი ხალხი, იპოვე შენი ღონისძიებები",
-  "@discoverSubtitle": {
-    "description": "Auto-generated description for discoverSubtitle"
-  },
   "searchHint": "ღონისძიებების, არტისტების, სივრცეების ძიება...",
-  "@searchHint": {
-    "description": "Auto-generated description for searchHint"
-  },
   "forYou": "თქვენთვის",
-  "@forYou": {
-    "description": "Auto-generated description for forYou"
-  },
   "nearby": "ახლოს",
-  "@nearby": {
-    "description": "Auto-generated description for nearby"
-  },
   "categories": "კატეგორიები",
-  "@categories": {
-    "description": "Auto-generated description for categories"
-  },
   "featuredEvents": "რეკომენდებული",
-  "@featuredEvents": {
-    "description": "Auto-generated description for featuredEvents"
-  },
   "allEvents": "ყველა ღონისძიება",
-  "@allEvents": {
-    "description": "Auto-generated description for allEvents"
-  },
   "failedToLoad": "ღონისძიებების ჩატვირთვა ვერ მოხერხდა",
-  "@failedToLoad": {
-    "description": "Auto-generated description for failedToLoad"
-  },
   "tryAgain": "ხელახლა ცდა",
-  "@tryAgain": {
-    "description": "Auto-generated description for tryAgain"
-  },
   "noEventsYet": "ღონისძიებები ჯერ არ არის",
-  "@noEventsYet": {
-    "description": "Auto-generated description for noEventsYet"
-  },
   "checkBackLater": "შეამოწმეთ მოგვიანებით — ახალი ღონისძიებები მალე გამოჩნდება",
-  "@checkBackLater": {
-    "description": "Auto-generated description for checkBackLater"
-  },
   "eventsNearYou": "ღონისძიებები თქვენს მახლობლად",
-  "@eventsNearYou": {
-    "description": "Auto-generated description for eventsNearYou"
-  },
   "enableLocationHint": "გეოლოკაციაზე წვდომის ნებართვა\nახლომახლო ღონისძიებების საპოვნელად",
-  "@enableLocationHint": {
-    "description": "Auto-generated description for enableLocationHint"
-  },
   "enableLocation": "გეოლოკაციის ჩართვა",
-  "@enableLocation": {
-    "description": "Auto-generated description for enableLocation"
-  },
   "all": "ყველა",
-  "@all": {
-    "description": "Auto-generated description for all"
-  },
   "searchForEvents": "ღონისძიებების ძიება",
-  "@searchForEvents": {
-    "description": "Auto-generated description for searchForEvents"
-  },
   "searchSubtitle": "იპოვეთ კონცერტები, ფესტივალები, გამოფენები\nდა სხვა მრავალი თქვენს ახლოს",
-  "@searchSubtitle": {
-    "description": "Auto-generated description for searchSubtitle"
-  },
   "noResults": "ვერაფერი მოიძებნა",
-  "@noResults": {
-    "description": "Auto-generated description for noResults"
-  },
   "tryDifferentKeywords": "სცადეთ სხვა საკვანძო სიტყვები «{query}»-თვის",
-  "@tryDifferentKeywords": {
-    "placeholders": {
-      "query": {
-        "type": "String"
-      }
-    }
-  },
   "searchUnavailable": "ძიება მიუწვდომელია",
-  "@searchUnavailable": {
-    "description": "Auto-generated description for searchUnavailable"
-  },
   "promotedEvent": "⭐ რეკომენდებული ღონისძიება",
-  "@promotedEvent": {
-    "description": "Auto-generated description for promotedEvent"
-  },
   "promoted": "⭐ რეკომენდებული",
-  "@promoted": {
-    "description": "Auto-generated description for promoted"
-  },
   "about": "აღწერა",
-  "@about": {
-    "description": "Auto-generated description for about"
-  },
   "peopleGoing": "{count} მონაწილე",
-  "@peopleGoing": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "imGoing": "მე მივდივარ",
-  "@imGoing": {
-    "description": "Auto-generated description for imGoing"
-  },
   "imGoingExcited": "მე მივდივარ!",
-  "@imGoingExcited": {
-    "description": "Auto-generated description for imGoingExcited"
-  },
   "beFirstToJoin": "იყავით პირველი!",
-  "@beFirstToJoin": {
-    "description": "Auto-generated description for beFirstToJoin"
-  },
   "going": "მიდიან",
-  "@going": {
-    "description": "Auto-generated description for going"
-  },
   "joinCommunity": "შემოგვიერთდით",
-  "@joinCommunity": {
-    "description": "Auto-generated description for joinCommunity"
-  },
   "signInSubtitle": "შედით, რომ შეინახოთ ღონისძიებები,\nდაუკავშირდეთ დიასპორას და სხვა",
-  "@signInSubtitle": {
-    "description": "Auto-generated description for signInSubtitle"
-  },
   "navDiscover": "მიმოხილვა",
-  "@navDiscover": {
-    "description": "Auto-generated description for navDiscover"
-  },
   "navSearch": "ძიება",
-  "@navSearch": {
-    "description": "Auto-generated description for navSearch"
-  },
   "navProfile": "პროფილი",
-  "@navProfile": {
-    "description": "Auto-generated description for navProfile"
-  },
   "failedToLoadEvent": "ღონისძიების ჩატვირთვა ვერ მოხერხდა",
-  "@failedToLoadEvent": {
-    "description": "Auto-generated description for failedToLoadEvent"
-  },
   "failedToLoadCategories": "კატეგორიების ჩატვირთვა ვერ მოხერხდა",
-  "@failedToLoadCategories": {
-    "description": "Auto-generated description for failedToLoadCategories"
-  },
-  "diasporaMember": "დიასპორის წევრი",
-  "@diasporaMember": {
-    "description": "Auto-generated description for diasporaMember"
-  }
+  "diasporaMember": "დიასპორის წევრი"
 }

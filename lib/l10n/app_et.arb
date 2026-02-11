@@ -1,319 +1,78 @@
 {
   "@@locale": "et",
   "appTitle": "Global Diaspora Events",
-  "@appTitle": {
-    "description": "Auto-generated description for appTitle"
-  },
   "welcomeTitle": "Welcome to\nGlobal Diaspora Events",
-  "@welcomeTitle": {
-    "description": "Auto-generated description for welcomeTitle"
-  },
   "welcomeSubtitle": "Find your people.\nFind your events.\nStay connected to your culture.",
-  "@welcomeSubtitle": {
-    "description": "Auto-generated description for welcomeSubtitle"
-  },
   "whereAreYouFrom": "Where are you from?",
-  "@whereAreYouFrom": {
-    "description": "Auto-generated description for whereAreYouFrom"
-  },
   "countryHint": "This helps us find events from your culture",
-  "@countryHint": {
-    "description": "Auto-generated description for countryHint"
-  },
   "whatAreYouInto": "What are you into?",
-  "@whatAreYouInto": {
-    "description": "Auto-generated description for whatAreYouInto"
-  },
   "interestsHint": "Pick at least one to personalize your feed",
-  "@interestsHint": {
-    "description": "Auto-generated description for interestsHint"
-  },
   "next": "Next",
-  "@next": {
-    "description": "Auto-generated description for next"
-  },
   "back": "Back",
-  "@back": {
-    "description": "Auto-generated description for back"
-  },
   "letsGo": "Let's go!",
-  "@letsGo": {
-    "description": "Auto-generated description for letsGo"
-  },
   "eventsTitle": "Events",
-  "@eventsTitle": {
-    "description": "Auto-generated description for eventsTitle"
-  },
   "searchTitle": "Search",
-  "@searchTitle": {
-    "description": "Auto-generated description for searchTitle"
-  },
   "profileTitle": "Profile",
-  "@profileTitle": {
-    "description": "Auto-generated description for profileTitle"
-  },
   "signIn": "Sign In",
-  "@signIn": {
-    "description": "Auto-generated description for signIn"
-  },
   "signOut": "Sign Out",
-  "@signOut": {
-    "description": "Auto-generated description for signOut"
-  },
   "editProfile": "Edit Profile",
-  "@editProfile": {
-    "description": "Auto-generated description for editProfile"
-  },
   "originCountry": "Origin Country",
-  "@originCountry": {
-    "description": "Auto-generated description for originCountry"
-  },
   "currentCity": "Current City",
-  "@currentCity": {
-    "description": "Auto-generated description for currentCity"
-  },
   "joined": "Joined",
-  "@joined": {
-    "description": "Auto-generated description for joined"
-  },
   "notSet": "Not set",
-  "@notSet": {
-    "description": "Auto-generated description for notSet"
-  },
   "fromCountry": "From {country}",
-  "@fromCountry": {
-    "placeholders": {
-      "country": {
-        "type": "String"
-      }
-    }
-  },
   "inCity": "in {city}",
-  "@inCity": {
-    "placeholders": {
-      "city": {
-        "type": "String"
-      }
-    }
-  },
   "joinToDiscover": "Join our community to discover events",
-  "@joinToDiscover": {
-    "description": "Auto-generated description for joinToDiscover"
-  },
   "createAccount": "Create Account",
-  "@createAccount": {
-    "description": "Auto-generated description for createAccount"
-  },
   "concerts": "Concerts",
-  "@concerts": {
-    "description": "Auto-generated description for concerts"
-  },
   "sports": "Sports",
-  "@sports": {
-    "description": "Auto-generated description for sports"
-  },
   "standUp": "Stand-Up",
-  "@standUp": {
-    "description": "Auto-generated description for standUp"
-  },
   "business": "Business",
-  "@business": {
-    "description": "Auto-generated description for business"
-  },
   "kids": "Kids",
-  "@kids": {
-    "description": "Auto-generated description for kids"
-  },
   "theatre": "Theatre",
-  "@theatre": {
-    "description": "Auto-generated description for theatre"
-  },
   "festivals": "Festivals",
-  "@festivals": {
-    "description": "Auto-generated description for festivals"
-  },
   "artExhibitions": "Art & Exhibitions",
-  "@artExhibitions": {
-    "description": "Auto-generated description for artExhibitions"
-  },
   "buyTicket": "Buy Ticket",
-  "@buyTicket": {
-    "description": "Auto-generated description for buyTicket"
-  },
   "eventDetails": "Event Details",
-  "@eventDetails": {
-    "description": "Auto-generated description for eventDetails"
-  },
   "noEventsFound": "No events found",
-  "@noEventsFound": {
-    "description": "Auto-generated description for noEventsFound"
-  },
   "loading": "Loading...",
-  "@loading": {
-    "description": "Auto-generated description for loading"
-  },
   "error": "Something went wrong",
-  "@error": {
-    "description": "Auto-generated description for error"
-  },
   "retry": "Retry",
-  "@retry": {
-    "description": "Auto-generated description for retry"
-  },
   "discoverEvents": "Discover Events",
-  "@discoverEvents": {
-    "description": "Auto-generated description for discoverEvents"
-  },
   "discoverSubtitle": "Find your people, find your events",
-  "@discoverSubtitle": {
-    "description": "Auto-generated description for discoverSubtitle"
-  },
   "searchHint": "Search events, artists, venues...",
-  "@searchHint": {
-    "description": "Auto-generated description for searchHint"
-  },
   "forYou": "For You",
-  "@forYou": {
-    "description": "Auto-generated description for forYou"
-  },
   "nearby": "Nearby",
-  "@nearby": {
-    "description": "Auto-generated description for nearby"
-  },
   "categories": "Categories",
-  "@categories": {
-    "description": "Auto-generated description for categories"
-  },
   "featuredEvents": "Featured Events",
-  "@featuredEvents": {
-    "description": "Auto-generated description for featuredEvents"
-  },
   "allEvents": "All Events",
-  "@allEvents": {
-    "description": "Auto-generated description for allEvents"
-  },
   "failedToLoad": "Failed to load events",
-  "@failedToLoad": {
-    "description": "Auto-generated description for failedToLoad"
-  },
   "tryAgain": "Try again",
-  "@tryAgain": {
-    "description": "Auto-generated description for tryAgain"
-  },
   "noEventsYet": "No events yet",
-  "@noEventsYet": {
-    "description": "Auto-generated description for noEventsYet"
-  },
   "checkBackLater": "Check back later for upcoming events",
-  "@checkBackLater": {
-    "description": "Auto-generated description for checkBackLater"
-  },
   "eventsNearYou": "Events near you",
-  "@eventsNearYou": {
-    "description": "Auto-generated description for eventsNearYou"
-  },
   "enableLocationHint": "Enable location access to discover\nevents happening around you",
-  "@enableLocationHint": {
-    "description": "Auto-generated description for enableLocationHint"
-  },
   "enableLocation": "Enable Location",
-  "@enableLocation": {
-    "description": "Auto-generated description for enableLocation"
-  },
   "all": "All",
-  "@all": {
-    "description": "Auto-generated description for all"
-  },
   "searchForEvents": "Search for events",
-  "@searchForEvents": {
-    "description": "Auto-generated description for searchForEvents"
-  },
   "searchSubtitle": "Find concerts, festivals, exhibitions\nand more in your area",
-  "@searchSubtitle": {
-    "description": "Auto-generated description for searchSubtitle"
-  },
   "noResults": "No results found",
-  "@noResults": {
-    "description": "Auto-generated description for noResults"
-  },
   "tryDifferentKeywords": "Try different keywords for \"{query}\"",
-  "@tryDifferentKeywords": {
-    "placeholders": {
-      "query": {
-        "type": "String"
-      }
-    }
-  },
   "searchUnavailable": "Search unavailable",
-  "@searchUnavailable": {
-    "description": "Auto-generated description for searchUnavailable"
-  },
   "promotedEvent": "⭐ Promoted Event",
-  "@promotedEvent": {
-    "description": "Auto-generated description for promotedEvent"
-  },
   "promoted": "⭐ Promoted",
-  "@promoted": {
-    "description": "Auto-generated description for promoted"
-  },
   "about": "About",
-  "@about": {
-    "description": "Auto-generated description for about"
-  },
   "peopleGoing": "{count} people going",
-  "@peopleGoing": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "imGoing": "I'm going",
-  "@imGoing": {
-    "description": "Auto-generated description for imGoing"
-  },
   "imGoingExcited": "I'm going!",
-  "@imGoingExcited": {
-    "description": "Auto-generated description for imGoingExcited"
-  },
   "beFirstToJoin": "Be the first to join!",
-  "@beFirstToJoin": {
-    "description": "Auto-generated description for beFirstToJoin"
-  },
   "going": "going",
-  "@going": {
-    "description": "Auto-generated description for going"
-  },
   "joinCommunity": "Join the community",
-  "@joinCommunity": {
-    "description": "Auto-generated description for joinCommunity"
-  },
   "signInSubtitle": "Sign in to save events, connect\nwith your diaspora and more",
-  "@signInSubtitle": {
-    "description": "Auto-generated description for signInSubtitle"
-  },
   "navDiscover": "Discover",
-  "@navDiscover": {
-    "description": "Auto-generated description for navDiscover"
-  },
   "navSearch": "Search",
-  "@navSearch": {
-    "description": "Auto-generated description for navSearch"
-  },
   "navProfile": "Profile",
-  "@navProfile": {
-    "description": "Auto-generated description for navProfile"
-  },
   "failedToLoadEvent": "Failed to load event",
-  "@failedToLoadEvent": {
-    "description": "Auto-generated description for failedToLoadEvent"
-  },
   "failedToLoadCategories": "Failed to load categories",
-  "@failedToLoadCategories": {
-    "description": "Auto-generated description for failedToLoadCategories"
-  },
-  "diasporaMember": "Diaspora Member",
-  "@diasporaMember": {
-    "description": "Auto-generated description for diasporaMember"
-  }
+  "diasporaMember": "Diaspora Member"
 }
