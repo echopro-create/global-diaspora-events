@@ -7,7 +7,12 @@ final supabaseClientProvider = Provider<SupabaseClient>((ref) {
 });
 
 /// Provider для текущего auth-пользователя (null если не авторизован).
+///
+/// Реактивно обновляется при любом изменении auth state
+/// (login, logout, token refresh).
 final currentUserProvider = Provider<User?>((ref) {
+  // Подписыемся на стрим — при любом изменении провайдер пересчитается
+  ref.watch(authStateProvider);
   return Supabase.instance.client.auth.currentUser;
 });
 

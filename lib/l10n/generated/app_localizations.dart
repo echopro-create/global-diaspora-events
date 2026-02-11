@@ -208,11 +208,77 @@ abstract class AppLocalizations {
   /// **'Sign In'**
   String get signIn;
 
-  /// Auto-generated description for signOut
+  /// Sign out button label
   ///
   /// In en, this message translates to:
   /// **'Sign Out'**
   String get signOut;
+
+  /// Sign up button label
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get signUp;
+
+  /// Google sign-in button label
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get signInWithGoogle;
+
+  /// Apple sign-in button label
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Apple'**
+  String get signInWithApple;
+
+  /// Divider label between OAuth and email form
+  ///
+  /// In en, this message translates to:
+  /// **'or continue with email'**
+  String get orContinueWithEmail;
+
+  /// Email field hint
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// Password field hint
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// Toggle to sign-in mode
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Sign In'**
+  String get alreadyHaveAccount;
+
+  /// Toggle to sign-up mode
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? Sign Up'**
+  String get dontHaveAccount;
+
+  /// Shown when location permission is denied
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission denied. Open Settings to grant access.'**
+  String get locationPermissionDenied;
+
+  /// Shown when device location is off
+  ///
+  /// In en, this message translates to:
+  /// **'Location services are disabled. Please enable them.'**
+  String get locationServicesDisabled;
+
+  /// Shown when no events are nearby
+  ///
+  /// In en, this message translates to:
+  /// **'No events found within {radius} km'**
+  String noNearbyEvents(int radius);
 
   /// Auto-generated description for editProfile
   ///

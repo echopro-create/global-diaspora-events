@@ -55,6 +55,43 @@ class AppLocalizationsTg extends AppLocalizations {
   String get signOut => 'Sign Out';
 
   @override
+  String get signUp => 'Sign Up';
+
+  @override
+  String get signInWithGoogle => 'Continue with Google';
+
+  @override
+  String get signInWithApple => 'Continue with Apple';
+
+  @override
+  String get orContinueWithEmail => 'or continue with email';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account? Sign In';
+
+  @override
+  String get dontHaveAccount => 'Don\'t have an account? Sign Up';
+
+  @override
+  String get locationPermissionDenied =>
+      'Location permission denied. Open Settings to grant access.';
+
+  @override
+  String get locationServicesDisabled =>
+      'Location services are disabled. Please enable them.';
+
+  @override
+  String noNearbyEvents(int radius) {
+    return 'No events found within $radius km';
+  }
+
+  @override
   String get editProfile => 'Edit Profile';
 
   @override

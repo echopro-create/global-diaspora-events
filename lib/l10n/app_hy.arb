@@ -74,5 +74,16 @@
   "navProfile": "Profile",
   "failedToLoadEvent": "Failed to load event",
   "failedToLoadCategories": "Failed to load categories",
-  "diasporaMember": "Diaspora Member"
+  "diasporaMember": "Diaspora Member",
+  "signUp": "Sign Up",
+  "signInWithGoogle": "Continue with Google",
+  "signInWithApple": "Continue with Apple",
+  "orContinueWithEmail": "or continue with email",
+  "email": "Email",
+  "password": "Password",
+  "alreadyHaveAccount": "Already have an account? Sign In",
+  "dontHaveAccount": "Don't have an account? Sign Up",
+  "locationPermissionDenied": "Location permission denied. Open Settings to grant access.",
+  "locationServicesDisabled": "Location services are disabled. Please enable them.",
+  "noNearbyEvents": "No events found within {radius} km"
 }

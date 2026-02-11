@@ -6,14 +6,32 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/theme.dart';
 import '../../../../core/utils/country_utils.dart';
 import '../../../../core/widgets/shimmer_skeletons.dart';
-import '../../../profile/presentation/providers/profile_providers.dart';
+import '../../../auth/presentation/providers/auth_providers.dart';
+import '../../presentation/providers/profile_providers.dart';
 
 /// Экран профиля пользователя.
-class ProfileScreen extends ConsumerWidget {
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends ConsumerState<ProfileScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isSignUp = false;
+  bool _isEmailLoading = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final profileAsync = ref.watch(currentProfileProvider);
 
     return Scaffold(
@@ -109,7 +127,7 @@ class ProfileScreen extends ConsumerWidget {
 
                         const SizedBox(height: 32),
 
-                        // Actions
+                        // Edit Profile
                         SizedBox(
                           width: double.infinity,
                           child: OutlinedButton.icon(
@@ -117,6 +135,25 @@ class ProfileScreen extends ConsumerWidget {
                             icon: const Icon(Icons.edit_rounded),
                             label: Text(
                               AppLocalizations.of(context)!.editProfile,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+
+                        // Sign Out
+                        SizedBox(
+                          width: double.infinity,
+                          child: TextButton.icon(
+                            onPressed: () => _handleSignOut(),
+                            icon: const Icon(
+                              Icons.logout_rounded,
+                              color: AppColors.textMuted,
+                            ),
+                            label: Text(
+                              AppLocalizations.of(context)!.signOut,
+                              style: const TextStyle(
+                                color: AppColors.textMuted,
+                              ),
                             ),
                           ),
                         ),
@@ -132,13 +169,18 @@ class ProfileScreen extends ConsumerWidget {
     );
   }
 
+  // ─── Auth prompt ──────────────────────────────────────────
+
   Widget _buildAuthPrompt(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Center(
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Icon
             Container(
               width: 96,
               height: 96,
@@ -158,7 +200,7 @@ class ProfileScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              AppLocalizations.of(context)!.joinCommunity,
+              l10n.joinCommunity,
               style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 22,
@@ -167,21 +209,122 @@ class ProfileScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              AppLocalizations.of(context)!.signInSubtitle,
+              l10n.signInSubtitle,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: AppColors.textSecondary,
                 fontSize: 15,
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 28),
+
+            // ─── OAuth buttons ────────────────────────────────
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () => _handleGoogleSignIn(),
+                icon: const Icon(Icons.g_mobiledata_rounded, size: 24),
+                label: Text(l10n.signInWithGoogle),
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () => _handleAppleSignIn(),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                ),
+                icon: const Icon(Icons.apple_rounded, size: 22),
+                label: Text(l10n.signInWithApple),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // ─── Divider ──────────────────────────────────────
+            Row(
+              children: [
+                const Expanded(child: Divider(color: AppColors.divider)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Text(
+                    l10n.orContinueWithEmail,
+                    style: const TextStyle(
+                      color: AppColors.textMuted,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+                const Expanded(child: Divider(color: AppColors.divider)),
+              ],
+            ),
+            const SizedBox(height: 20),
+
+            // ─── Email / Password form ────────────────────────
+            TextField(
+              controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                hintText: l10n.email,
+                prefixIcon: const Icon(Icons.email_outlined),
+                filled: true,
+                fillColor: AppColors.cardDark,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: AppColors.divider),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: AppColors.divider),
+                ),
+              ),
+              style: const TextStyle(color: AppColors.textPrimary),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: l10n.password,
+                prefixIcon: const Icon(Icons.lock_outline_rounded),
+                filled: true,
+                fillColor: AppColors.cardDark,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: AppColors.divider),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: AppColors.divider),
+                ),
+              ),
+              style: const TextStyle(color: AppColors.textPrimary),
+            ),
+            const SizedBox(height: 16),
+
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  // TODO: Auth flow
-                },
-                child: Text(AppLocalizations.of(context)!.signIn),
+                onPressed: _isEmailLoading ? null : () => _handleEmailAuth(),
+                child: _isEmailLoading
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : Text(_isSignUp ? l10n.signUp : l10n.signIn),
+              ),
+            ),
+            const SizedBox(height: 8),
+
+            // Toggle sign-in ↔ sign-up
+            TextButton(
+              onPressed: () => setState(() => _isSignUp = !_isSignUp),
+              child: Text(
+                _isSignUp ? l10n.alreadyHaveAccount : l10n.dontHaveAccount,
+                style: const TextStyle(color: AppColors.primary, fontSize: 13),
               ),
             ),
           ],
@@ -189,6 +332,71 @@ class ProfileScreen extends ConsumerWidget {
       ),
     );
   }
+
+  // ─── Auth handlers ────────────────────────────────────────
+
+  Future<void> _handleGoogleSignIn() async {
+    try {
+      await ref.read(signInWithGoogleProvider.future);
+    } catch (e) {
+      if (!mounted) return;
+      _showAuthError(e.toString());
+    }
+  }
+
+  Future<void> _handleAppleSignIn() async {
+    try {
+      await ref.read(signInWithAppleProvider.future);
+    } catch (e) {
+      if (!mounted) return;
+      _showAuthError(e.toString());
+    }
+  }
+
+  Future<void> _handleEmailAuth() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+    if (email.isEmpty || password.isEmpty) return;
+
+    setState(() => _isEmailLoading = true);
+
+    try {
+      final credentials = (email: email, password: password);
+      if (_isSignUp) {
+        await ref.read(signUpWithEmailProvider(credentials).future);
+      } else {
+        await ref.read(signInWithEmailProvider(credentials).future);
+      }
+      ref.invalidate(currentProfileProvider);
+    } catch (e) {
+      if (!mounted) return;
+      _showAuthError(e.toString());
+    } finally {
+      if (mounted) setState(() => _isEmailLoading = false);
+    }
+  }
+
+  Future<void> _handleSignOut() async {
+    try {
+      await ref.read(signOutProvider.future);
+      ref.invalidate(currentProfileProvider);
+    } catch (e) {
+      if (!mounted) return;
+      _showAuthError(e.toString());
+    }
+  }
+
+  void _showAuthError(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.redAccent,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  // ─── UI helpers ───────────────────────────────────────────
 
   Widget _buildInfoCard({
     required BuildContext context,

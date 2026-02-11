@@ -7,6 +7,7 @@ import '../../../../app/theme.dart';
 import '../../../../core/widgets/shimmer_skeletons.dart';
 import '../../../categories/presentation/providers/categories_providers.dart';
 import '../providers/events_providers.dart';
+import '../../../../core/providers/location_providers.dart';
 import '../widgets/event_card.dart';
 import '../widgets/hero_carousel.dart';
 
@@ -271,54 +272,111 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
   }
 
   Widget _buildNearbyTab() {
-    // Заглушка — будет GPS-определение после подключения geolocator
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: AppColors.secondary.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(
-                Icons.location_on_rounded,
-                size: 48,
-                color: AppColors.secondary,
-              ),
+    final positionAsync = ref.watch(currentPositionProvider);
+
+    return positionAsync.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, _) {
+        // Permission denied or location services disabled
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.all(32),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: AppColors.secondary.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Icon(
+                    Icons.location_off_rounded,
+                    size: 48,
+                    color: AppColors.secondary,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  AppLocalizations.of(context)!.eventsNearYou,
+                  style: const TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  AppLocalizations.of(context)!.enableLocationHint,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 15,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    ref.invalidate(currentPositionProvider);
+                  },
+                  icon: const Icon(Icons.my_location_rounded),
+                  label: Text(AppLocalizations.of(context)!.enableLocation),
+                ),
+              ],
             ),
-            const SizedBox(height: 24),
-            Text(
-              AppLocalizations.of(context)!.eventsNearYou,
-              style: const TextStyle(
-                color: AppColors.textPrimary,
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              AppLocalizations.of(context)!.enableLocationHint,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: AppColors.textSecondary,
-                fontSize: 15,
-              ),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton.icon(
-              onPressed: () {
-                // TODO: Request location permission
-              },
+          ),
+        );
+      },
+      data: (position) {
+        if (position == null) {
+          // User denied permission — show prompt again
+          return Center(
+            child: ElevatedButton.icon(
+              onPressed: () => ref.invalidate(currentPositionProvider),
               icon: const Icon(Icons.my_location_rounded),
               label: Text(AppLocalizations.of(context)!.enableLocation),
             ),
-          ],
-        ),
-      ),
+          );
+        }
+        final nearbyAsync = ref.watch(
+          nearbyEventsProvider((
+            lat: position.latitude,
+            lng: position.longitude,
+            radius: 50.0,
+          )),
+        );
+
+        return nearbyAsync.when(
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (e, _) => Center(
+            child: Text(
+              AppLocalizations.of(context)!.failedToLoad,
+              style: const TextStyle(color: AppColors.textSecondary),
+            ),
+          ),
+          data: (events) {
+            if (events.isEmpty) {
+              return Center(
+                child: Text(
+                  AppLocalizations.of(context)!.noNearbyEvents(50),
+                  style: const TextStyle(color: AppColors.textSecondary),
+                ),
+              );
+            }
+            return ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              itemCount: events.length,
+              itemBuilder: (context, index) {
+                final event = events[index];
+                return EventCard(
+                  event: event,
+                  onTap: () => context.push('/event/${event.id}'),
+                );
+              },
+            );
+          },
+        );
+      },
     );
   }
 

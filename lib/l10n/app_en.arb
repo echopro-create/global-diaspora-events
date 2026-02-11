@@ -58,7 +58,56 @@
   },
   "signOut": "Sign Out",
   "@signOut": {
-    "description": "Auto-generated description for signOut"
+    "description": "Sign out button label"
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Sign up button label"
+  },
+  "signInWithGoogle": "Continue with Google",
+  "@signInWithGoogle": {
+    "description": "Google sign-in button label"
+  },
+  "signInWithApple": "Continue with Apple",
+  "@signInWithApple": {
+    "description": "Apple sign-in button label"
+  },
+  "orContinueWithEmail": "or continue with email",
+  "@orContinueWithEmail": {
+    "description": "Divider label between OAuth and email form"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email field hint"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password field hint"
+  },
+  "alreadyHaveAccount": "Already have an account? Sign In",
+  "@alreadyHaveAccount": {
+    "description": "Toggle to sign-in mode"
+  },
+  "dontHaveAccount": "Don't have an account? Sign Up",
+  "@dontHaveAccount": {
+    "description": "Toggle to sign-up mode"
+  },
+  "locationPermissionDenied": "Location permission denied. Open Settings to grant access.",
+  "@locationPermissionDenied": {
+    "description": "Shown when location permission is denied"
+  },
+  "locationServicesDisabled": "Location services are disabled. Please enable them.",
+  "@locationServicesDisabled": {
+    "description": "Shown when device location is off"
+  },
+  "noNearbyEvents": "No events found within {radius} km",
+  "@noNearbyEvents": {
+    "description": "Shown when no events are nearby",
+    "placeholders": {
+      "radius": {
+        "type": "int"
+      }
+    }
   },
   "editProfile": "Edit Profile",
   "@editProfile": {
