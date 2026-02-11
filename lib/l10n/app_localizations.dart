@@ -351,6 +351,228 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Retry'**
   String get retry;
+
+  /// No description provided for @discoverEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover Events'**
+  String get discoverEvents;
+
+  /// No description provided for @discoverSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find your people, find your events'**
+  String get discoverSubtitle;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search events, artists, venues...'**
+  String get searchHint;
+
+  /// No description provided for @forYou.
+  ///
+  /// In en, this message translates to:
+  /// **'For You'**
+  String get forYou;
+
+  /// No description provided for @nearby.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby'**
+  String get nearby;
+
+  /// No description provided for @categories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// No description provided for @featuredEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured Events'**
+  String get featuredEvents;
+
+  /// No description provided for @allEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'All Events'**
+  String get allEvents;
+
+  /// No description provided for @failedToLoad.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load events'**
+  String get failedToLoad;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get tryAgain;
+
+  /// No description provided for @noEventsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No events yet'**
+  String get noEventsYet;
+
+  /// No description provided for @checkBackLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Check back later for upcoming events'**
+  String get checkBackLater;
+
+  /// No description provided for @eventsNearYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Events near you'**
+  String get eventsNearYou;
+
+  /// No description provided for @enableLocationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable location access to discover\nevents happening around you'**
+  String get enableLocationHint;
+
+  /// No description provided for @enableLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Location'**
+  String get enableLocation;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @searchForEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for events'**
+  String get searchForEvents;
+
+  /// No description provided for @searchSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find concerts, festivals, exhibitions\nand more in your area'**
+  String get searchSubtitle;
+
+  /// No description provided for @noResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No results found'**
+  String get noResults;
+
+  /// No description provided for @tryDifferentKeywords.
+  ///
+  /// In en, this message translates to:
+  /// **'Try different keywords for \"{query}\"'**
+  String tryDifferentKeywords(String query);
+
+  /// No description provided for @searchUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Search unavailable'**
+  String get searchUnavailable;
+
+  /// No description provided for @promotedEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'⭐ Promoted Event'**
+  String get promotedEvent;
+
+  /// No description provided for @promoted.
+  ///
+  /// In en, this message translates to:
+  /// **'⭐ Promoted'**
+  String get promoted;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// No description provided for @peopleGoing.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} people going'**
+  String peopleGoing(int count);
+
+  /// No description provided for @imGoing.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m going'**
+  String get imGoing;
+
+  /// No description provided for @imGoingExcited.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m going!'**
+  String get imGoingExcited;
+
+  /// No description provided for @beFirstToJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Be the first to join!'**
+  String get beFirstToJoin;
+
+  /// No description provided for @going.
+  ///
+  /// In en, this message translates to:
+  /// **'going'**
+  String get going;
+
+  /// No description provided for @joinCommunity.
+  ///
+  /// In en, this message translates to:
+  /// **'Join the community'**
+  String get joinCommunity;
+
+  /// No description provided for @signInSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to save events, connect\nwith your diaspora and more'**
+  String get signInSubtitle;
+
+  /// No description provided for @navDiscover.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover'**
+  String get navDiscover;
+
+  /// No description provided for @navSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get navSearch;
+
+  /// No description provided for @navProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get navProfile;
+
+  /// No description provided for @failedToLoadEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load event'**
+  String get failedToLoadEvent;
+
+  /// No description provided for @failedToLoadCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load categories'**
+  String get failedToLoadCategories;
+
+  /// No description provided for @diasporaMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Diaspora Member'**
+  String get diasporaMember;
 }
 
 class _AppLocalizationsDelegate

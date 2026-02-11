@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gde/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,12 +23,12 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
   late final TabController _tabController;
   String? _selectedCategoryId;
 
-  static const _tabs = ['For You', 'Nearby', 'Categories'];
+  static const _tabCount = 3;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: _tabs.length, vsync: this);
+    _tabController = TabController(length: _tabCount, vsync: this);
     _tabController.addListener(() {
       setState(() {});
     });
@@ -71,15 +72,17 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Discover Events',
+                                  AppLocalizations.of(context)!.discoverEvents,
                                   style: Theme.of(
                                     context,
                                   ).textTheme.headlineLarge,
                                 ),
                                 const SizedBox(height: 4),
-                                const Text(
-                                  'Find your people, find your events',
-                                  style: TextStyle(
+                                Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.discoverSubtitle,
+                                  style: const TextStyle(
                                     color: AppColors.textSecondary,
                                     fontSize: 14,
                                   ),
@@ -116,17 +119,17 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                             borderRadius: BorderRadius.circular(14),
                             border: Border.all(color: AppColors.divider),
                           ),
-                          child: const Row(
+                          child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.search_rounded,
                                 color: AppColors.textMuted,
                                 size: 22,
                               ),
-                              SizedBox(width: 12),
+                              const SizedBox(width: 12),
                               Text(
-                                'Search events, artists, venues...',
-                                style: TextStyle(
+                                AppLocalizations.of(context)!.searchHint,
+                                style: const TextStyle(
                                   color: AppColors.textMuted,
                                   fontSize: 15,
                                 ),
@@ -156,7 +159,11 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                       fontWeight: FontWeight.w600,
                       fontSize: 15,
                     ),
-                    tabs: _tabs.map((t) => Tab(text: t)).toList(),
+                    tabs: [
+                      Tab(text: AppLocalizations.of(context)!.forYou),
+                      Tab(text: AppLocalizations.of(context)!.nearby),
+                      Tab(text: AppLocalizations.of(context)!.categories),
+                    ],
                   ),
                 ),
               ),
@@ -190,14 +197,14 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
               color: AppColors.textMuted,
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Failed to load events',
-              style: TextStyle(color: AppColors.textSecondary),
+            Text(
+              AppLocalizations.of(context)!.failedToLoad,
+              style: const TextStyle(color: AppColors.textSecondary),
             ),
             const SizedBox(height: 8),
             TextButton(
               onPressed: () => ref.invalidate(eventsProvider(null)),
-              child: const Text('Try again'),
+              child: Text(AppLocalizations.of(context)!.tryAgain),
             ),
           ],
         ),
@@ -225,7 +232,7 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                       Padding(
                         padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
                         child: Text(
-                          'Featured Events',
+                          AppLocalizations.of(context)!.featuredEvents,
                           style: Theme.of(context).textTheme.titleLarge
                               ?.copyWith(fontWeight: FontWeight.bold),
                         ),
@@ -239,7 +246,7 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            'All Events',
+                            AppLocalizations.of(context)!.allEvents,
                             style: Theme.of(context).textTheme.titleLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -284,19 +291,22 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
               ),
             ),
             const SizedBox(height: 24),
-            const Text(
-              'Events near you',
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.eventsNearYou,
+              style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Enable location access to discover\nevents happening around you',
+            Text(
+              AppLocalizations.of(context)!.enableLocationHint,
               textAlign: TextAlign.center,
-              style: TextStyle(color: AppColors.textSecondary, fontSize: 15),
+              style: const TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: 15,
+              ),
             ),
             const SizedBox(height: 24),
             ElevatedButton.icon(
@@ -304,7 +314,7 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                 // TODO: Request location permission
               },
               icon: const Icon(Icons.my_location_rounded),
-              label: const Text('Enable Location'),
+              label: Text(AppLocalizations.of(context)!.enableLocation),
             ),
           ],
         ),
@@ -317,10 +327,10 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
 
     return categoriesAsync.when(
       loading: () => const CategoryChipsSkeleton(),
-      error: (_, _) => const Center(
+      error: (_, _) => Center(
         child: Text(
-          'Failed to load categories',
-          style: TextStyle(color: AppColors.textSecondary),
+          AppLocalizations.of(context)!.failedToLoadCategories,
+          style: const TextStyle(color: AppColors.textSecondary),
         ),
       ),
       data: (categories) {
@@ -342,7 +352,9 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                       ? _selectedCategoryId == null
                       : _selectedCategoryId == categories[index - 1].id;
 
-                  final label = isAll ? 'All' : categories[index - 1].name;
+                  final label = isAll
+                      ? AppLocalizations.of(context)!.all
+                      : categories[index - 1].name;
                   final icon = isAll
                       ? '🌍'
                       : (categories[index - 1].icon ?? '📋');
@@ -411,10 +423,10 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
 
     return eventsAsync.when(
       loading: () => const EventListSkeleton(),
-      error: (_, _) => const Center(
+      error: (_, _) => Center(
         child: Text(
-          'Failed to load events',
-          style: TextStyle(color: AppColors.textSecondary),
+          AppLocalizations.of(context)!.failedToLoad,
+          style: const TextStyle(color: AppColors.textSecondary),
         ),
       ),
       data: (events) {
@@ -441,24 +453,31 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
   }
 
   Widget _buildEmptyState() {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.event_busy_rounded, size: 64, color: AppColors.textMuted),
-          SizedBox(height: 16),
+          const Icon(
+            Icons.event_busy_rounded,
+            size: 64,
+            color: AppColors.textMuted,
+          ),
+          const SizedBox(height: 16),
           Text(
-            'No events yet',
-            style: TextStyle(
+            AppLocalizations.of(context)!.noEventsYet,
+            style: const TextStyle(
               color: AppColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
-            'Check back later for upcoming events',
-            style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
+            AppLocalizations.of(context)!.checkBackLater,
+            style: const TextStyle(
+              color: AppColors.textSecondary,
+              fontSize: 14,
+            ),
           ),
         ],
       ),

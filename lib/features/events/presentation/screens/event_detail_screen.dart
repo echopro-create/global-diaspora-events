@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gde/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
@@ -29,13 +30,13 @@ class EventDetailScreen extends ConsumerWidget {
               const Icon(Icons.error_outline, size: 48, color: AppColors.error),
               const SizedBox(height: 16),
               Text(
-                'Failed to load event',
-                style: TextStyle(color: AppColors.textSecondary),
+                AppLocalizations.of(context)!.failedToLoadEvent,
+                style: const TextStyle(color: AppColors.textSecondary),
               ),
               const SizedBox(height: 8),
               TextButton(
                 onPressed: () => ref.invalidate(eventDetailProvider(eventId)),
-                child: const Text('Try again'),
+                child: Text(AppLocalizations.of(context)!.tryAgain),
               ),
             ],
           ),
@@ -115,8 +116,8 @@ class EventDetailScreen extends ConsumerWidget {
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: const Text(
-                            '⭐ Promoted Event',
+                          child: Text(
+                            AppLocalizations.of(context)!.promotedEvent,
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
@@ -153,7 +154,9 @@ class EventDetailScreen extends ConsumerWidget {
                       _buildInfoTile(
                         Icons.people_rounded,
                         AppColors.primaryLight,
-                        '${event.participantsCount} people going',
+                        AppLocalizations.of(
+                          context,
+                        )!.peopleGoing(event.participantsCount),
                       ),
 
                       const SizedBox(height: 24),
@@ -183,9 +186,9 @@ class EventDetailScreen extends ConsumerWidget {
                       ],
 
                       // Description
-                      const Text(
-                        'About',
-                        style: TextStyle(
+                      Text(
+                        AppLocalizations.of(context)!.about,
+                        style: const TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -212,7 +215,9 @@ class EventDetailScreen extends ConsumerWidget {
                                 // Toggle participation
                               },
                               icon: const Icon(Icons.check_circle_rounded),
-                              label: const Text("I'm going"),
+                              label: Text(
+                                AppLocalizations.of(context)!.imGoing,
+                              ),
                             ),
                           ),
                           const SizedBox(width: 12),
@@ -231,7 +236,9 @@ class EventDetailScreen extends ConsumerWidget {
                                 icon: const Icon(
                                   Icons.confirmation_number_rounded,
                                 ),
-                                label: const Text('Buy Ticket'),
+                                label: Text(
+                                  AppLocalizations.of(context)!.buyTicket,
+                                ),
                               ),
                             ),
                         ],

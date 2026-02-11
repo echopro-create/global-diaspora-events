@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gde/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/theme.dart';
@@ -39,7 +40,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Search',
+                    AppLocalizations.of(context)!.searchTitle,
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   const SizedBox(height: 16),
@@ -47,7 +48,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     controller: _controller,
                     onChanged: (v) => setState(() => _query = v.toLowerCase()),
                     decoration: InputDecoration(
-                      hintText: 'Events, artists, venues...',
+                      hintText: AppLocalizations.of(context)!.searchHint,
                       prefixIcon: const Icon(
                         Icons.search_rounded,
                         color: AppColors.textMuted,
@@ -77,10 +78,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 loading: () => const Center(
                   child: CircularProgressIndicator(color: AppColors.primary),
                 ),
-                error: (_, _) => const Center(
+                error: (_, _) => Center(
                   child: Text(
-                    'Search unavailable',
-                    style: TextStyle(color: AppColors.textSecondary),
+                    AppLocalizations.of(context)!.searchUnavailable,
+                    style: const TextStyle(color: AppColors.textSecondary),
                   ),
                 ),
                 data: (events) {
@@ -121,25 +122,32 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   }
 
   Widget _buildSearchHint() {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.search_rounded, size: 64, color: AppColors.textMuted),
-          SizedBox(height: 16),
+          const Icon(
+            Icons.search_rounded,
+            size: 64,
+            color: AppColors.textMuted,
+          ),
+          const SizedBox(height: 16),
           Text(
-            'Search for events',
-            style: TextStyle(
+            AppLocalizations.of(context)!.searchForEvents,
+            style: const TextStyle(
               color: AppColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
-            'Find concerts, festivals, exhibitions\nand more in your area',
+            AppLocalizations.of(context)!.searchSubtitle,
             textAlign: TextAlign.center,
-            style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
+            style: const TextStyle(
+              color: AppColors.textSecondary,
+              fontSize: 14,
+            ),
           ),
         ],
       ),
@@ -157,9 +165,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             color: AppColors.textMuted,
           ),
           const SizedBox(height: 16),
-          const Text(
-            'No results found',
-            style: TextStyle(
+          Text(
+            AppLocalizations.of(context)!.noResults,
+            style: const TextStyle(
               color: AppColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -167,7 +175,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Try different keywords for "$_query"',
+            AppLocalizations.of(context)!.tryDifferentKeywords(_query),
             style: const TextStyle(
               color: AppColors.textSecondary,
               fontSize: 14,

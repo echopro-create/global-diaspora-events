@@ -23,13 +23,17 @@
   "fromCountry": "From {country}",
   "@fromCountry": {
     "placeholders": {
-      "country": {"type": "String"}
+      "country": {
+        "type": "String"
+      }
     }
   },
   "inCity": "in {city}",
   "@inCity": {
     "placeholders": {
-      "city": {"type": "String"}
+      "city": {
+        "type": "String"
+      }
     }
   },
   "joinToDiscover": "Join our community to discover events",
@@ -47,5 +51,56 @@
   "noEventsFound": "No events found",
   "loading": "Loading...",
   "error": "Something went wrong",
-  "retry": "Retry"
+  "retry": "Retry",
+  "discoverEvents": "Discover Events",
+  "discoverSubtitle": "Find your people, find your events",
+  "searchHint": "Search events, artists, venues...",
+  "forYou": "For You",
+  "nearby": "Nearby",
+  "categories": "Categories",
+  "featuredEvents": "Featured Events",
+  "allEvents": "All Events",
+  "failedToLoad": "Failed to load events",
+  "tryAgain": "Try again",
+  "noEventsYet": "No events yet",
+  "checkBackLater": "Check back later for upcoming events",
+  "eventsNearYou": "Events near you",
+  "enableLocationHint": "Enable location access to discover\nevents happening around you",
+  "enableLocation": "Enable Location",
+  "all": "All",
+  "searchForEvents": "Search for events",
+  "searchSubtitle": "Find concerts, festivals, exhibitions\nand more in your area",
+  "noResults": "No results found",
+  "tryDifferentKeywords": "Try different keywords for \"{query}\"",
+  "@tryDifferentKeywords": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "searchUnavailable": "Search unavailable",
+  "promotedEvent": "⭐ Promoted Event",
+  "promoted": "⭐ Promoted",
+  "about": "About",
+  "peopleGoing": "{count} people going",
+  "@peopleGoing": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "imGoing": "I'm going",
+  "imGoingExcited": "I'm going!",
+  "beFirstToJoin": "Be the first to join!",
+  "going": "going",
+  "joinCommunity": "Join the community",
+  "signInSubtitle": "Sign in to save events, connect\nwith your diaspora and more",
+  "navDiscover": "Discover",
+  "navSearch": "Search",
+  "navProfile": "Profile",
+  "failedToLoadEvent": "Failed to load event",
+  "failedToLoadCategories": "Failed to load categories",
+  "diasporaMember": "Diaspora Member"
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gde/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -49,7 +50,8 @@ class ProfileScreen extends ConsumerWidget {
                         const SizedBox(height: 16),
                         // Name
                         Text(
-                          profile.displayName ?? 'Diaspora Member',
+                          profile.displayName ??
+                              AppLocalizations.of(context)!.diasporaMember,
                           style: const TextStyle(
                             color: AppColors.textPrimary,
                             fontSize: 22,
@@ -61,9 +63,13 @@ class ProfileScreen extends ConsumerWidget {
                         Text(
                           [
                             if (profile.originCountry != null)
-                              'From ${countryDisplay(profile.originCountry!)}',
+                              AppLocalizations.of(context)!.fromCountry(
+                                countryDisplay(profile.originCountry!),
+                              ),
                             if (profile.currentCity != null)
-                              'in ${profile.currentCity}',
+                              AppLocalizations.of(
+                                context,
+                              )!.inCity(profile.currentCity!),
                           ].join(' · '),
                           style: const TextStyle(
                             color: AppColors.textSecondary,
@@ -74,25 +80,30 @@ class ProfileScreen extends ConsumerWidget {
 
                         // Stats cards
                         _buildInfoCard(
+                          context: context,
                           icon: Icons.public_rounded,
                           color: AppColors.primary,
-                          label: 'Origin Country',
+                          label: AppLocalizations.of(context)!.originCountry,
                           value: profile.originCountry != null
                               ? countryDisplay(profile.originCountry!)
-                              : 'Not set',
+                              : AppLocalizations.of(context)!.notSet,
                         ),
                         const SizedBox(height: 12),
                         _buildInfoCard(
+                          context: context,
                           icon: Icons.location_city_rounded,
                           color: AppColors.secondary,
-                          label: 'Current City',
-                          value: profile.currentCity ?? 'Not set',
+                          label: AppLocalizations.of(context)!.currentCity,
+                          value:
+                              profile.currentCity ??
+                              AppLocalizations.of(context)!.notSet,
                         ),
                         const SizedBox(height: 12),
                         _buildInfoCard(
+                          context: context,
                           icon: Icons.calendar_today_rounded,
                           color: AppColors.accent,
-                          label: 'Joined',
+                          label: AppLocalizations.of(context)!.joined,
                           value: _formatDate(profile.createdAt),
                         ),
 
@@ -104,7 +115,9 @@ class ProfileScreen extends ConsumerWidget {
                           child: OutlinedButton.icon(
                             onPressed: () => context.push('/onboarding'),
                             icon: const Icon(Icons.edit_rounded),
-                            label: const Text('Edit Profile'),
+                            label: Text(
+                              AppLocalizations.of(context)!.editProfile,
+                            ),
                           ),
                         ),
                       ],
@@ -144,19 +157,22 @@ class ProfileScreen extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 24),
-            const Text(
-              'Join the community',
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.joinCommunity,
+              style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 22,
                 fontWeight: FontWeight.w700,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Sign in to save events, connect\nwith your diaspora and more',
+            Text(
+              AppLocalizations.of(context)!.signInSubtitle,
               textAlign: TextAlign.center,
-              style: TextStyle(color: AppColors.textSecondary, fontSize: 15),
+              style: const TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: 15,
+              ),
             ),
             const SizedBox(height: 24),
             SizedBox(
@@ -165,7 +181,7 @@ class ProfileScreen extends ConsumerWidget {
                 onPressed: () {
                   // TODO: Auth flow
                 },
-                child: const Text('Sign In'),
+                child: Text(AppLocalizations.of(context)!.signIn),
               ),
             ),
           ],
@@ -175,6 +191,7 @@ class ProfileScreen extends ConsumerWidget {
   }
 
   Widget _buildInfoCard({
+    required BuildContext context,
     required IconData icon,
     required Color color,
     required String label,

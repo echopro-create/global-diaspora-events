@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gde/l10n/generated/app_localizations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 
@@ -65,8 +66,8 @@ class EventCard extends StatelessWidget {
                         ),
                         borderRadius: BorderRadius.circular(6),
                       ),
-                      child: const Text(
-                        '⭐ Promoted',
+                      child: Text(
+                        AppLocalizations.of(context)!.promoted,
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
@@ -165,11 +166,11 @@ class EventCard extends StatelessWidget {
                   Row(
                     children: [
                       // Participants count
-                      _buildSocialProof(),
+                      _buildSocialProof(context),
                       const Spacer(),
 
                       // I'm going button
-                      _buildGoingButton(),
+                      _buildGoingButton(context),
                     ],
                   ),
                 ],
@@ -225,11 +226,11 @@ class EventCard extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialProof() {
+  Widget _buildSocialProof(BuildContext context) {
     if (event.participantsCount == 0) {
-      return const Text(
-        'Be the first to join!',
-        style: TextStyle(
+      return Text(
+        AppLocalizations.of(context)!.beFirstToJoin,
+        style: const TextStyle(
           color: AppColors.textMuted,
           fontSize: 12,
           fontStyle: FontStyle.italic,
@@ -298,7 +299,7 @@ class EventCard extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Text(
-          'going',
+          AppLocalizations.of(context)!.going,
           style: TextStyle(
             color: AppColors.textSecondary.withValues(alpha: 0.8),
             fontSize: 13,
@@ -309,7 +310,7 @@ class EventCard extends StatelessWidget {
     );
   }
 
-  Widget _buildGoingButton() {
+  Widget _buildGoingButton(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -341,7 +342,9 @@ class EventCard extends StatelessWidget {
               ),
               const SizedBox(width: 6),
               Text(
-                isParticipating ? "I'm going!" : "I'm going",
+                isParticipating
+                    ? AppLocalizations.of(context)!.imGoingExcited
+                    : AppLocalizations.of(context)!.imGoing,
                 style: TextStyle(
                   color: isParticipating
                       ? Colors.white

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gde/l10n/generated/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/theme.dart';
@@ -30,30 +31,21 @@ class MainShell extends StatelessWidget {
           surfaceTintColor: Colors.transparent,
           indicatorColor: AppColors.primary.withValues(alpha: 0.15),
           labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-          destinations: const [
+          destinations: [
             NavigationDestination(
-              icon: Icon(Icons.explore_outlined),
-              selectedIcon: Icon(
-                Icons.explore_rounded,
-                color: AppColors.primary,
-              ),
-              label: 'Discover',
+              icon: const Icon(Icons.explore_outlined),
+              selectedIcon: const Icon(Icons.explore_rounded),
+              label: AppLocalizations.of(context)!.navDiscover,
             ),
             NavigationDestination(
-              icon: Icon(Icons.search_outlined),
-              selectedIcon: Icon(
-                Icons.search_rounded,
-                color: AppColors.primary,
-              ),
-              label: 'Search',
+              icon: const Icon(Icons.search_outlined),
+              selectedIcon: const Icon(Icons.search_rounded),
+              label: AppLocalizations.of(context)!.navSearch,
             ),
             NavigationDestination(
-              icon: Icon(Icons.person_outline_rounded),
-              selectedIcon: Icon(
-                Icons.person_rounded,
-                color: AppColors.primary,
-              ),
-              label: 'Profile',
+              icon: const Icon(Icons.person_outline_rounded),
+              selectedIcon: const Icon(Icons.person_rounded),
+              label: AppLocalizations.of(context)!.navProfile,
             ),
           ],
         ),

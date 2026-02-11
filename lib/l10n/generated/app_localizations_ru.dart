@@ -127,4 +127,122 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get retry => 'Повторить';
+
+  @override
+  String get discoverEvents => 'Открывай события';
+
+  @override
+  String get discoverSubtitle => 'Найди своих людей, найди свои события';
+
+  @override
+  String get searchHint => 'Поиск событий, артистов, площадок...';
+
+  @override
+  String get forYou => 'Для вас';
+
+  @override
+  String get nearby => 'Рядом';
+
+  @override
+  String get categories => 'Категории';
+
+  @override
+  String get featuredEvents => 'Рекомендуемые';
+
+  @override
+  String get allEvents => 'Все события';
+
+  @override
+  String get failedToLoad => 'Не удалось загрузить события';
+
+  @override
+  String get tryAgain => 'Попробовать снова';
+
+  @override
+  String get noEventsYet => 'Событий пока нет';
+
+  @override
+  String get checkBackLater => 'Загляните позже — новые события появятся скоро';
+
+  @override
+  String get eventsNearYou => 'События рядом с вами';
+
+  @override
+  String get enableLocationHint =>
+      'Разрешите доступ к геолокации, чтобы\nнаходить события поблизости';
+
+  @override
+  String get enableLocation => 'Включить геолокацию';
+
+  @override
+  String get all => 'Все';
+
+  @override
+  String get searchForEvents => 'Поиск событий';
+
+  @override
+  String get searchSubtitle =>
+      'Найдите концерты, фестивали, выставки\nи многое другое в вашем районе';
+
+  @override
+  String get noResults => 'Ничего не найдено';
+
+  @override
+  String tryDifferentKeywords(String query) {
+    return 'Попробуйте другие ключевые слова для «$query»';
+  }
+
+  @override
+  String get searchUnavailable => 'Поиск недоступен';
+
+  @override
+  String get promotedEvent => '⭐ Рекомендуемое событие';
+
+  @override
+  String get promoted => '⭐ Рекомендуемое';
+
+  @override
+  String get about => 'Описание';
+
+  @override
+  String peopleGoing(int count) {
+    return '$count участников';
+  }
+
+  @override
+  String get imGoing => 'Я иду';
+
+  @override
+  String get imGoingExcited => 'Я иду!';
+
+  @override
+  String get beFirstToJoin => 'Будьте первым!';
+
+  @override
+  String get going => 'идут';
+
+  @override
+  String get joinCommunity => 'Присоединяйтесь';
+
+  @override
+  String get signInSubtitle =>
+      'Войдите, чтобы сохранять события,\nобщаться с диаспорой и не только';
+
+  @override
+  String get navDiscover => 'Обзор';
+
+  @override
+  String get navSearch => 'Поиск';
+
+  @override
+  String get navProfile => 'Профиль';
+
+  @override
+  String get failedToLoadEvent => 'Не удалось загрузить событие';
+
+  @override
+  String get failedToLoadCategories => 'Не удалось загрузить категории';
+
+  @override
+  String get diasporaMember => 'Участник диаспоры';
 }

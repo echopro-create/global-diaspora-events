@@ -127,4 +127,123 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get retry => 'Повторити';
+
+  @override
+  String get discoverEvents => 'Відкривай події';
+
+  @override
+  String get discoverSubtitle => 'Знайди своїх людей, знайди свої події';
+
+  @override
+  String get searchHint => 'Пошук подій, артистів, майданчиків...';
+
+  @override
+  String get forYou => 'Для вас';
+
+  @override
+  String get nearby => 'Поруч';
+
+  @override
+  String get categories => 'Категорії';
+
+  @override
+  String get featuredEvents => 'Рекомендовані';
+
+  @override
+  String get allEvents => 'Усі події';
+
+  @override
+  String get failedToLoad => 'Не вдалося завантажити події';
+
+  @override
+  String get tryAgain => 'Спробувати знову';
+
+  @override
+  String get noEventsYet => 'Подій поки немає';
+
+  @override
+  String get checkBackLater =>
+      'Завітайте пізніше — нові події з\'являться незабаром';
+
+  @override
+  String get eventsNearYou => 'Події поруч з вами';
+
+  @override
+  String get enableLocationHint =>
+      'Дозвольте доступ до геолокації, щоб\nзнаходити події поблизу';
+
+  @override
+  String get enableLocation => 'Увімкнути геолокацію';
+
+  @override
+  String get all => 'Усі';
+
+  @override
+  String get searchForEvents => 'Пошук подій';
+
+  @override
+  String get searchSubtitle =>
+      'Знайдіть концерти, фестивалі, виставки\nта багато іншого у вашому районі';
+
+  @override
+  String get noResults => 'Нічого не знайдено';
+
+  @override
+  String tryDifferentKeywords(String query) {
+    return 'Спробуйте інші ключові слова для «$query»';
+  }
+
+  @override
+  String get searchUnavailable => 'Пошук недоступний';
+
+  @override
+  String get promotedEvent => '⭐ Рекомендована подія';
+
+  @override
+  String get promoted => '⭐ Рекомендована';
+
+  @override
+  String get about => 'Опис';
+
+  @override
+  String peopleGoing(int count) {
+    return '$count учасників';
+  }
+
+  @override
+  String get imGoing => 'Я йду';
+
+  @override
+  String get imGoingExcited => 'Я йду!';
+
+  @override
+  String get beFirstToJoin => 'Будьте першим!';
+
+  @override
+  String get going => 'йдуть';
+
+  @override
+  String get joinCommunity => 'Приєднуйтесь';
+
+  @override
+  String get signInSubtitle =>
+      'Увійдіть, щоб зберігати події,\nспілкуватися з діаспорою та не тільки';
+
+  @override
+  String get navDiscover => 'Огляд';
+
+  @override
+  String get navSearch => 'Пошук';
+
+  @override
+  String get navProfile => 'Профіль';
+
+  @override
+  String get failedToLoadEvent => 'Не вдалося завантажити подію';
+
+  @override
+  String get failedToLoadCategories => 'Не вдалося завантажити категорії';
+
+  @override
+  String get diasporaMember => 'Учасник діаспори';
 }

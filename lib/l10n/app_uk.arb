@@ -23,13 +23,17 @@
   "fromCountry": "З {country}",
   "@fromCountry": {
     "placeholders": {
-      "country": {"type": "String"}
+      "country": {
+        "type": "String"
+      }
     }
   },
   "inCity": "у {city}",
   "@inCity": {
     "placeholders": {
-      "city": {"type": "String"}
+      "city": {
+        "type": "String"
+      }
     }
   },
   "joinToDiscover": "Приєднуйтесь до спільноти, щоб знаходити події",
@@ -47,5 +51,56 @@
   "noEventsFound": "Подій не знайдено",
   "loading": "Завантаження...",
   "error": "Щось пішло не так",
-  "retry": "Повторити"
+  "retry": "Повторити",
+  "discoverEvents": "Відкривай події",
+  "discoverSubtitle": "Знайди своїх людей, знайди свої події",
+  "searchHint": "Пошук подій, артистів, майданчиків...",
+  "forYou": "Для вас",
+  "nearby": "Поруч",
+  "categories": "Категорії",
+  "featuredEvents": "Рекомендовані",
+  "allEvents": "Усі події",
+  "failedToLoad": "Не вдалося завантажити події",
+  "tryAgain": "Спробувати знову",
+  "noEventsYet": "Подій поки немає",
+  "checkBackLater": "Завітайте пізніше — нові події з'являться незабаром",
+  "eventsNearYou": "Події поруч з вами",
+  "enableLocationHint": "Дозвольте доступ до геолокації, щоб\nзнаходити події поблизу",
+  "enableLocation": "Увімкнути геолокацію",
+  "all": "Усі",
+  "searchForEvents": "Пошук подій",
+  "searchSubtitle": "Знайдіть концерти, фестивалі, виставки\nта багато іншого у вашому районі",
+  "noResults": "Нічого не знайдено",
+  "tryDifferentKeywords": "Спробуйте інші ключові слова для «{query}»",
+  "@tryDifferentKeywords": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "searchUnavailable": "Пошук недоступний",
+  "promotedEvent": "⭐ Рекомендована подія",
+  "promoted": "⭐ Рекомендована",
+  "about": "Опис",
+  "peopleGoing": "{count} учасників",
+  "@peopleGoing": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "imGoing": "Я йду",
+  "imGoingExcited": "Я йду!",
+  "beFirstToJoin": "Будьте першим!",
+  "going": "йдуть",
+  "joinCommunity": "Приєднуйтесь",
+  "signInSubtitle": "Увійдіть, щоб зберігати події,\nспілкуватися з діаспорою та не тільки",
+  "navDiscover": "Огляд",
+  "navSearch": "Пошук",
+  "navProfile": "Профіль",
+  "failedToLoadEvent": "Не вдалося завантажити подію",
+  "failedToLoadCategories": "Не вдалося завантажити категорії",
+  "diasporaMember": "Учасник діаспори"
 }

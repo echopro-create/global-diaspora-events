@@ -126,4 +126,122 @@ class AppLocalizationsTk extends AppLocalizations {
 
   @override
   String get retry => 'Retry';
+
+  @override
+  String get discoverEvents => 'Discover Events';
+
+  @override
+  String get discoverSubtitle => 'Find your people, find your events';
+
+  @override
+  String get searchHint => 'Search events, artists, venues...';
+
+  @override
+  String get forYou => 'For You';
+
+  @override
+  String get nearby => 'Nearby';
+
+  @override
+  String get categories => 'Categories';
+
+  @override
+  String get featuredEvents => 'Featured Events';
+
+  @override
+  String get allEvents => 'All Events';
+
+  @override
+  String get failedToLoad => 'Failed to load events';
+
+  @override
+  String get tryAgain => 'Try again';
+
+  @override
+  String get noEventsYet => 'No events yet';
+
+  @override
+  String get checkBackLater => 'Check back later for upcoming events';
+
+  @override
+  String get eventsNearYou => 'Events near you';
+
+  @override
+  String get enableLocationHint =>
+      'Enable location access to discover\nevents happening around you';
+
+  @override
+  String get enableLocation => 'Enable Location';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get searchForEvents => 'Search for events';
+
+  @override
+  String get searchSubtitle =>
+      'Find concerts, festivals, exhibitions\nand more in your area';
+
+  @override
+  String get noResults => 'No results found';
+
+  @override
+  String tryDifferentKeywords(String query) {
+    return 'Try different keywords for \"$query\"';
+  }
+
+  @override
+  String get searchUnavailable => 'Search unavailable';
+
+  @override
+  String get promotedEvent => '⭐ Promoted Event';
+
+  @override
+  String get promoted => '⭐ Promoted';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String peopleGoing(int count) {
+    return '$count people going';
+  }
+
+  @override
+  String get imGoing => 'I\'m going';
+
+  @override
+  String get imGoingExcited => 'I\'m going!';
+
+  @override
+  String get beFirstToJoin => 'Be the first to join!';
+
+  @override
+  String get going => 'going';
+
+  @override
+  String get joinCommunity => 'Join the community';
+
+  @override
+  String get signInSubtitle =>
+      'Sign in to save events, connect\nwith your diaspora and more';
+
+  @override
+  String get navDiscover => 'Discover';
+
+  @override
+  String get navSearch => 'Search';
+
+  @override
+  String get navProfile => 'Profile';
+
+  @override
+  String get failedToLoadEvent => 'Failed to load event';
+
+  @override
+  String get failedToLoadCategories => 'Failed to load categories';
+
+  @override
+  String get diasporaMember => 'Diaspora Member';
 }

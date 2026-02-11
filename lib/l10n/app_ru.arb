@@ -23,13 +23,17 @@
   "fromCountry": "Из {country}",
   "@fromCountry": {
     "placeholders": {
-      "country": {"type": "String"}
+      "country": {
+        "type": "String"
+      }
     }
   },
   "inCity": "в {city}",
   "@inCity": {
     "placeholders": {
-      "city": {"type": "String"}
+      "city": {
+        "type": "String"
+      }
     }
   },
   "joinToDiscover": "Присоединяйтесь к сообществу, чтобы находить события",
@@ -47,5 +51,56 @@
   "noEventsFound": "Событий не найдено",
   "loading": "Загрузка...",
   "error": "Что-то пошло не так",
-  "retry": "Повторить"
+  "retry": "Повторить",
+  "discoverEvents": "Открывай события",
+  "discoverSubtitle": "Найди своих людей, найди свои события",
+  "searchHint": "Поиск событий, артистов, площадок...",
+  "forYou": "Для вас",
+  "nearby": "Рядом",
+  "categories": "Категории",
+  "featuredEvents": "Рекомендуемые",
+  "allEvents": "Все события",
+  "failedToLoad": "Не удалось загрузить события",
+  "tryAgain": "Попробовать снова",
+  "noEventsYet": "Событий пока нет",
+  "checkBackLater": "Загляните позже — новые события появятся скоро",
+  "eventsNearYou": "События рядом с вами",
+  "enableLocationHint": "Разрешите доступ к геолокации, чтобы\nнаходить события поблизости",
+  "enableLocation": "Включить геолокацию",
+  "all": "Все",
+  "searchForEvents": "Поиск событий",
+  "searchSubtitle": "Найдите концерты, фестивали, выставки\nи многое другое в вашем районе",
+  "noResults": "Ничего не найдено",
+  "tryDifferentKeywords": "Попробуйте другие ключевые слова для «{query}»",
+  "@tryDifferentKeywords": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "searchUnavailable": "Поиск недоступен",
+  "promotedEvent": "⭐ Рекомендуемое событие",
+  "promoted": "⭐ Рекомендуемое",
+  "about": "Описание",
+  "peopleGoing": "{count} участников",
+  "@peopleGoing": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "imGoing": "Я иду",
+  "imGoingExcited": "Я иду!",
+  "beFirstToJoin": "Будьте первым!",
+  "going": "идут",
+  "joinCommunity": "Присоединяйтесь",
+  "signInSubtitle": "Войдите, чтобы сохранять события,\nобщаться с диаспорой и не только",
+  "navDiscover": "Обзор",
+  "navSearch": "Поиск",
+  "navProfile": "Профиль",
+  "failedToLoadEvent": "Не удалось загрузить событие",
+  "failedToLoadCategories": "Не удалось загрузить категории",
+  "diasporaMember": "Участник диаспоры"
 }

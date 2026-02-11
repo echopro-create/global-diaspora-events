@@ -129,4 +129,123 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get retry => 'ხელახლა ცდა';
+
+  @override
+  String get discoverEvents => 'აღმოაჩინე ღონისძიებები';
+
+  @override
+  String get discoverSubtitle => 'იპოვე შენი ხალხი, იპოვე შენი ღონისძიებები';
+
+  @override
+  String get searchHint => 'ღონისძიებების, არტისტების, სივრცეების ძიება...';
+
+  @override
+  String get forYou => 'თქვენთვის';
+
+  @override
+  String get nearby => 'ახლოს';
+
+  @override
+  String get categories => 'კატეგორიები';
+
+  @override
+  String get featuredEvents => 'რეკომენდებული';
+
+  @override
+  String get allEvents => 'ყველა ღონისძიება';
+
+  @override
+  String get failedToLoad => 'ღონისძიებების ჩატვირთვა ვერ მოხერხდა';
+
+  @override
+  String get tryAgain => 'ხელახლა ცდა';
+
+  @override
+  String get noEventsYet => 'ღონისძიებები ჯერ არ არის';
+
+  @override
+  String get checkBackLater =>
+      'შეამოწმეთ მოგვიანებით — ახალი ღონისძიებები მალე გამოჩნდება';
+
+  @override
+  String get eventsNearYou => 'ღონისძიებები თქვენს მახლობლად';
+
+  @override
+  String get enableLocationHint =>
+      'გეოლოკაციაზე წვდომის ნებართვა\nახლომახლო ღონისძიებების საპოვნელად';
+
+  @override
+  String get enableLocation => 'გეოლოკაციის ჩართვა';
+
+  @override
+  String get all => 'ყველა';
+
+  @override
+  String get searchForEvents => 'ღონისძიებების ძიება';
+
+  @override
+  String get searchSubtitle =>
+      'იპოვეთ კონცერტები, ფესტივალები, გამოფენები\nდა სხვა მრავალი თქვენს ახლოს';
+
+  @override
+  String get noResults => 'ვერაფერი მოიძებნა';
+
+  @override
+  String tryDifferentKeywords(String query) {
+    return 'სცადეთ სხვა საკვანძო სიტყვები «$query»-თვის';
+  }
+
+  @override
+  String get searchUnavailable => 'ძიება მიუწვდომელია';
+
+  @override
+  String get promotedEvent => '⭐ რეკომენდებული ღონისძიება';
+
+  @override
+  String get promoted => '⭐ რეკომენდებული';
+
+  @override
+  String get about => 'აღწერა';
+
+  @override
+  String peopleGoing(int count) {
+    return '$count მონაწილე';
+  }
+
+  @override
+  String get imGoing => 'მე მივდივარ';
+
+  @override
+  String get imGoingExcited => 'მე მივდივარ!';
+
+  @override
+  String get beFirstToJoin => 'იყავით პირველი!';
+
+  @override
+  String get going => 'მიდიან';
+
+  @override
+  String get joinCommunity => 'შემოგვიერთდით';
+
+  @override
+  String get signInSubtitle =>
+      'შედით, რომ შეინახოთ ღონისძიებები,\nდაუკავშირდეთ დიასპორას და სხვა';
+
+  @override
+  String get navDiscover => 'მიმოხილვა';
+
+  @override
+  String get navSearch => 'ძიება';
+
+  @override
+  String get navProfile => 'პროფილი';
+
+  @override
+  String get failedToLoadEvent => 'ღონისძიების ჩატვირთვა ვერ მოხერხდა';
+
+  @override
+  String get failedToLoadCategories => 'კატეგორიების ჩატვირთვა ვერ მოხერხდა';
+
+  @override
+  String get diasporaMember => 'დიასპორის წევრი';
 }
