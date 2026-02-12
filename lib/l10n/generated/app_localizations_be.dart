@@ -283,4 +283,78 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get diasporaMember => 'Удзельнік дыяспары';
+
+  @override
+  String get attending => 'Attending';
+
+  @override
+  String get cancelAttendance => 'Cancel attendance';
+
+  @override
+  String attendeesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count attendees',
+      one: '1 attendee',
+      zero: 'No attendees yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mapView => 'Map View';
+
+  @override
+  String get listView => 'List View';
+
+  @override
+  String get directions => 'Directions';
+
+  @override
+  String get shareEvent => 'Share Event';
+
+  @override
+  String get eventSaved => 'Event saved!';
+
+  @override
+  String get eventRemoved => 'Event removed from saved';
+
+  @override
+  String get signInToAttend => 'Sign in to mark attendance';
+
+  @override
+  String get free => 'Free';
+
+  @override
+  String startsIn(String time) {
+    return 'Starts in $time';
+  }
+
+  @override
+  String get happeningNow => 'Happening now';
+
+  @override
+  String get eventEnded => 'Event ended';
+
+  @override
+  String daysShort(int count) {
+    return '${count}d';
+  }
+
+  @override
+  String hoursShort(int count) {
+    return '${count}h';
+  }
+
+  @override
+  String minutesShort(int count) {
+    return '${count}m';
+  }
+
+  @override
+  String get networkError => 'Network error. Check your connection';
+
+  @override
+  String get offlineMode => 'Offline mode — showing cached data';
 }

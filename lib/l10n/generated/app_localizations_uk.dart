@@ -56,40 +56,40 @@ class AppLocalizationsUk extends AppLocalizations {
   String get signOut => 'Вийти';
 
   @override
-  String get signUp => 'Sign Up';
+  String get signUp => 'Реєстрація';
 
   @override
-  String get signInWithGoogle => 'Continue with Google';
+  String get signInWithGoogle => 'Увійти через Google';
 
   @override
-  String get signInWithApple => 'Continue with Apple';
+  String get signInWithApple => 'Увійти через Apple';
 
   @override
-  String get orContinueWithEmail => 'or continue with email';
+  String get orContinueWithEmail => 'або продовжити з email';
 
   @override
   String get email => 'Email';
 
   @override
-  String get password => 'Password';
+  String get password => 'Пароль';
 
   @override
-  String get alreadyHaveAccount => 'Already have an account? Sign In';
+  String get alreadyHaveAccount => 'Вже є акаунт? Увійти';
 
   @override
-  String get dontHaveAccount => 'Don\'t have an account? Sign Up';
+  String get dontHaveAccount => 'Немає акаунту? Зареєструватися';
 
   @override
   String get locationPermissionDenied =>
-      'Location permission denied. Open Settings to grant access.';
+      'Доступ до геолокації заборонено. Відкрийте налаштування.';
 
   @override
   String get locationServicesDisabled =>
-      'Location services are disabled. Please enable them.';
+      'Геолокацію вимкнено. Будь ласка, увімкніть її.';
 
   @override
   String noNearbyEvents(int radius) {
-    return 'No events found within $radius km';
+    return 'Немає подій у радіусі $radius км';
   }
 
   @override
@@ -283,4 +283,80 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get diasporaMember => 'Учасник діаспори';
+
+  @override
+  String get attending => 'Беру участь';
+
+  @override
+  String get cancelAttendance => 'Скасувати участь';
+
+  @override
+  String attendeesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count учасників',
+      many: '$count учасників',
+      few: '$count учасники',
+      one: '1 учасник',
+      zero: 'Ще немає учасників',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mapView => 'На карті';
+
+  @override
+  String get listView => 'Списком';
+
+  @override
+  String get directions => 'Маршрут';
+
+  @override
+  String get shareEvent => 'Поділитися';
+
+  @override
+  String get eventSaved => 'Подію збережено!';
+
+  @override
+  String get eventRemoved => 'Подію видалено зі збережених';
+
+  @override
+  String get signInToAttend => 'Увійдіть, щоб відмітити участь';
+
+  @override
+  String get free => 'Безкоштовно';
+
+  @override
+  String startsIn(String time) {
+    return 'Початок через $time';
+  }
+
+  @override
+  String get happeningNow => 'Відбувається зараз';
+
+  @override
+  String get eventEnded => 'Подія завершилась';
+
+  @override
+  String daysShort(int count) {
+    return '$countд';
+  }
+
+  @override
+  String hoursShort(int count) {
+    return '$countг';
+  }
+
+  @override
+  String minutesShort(int count) {
+    return '$countхв';
+  }
+
+  @override
+  String get networkError => 'Помилка мережі. Перевірте з\'єднання';
+
+  @override
+  String get offlineMode => 'Офлайн режим — показано збережені дані';
 }

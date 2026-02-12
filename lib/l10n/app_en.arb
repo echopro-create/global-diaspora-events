@@ -363,6 +363,107 @@
   },
   "diasporaMember": "Diaspora Member",
   "@diasporaMember": {
-    "description": "Auto-generated description for diasporaMember"
+    "description": "Default name for users without a display name"
+  },
+  "attending": "Attending",
+  "@attending": {
+    "description": "Label shown when user confirmed attendance"
+  },
+  "cancelAttendance": "Cancel attendance",
+  "@cancelAttendance": {
+    "description": "Button to cancel event attendance"
+  },
+  "attendeesCount": "{count, plural, =0{No attendees yet} =1{1 attendee} other{{count} attendees}}",
+  "@attendeesCount": {
+    "description": "Pluralized attendee count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mapView": "Map View",
+  "@mapView": {
+    "description": "Tab label for map view"
+  },
+  "listView": "List View",
+  "@listView": {
+    "description": "Tab label for list view"
+  },
+  "directions": "Directions",
+  "@directions": {
+    "description": "Button to open directions in maps app"
+  },
+  "shareEvent": "Share Event",
+  "@shareEvent": {
+    "description": "Button to share event"
+  },
+  "eventSaved": "Event saved!",
+  "@eventSaved": {
+    "description": "Snackbar message when event is saved"
+  },
+  "eventRemoved": "Event removed from saved",
+  "@eventRemoved": {
+    "description": "Snackbar message when event is unsaved"
+  },
+  "signInToAttend": "Sign in to mark attendance",
+  "@signInToAttend": {
+    "description": "Prompt shown when unauthenticated user tries to attend"
+  },
+  "free": "Free",
+  "@free": {
+    "description": "Label for free events"
+  },
+  "startsIn": "Starts in {time}",
+  "@startsIn": {
+    "description": "Countdown to event start",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "happeningNow": "Happening now",
+  "@happeningNow": {
+    "description": "Label for currently active events"
+  },
+  "eventEnded": "Event ended",
+  "@eventEnded": {
+    "description": "Label for past events"
+  },
+  "daysShort": "{count}d",
+  "@daysShort": {
+    "description": "Short format for days",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursShort": "{count}h",
+  "@hoursShort": {
+    "description": "Short format for hours",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count}m",
+  "@minutesShort": {
+    "description": "Short format for minutes",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "networkError": "Network error. Check your connection",
+  "@networkError": {
+    "description": "Error message for network issues"
+  },
+  "offlineMode": "Offline mode — showing cached data",
+  "@offlineMode": {
+    "description": "Banner shown in offline mode"
   }
 }

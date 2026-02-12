@@ -14,7 +14,9 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       title: 'Global Diaspora Events',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
       routerConfig: AppRouter.router,
 
       // i18n

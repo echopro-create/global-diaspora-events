@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/data/mock_events.dart';
 import '../../../../core/providers/core_providers.dart';
 import '../../data/datasources/events_remote_datasource.dart';
 import '../../data/repositories/events_repository_impl.dart';
@@ -16,35 +17,58 @@ final eventsRepositoryProvider = Provider<EventsRepository>((ref) {
 });
 
 /// Provider для списка событий (фильтр по категории — nullable).
+/// Fallback: Supabase недоступен → мок-данные.
 final eventsProvider = FutureProvider.family<List<Event>, String?>((
   ref,
   categoryId,
 ) async {
-  final repo = ref.watch(eventsRepositoryProvider);
-  return repo.getEvents(categoryId: categoryId);
+  try {
+    final repo = ref.watch(eventsRepositoryProvider);
+    return await repo.getEvents(categoryId: categoryId);
+  } catch (_) {
+    // Supabase недоступен → fallback на мок-данные
+    if (categoryId != null) return MockEvents.byCategory(categoryId);
+    return MockEvents.all;
+  }
 });
 
 /// Provider для геопоиска.
+/// Fallback: мок-данные с простым haversine-фильтром.
 final nearbyEventsProvider =
     FutureProvider.family<
       List<Event>,
       ({double lat, double lng, double radius})
     >((ref, params) async {
-      final repo = ref.watch(eventsRepositoryProvider);
-      return repo.getNearbyEvents(
-        latitude: params.lat,
-        longitude: params.lng,
-        radiusKm: params.radius,
-      );
+      try {
+        final repo = ref.watch(eventsRepositoryProvider);
+        return await repo.getNearbyEvents(
+          latitude: params.lat,
+          longitude: params.lng,
+          radiusKm: params.radius,
+        );
+      } catch (_) {
+        return MockEvents.nearby(
+          lat: params.lat,
+          lng: params.lng,
+          radiusKm: params.radius,
+        );
+      }
     });
 
 /// Provider для детальной информации о событии.
+/// Fallback: мок-событие по ID.
 final eventDetailProvider = FutureProvider.family<Event, String>((
   ref,
   eventId,
 ) async {
-  final repo = ref.watch(eventsRepositoryProvider);
-  return repo.getEventById(eventId);
+  try {
+    final repo = ref.watch(eventsRepositoryProvider);
+    return await repo.getEventById(eventId);
+  } catch (_) {
+    final mock = MockEvents.byId(eventId);
+    if (mock != null) return mock;
+    rethrow;
+  }
 });
 
 /// Provider для переключения участия.

@@ -634,11 +634,125 @@ abstract class AppLocalizations {
   /// **'Failed to load categories'**
   String get failedToLoadCategories;
 
-  /// Auto-generated description for diasporaMember
+  /// Default name for users without a display name
   ///
   /// In en, this message translates to:
   /// **'Diaspora Member'**
   String get diasporaMember;
+
+  /// Label shown when user confirmed attendance
+  ///
+  /// In en, this message translates to:
+  /// **'Attending'**
+  String get attending;
+
+  /// Button to cancel event attendance
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel attendance'**
+  String get cancelAttendance;
+
+  /// Pluralized attendee count
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No attendees yet} =1{1 attendee} other{{count} attendees}}'**
+  String attendeesCount(int count);
+
+  /// Tab label for map view
+  ///
+  /// In en, this message translates to:
+  /// **'Map View'**
+  String get mapView;
+
+  /// Tab label for list view
+  ///
+  /// In en, this message translates to:
+  /// **'List View'**
+  String get listView;
+
+  /// Button to open directions in maps app
+  ///
+  /// In en, this message translates to:
+  /// **'Directions'**
+  String get directions;
+
+  /// Button to share event
+  ///
+  /// In en, this message translates to:
+  /// **'Share Event'**
+  String get shareEvent;
+
+  /// Snackbar message when event is saved
+  ///
+  /// In en, this message translates to:
+  /// **'Event saved!'**
+  String get eventSaved;
+
+  /// Snackbar message when event is unsaved
+  ///
+  /// In en, this message translates to:
+  /// **'Event removed from saved'**
+  String get eventRemoved;
+
+  /// Prompt shown when unauthenticated user tries to attend
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to mark attendance'**
+  String get signInToAttend;
+
+  /// Label for free events
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get free;
+
+  /// Countdown to event start
+  ///
+  /// In en, this message translates to:
+  /// **'Starts in {time}'**
+  String startsIn(String time);
+
+  /// Label for currently active events
+  ///
+  /// In en, this message translates to:
+  /// **'Happening now'**
+  String get happeningNow;
+
+  /// Label for past events
+  ///
+  /// In en, this message translates to:
+  /// **'Event ended'**
+  String get eventEnded;
+
+  /// Short format for days
+  ///
+  /// In en, this message translates to:
+  /// **'{count}d'**
+  String daysShort(int count);
+
+  /// Short format for hours
+  ///
+  /// In en, this message translates to:
+  /// **'{count}h'**
+  String hoursShort(int count);
+
+  /// Short format for minutes
+  ///
+  /// In en, this message translates to:
+  /// **'{count}m'**
+  String minutesShort(int count);
+
+  /// Error message for network issues
+  ///
+  /// In en, this message translates to:
+  /// **'Network error. Check your connection'**
+  String get networkError;
+
+  /// Banner shown in offline mode
+  ///
+  /// In en, this message translates to:
+  /// **'Offline mode — showing cached data'**
+  String get offlineMode;
 }
 
 class _AppLocalizationsDelegate

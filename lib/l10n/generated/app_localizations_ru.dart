@@ -55,40 +55,40 @@ class AppLocalizationsRu extends AppLocalizations {
   String get signOut => 'Выйти';
 
   @override
-  String get signUp => 'Sign Up';
+  String get signUp => 'Регистрация';
 
   @override
-  String get signInWithGoogle => 'Continue with Google';
+  String get signInWithGoogle => 'Войти через Google';
 
   @override
-  String get signInWithApple => 'Continue with Apple';
+  String get signInWithApple => 'Войти через Apple';
 
   @override
-  String get orContinueWithEmail => 'or continue with email';
+  String get orContinueWithEmail => 'или продолжить с email';
 
   @override
   String get email => 'Email';
 
   @override
-  String get password => 'Password';
+  String get password => 'Пароль';
 
   @override
-  String get alreadyHaveAccount => 'Already have an account? Sign In';
+  String get alreadyHaveAccount => 'Уже есть аккаунт? Войти';
 
   @override
-  String get dontHaveAccount => 'Don\'t have an account? Sign Up';
+  String get dontHaveAccount => 'Нет аккаунта? Зарегистрироваться';
 
   @override
   String get locationPermissionDenied =>
-      'Location permission denied. Open Settings to grant access.';
+      'Доступ к геолокации запрещён. Откройте настройки.';
 
   @override
   String get locationServicesDisabled =>
-      'Location services are disabled. Please enable them.';
+      'Геолокация отключена. Пожалуйста, включите её.';
 
   @override
   String noNearbyEvents(int radius) {
-    return 'No events found within $radius km';
+    return 'Нет событий в радиусе $radius км';
   }
 
   @override
@@ -282,4 +282,80 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get diasporaMember => 'Участник диаспоры';
+
+  @override
+  String get attending => 'Участвую';
+
+  @override
+  String get cancelAttendance => 'Отменить участие';
+
+  @override
+  String attendeesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count участников',
+      many: '$count участников',
+      few: '$count участника',
+      one: '1 участник',
+      zero: 'Пока нет участников',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mapView => 'На карте';
+
+  @override
+  String get listView => 'Списком';
+
+  @override
+  String get directions => 'Маршрут';
+
+  @override
+  String get shareEvent => 'Поделиться';
+
+  @override
+  String get eventSaved => 'Событие сохранено!';
+
+  @override
+  String get eventRemoved => 'Событие удалено из сохранённых';
+
+  @override
+  String get signInToAttend => 'Войдите, чтобы отметить участие';
+
+  @override
+  String get free => 'Бесплатно';
+
+  @override
+  String startsIn(String time) {
+    return 'Начало через $time';
+  }
+
+  @override
+  String get happeningNow => 'Прямо сейчас';
+
+  @override
+  String get eventEnded => 'Событие завершилось';
+
+  @override
+  String daysShort(int count) {
+    return '$countд';
+  }
+
+  @override
+  String hoursShort(int count) {
+    return '$countч';
+  }
+
+  @override
+  String minutesShort(int count) {
+    return '$countм';
+  }
+
+  @override
+  String get networkError => 'Ошибка сети. Проверьте соединение';
+
+  @override
+  String get offlineMode => 'Оффлайн режим — показаны сохранённые данные';
 }
