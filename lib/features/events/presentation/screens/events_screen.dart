@@ -91,6 +91,23 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                               ],
                             ),
                           ),
+                          // Карта
+                          GestureDetector(
+                            onTap: () => context.push('/map'),
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                              child: const Icon(
+                                Icons.map_rounded,
+                                color: AppColors.primary,
+                                size: 22,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
                           // Аватар — тап → профиль
                           GestureDetector(
                             onTap: () => context.go('/profile'),

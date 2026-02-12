@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/events/presentation/screens/event_detail_screen.dart';
+import '../features/events/presentation/screens/events_map_screen.dart';
 import '../features/events/presentation/screens/events_screen.dart';
 import '../features/events/presentation/screens/search_screen.dart';
 import '../features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -21,6 +22,7 @@ abstract final class AppRouter {
   static const splash = '/splash';
   static const home = '/';
   static const eventDetail = '/event/:id';
+  static const map = '/map';
   static const onboarding = '/onboarding';
   static const profile = '/profile';
 
@@ -48,6 +50,13 @@ abstract final class AppRouter {
           final eventId = state.pathParameters['id']!;
           return EventDetailScreen(eventId: eventId);
         },
+      ),
+
+      // Map View — full-screen
+      GoRoute(
+        path: map,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const EventsMapScreen(),
       ),
 
       // Основная навигация с BottomNavigationBar

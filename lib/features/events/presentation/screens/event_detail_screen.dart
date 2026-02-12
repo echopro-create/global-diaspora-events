@@ -326,12 +326,13 @@ class EventDetailScreen extends ConsumerWidget {
   /// Share event via system share dialog.
   void _shareEvent(BuildContext context, Event event) {
     final dateFormat = DateFormat('d MMM yyyy, HH:mm');
+    final deepLink = 'https://gde.app/event/${event.id}';
     final text =
         '${event.title}\n'
         '${dateFormat.format(event.dateStart)}\n'
         '${event.venueName}\n\n'
-        'Global Diaspora Events';
-    SharePlus.instance.share(ShareParams(text: text));
+        '$deepLink';
+    SharePlus.instance.share(ShareParams(text: text, uri: Uri.parse(deepLink)));
   }
 
   /// Open calendar intent.
