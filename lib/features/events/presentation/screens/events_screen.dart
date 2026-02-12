@@ -201,7 +201,9 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
   }
 
   Widget _buildForYouTab() {
-    final eventsAsync = ref.watch(eventsProvider(null));
+    final l10n = AppLocalizations.of(context)!;
+    final eventsAsync = ref.watch(filteredEventsProvider(null));
+    final activeFilter = ref.watch(dateFilterProvider);
 
     return eventsAsync.when(
       loading: () => const EventListSkeleton(),
@@ -216,13 +218,13 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
             ),
             const SizedBox(height: 16),
             Text(
-              AppLocalizations.of(context)!.failedToLoad,
+              l10n.failedToLoad,
               style: const TextStyle(color: AppColors.textSecondary),
             ),
             const SizedBox(height: 8),
             TextButton(
-              onPressed: () => ref.invalidate(eventsProvider(null)),
-              child: Text(AppLocalizations.of(context)!.tryAgain),
+              onPressed: () => ref.invalidate(filteredEventsProvider(null)),
+              child: Text(l10n.tryAgain),
             ),
           ],
         ),
@@ -236,13 +238,38 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
 
         return RefreshIndicator(
           onRefresh: () async {
-            ref.invalidate(eventsProvider(null));
+            ref.invalidate(filteredEventsProvider(null));
           },
           child: ListView.builder(
             padding: const EdgeInsets.only(top: 8, bottom: 100),
-            itemCount: 1 + otherEvents.length, // 1 for Carousel
+            itemCount:
+                2 + otherEvents.length, // filter chips + carousel + events
             itemBuilder: (context, index) {
+              // ── Date filter chips ────────────────────────────
               if (index == 0) {
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+                  child: Wrap(
+                    spacing: 8,
+                    children: [
+                      _dateChip(l10n.filterAll, DateFilter.all, activeFilter),
+                      _dateChip(
+                        l10n.filterThisWeek,
+                        DateFilter.thisWeek,
+                        activeFilter,
+                      ),
+                      _dateChip(
+                        l10n.filterThisMonth,
+                        DateFilter.thisMonth,
+                        activeFilter,
+                      ),
+                    ],
+                  ),
+                );
+              }
+
+              // ── Carousel + All Events header ─────────────────
+              if (index == 1) {
                 if (featuredEvents.isNotEmpty) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,7 +303,7 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                 }
               }
 
-              final event = otherEvents[index - 1];
+              final event = otherEvents[index - 2];
               return EventCard(
                 event: event,
                 onTap: () => context.push('/event/${event.id}'),
@@ -524,6 +551,25 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
           ),
         );
       },
+    );
+  }
+
+  Widget _dateChip(String label, DateFilter value, DateFilter active) {
+    final isSelected = value == active;
+    return FilterChip(
+      label: Text(label),
+      selected: isSelected,
+      onSelected: (_) => ref.read(dateFilterProvider.notifier).state = value,
+      selectedColor: AppColors.primary.withValues(alpha: 0.2),
+      checkmarkColor: AppColors.primary,
+      labelStyle: TextStyle(
+        color: isSelected ? AppColors.primary : AppColors.textSecondary,
+        fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+      ),
+      side: BorderSide(
+        color: isSelected ? AppColors.primary : AppColors.divider,
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     );
   }
 

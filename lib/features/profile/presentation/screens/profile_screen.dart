@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/theme.dart';
+import '../../../../core/theme/theme_controller.dart';
 import '../../../../core/utils/country_utils.dart';
 import '../../../../core/widgets/shimmer_skeletons.dart';
 import '../../../auth/presentation/providers/auth_providers.dart';
@@ -127,6 +128,21 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
                         const SizedBox(height: 32),
 
+                        // ─── Theme Switching ──────────────────────
+                        _buildThemeSection(context),
+                        const SizedBox(height: 24),
+
+                        // My Events
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton.icon(
+                            onPressed: () => context.push('/my-events'),
+                            icon: const Icon(Icons.event_available_rounded),
+                            label: Text(AppLocalizations.of(context)!.myEvents),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+
                         // Edit Profile
                         SizedBox(
                           width: double.infinity,
@@ -145,14 +161,18 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           width: double.infinity,
                           child: TextButton.icon(
                             onPressed: () => _handleSignOut(),
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.logout_rounded,
-                              color: AppColors.textMuted,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.outlineVariant,
                             ),
                             label: Text(
                               AppLocalizations.of(context)!.signOut,
-                              style: const TextStyle(
-                                color: AppColors.textMuted,
+                              style: TextStyle(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.outlineVariant,
                               ),
                             ),
                           ),
@@ -398,6 +418,73 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   // ─── UI helpers ───────────────────────────────────────────
 
+  Widget _buildThemeSection(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final themeMode = ref.watch(themeControllerProvider);
+    final cs = Theme.of(context).colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.adaptiveCard(context),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: AppColors.adaptiveDivider(context)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.palette_rounded, size: 20, color: cs.primary),
+              const SizedBox(width: 8),
+              Text(
+                l10n.theme,
+                style: TextStyle(
+                  color: cs.onSurface,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          SizedBox(
+            width: double.infinity,
+            child: SegmentedButton<ThemeMode>(
+              segments: [
+                ButtonSegment(
+                  value: ThemeMode.system,
+                  icon: const Icon(Icons.brightness_auto_rounded, size: 18),
+                  label: Text(l10n.themeSystem),
+                ),
+                ButtonSegment(
+                  value: ThemeMode.light,
+                  icon: const Icon(Icons.light_mode_rounded, size: 18),
+                  label: Text(l10n.themeLight),
+                ),
+                ButtonSegment(
+                  value: ThemeMode.dark,
+                  icon: const Icon(Icons.dark_mode_rounded, size: 18),
+                  label: Text(l10n.themeDark),
+                ),
+              ],
+              selected: {themeMode},
+              onSelectionChanged: (selected) {
+                ref
+                    .read(themeControllerProvider.notifier)
+                    .setThemeMode(selected.first);
+              },
+              style: ButtonStyle(
+                visualDensity: VisualDensity.compact,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildInfoCard({
     required BuildContext context,
     required IconData icon,
@@ -408,9 +495,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.cardDark,
+        color: AppColors.adaptiveCard(context),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.divider),
+        border: Border.all(color: AppColors.adaptiveDivider(context)),
       ),
       child: Row(
         children: [
@@ -429,8 +516,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               children: [
                 Text(
                   label,
-                  style: const TextStyle(
-                    color: AppColors.textMuted,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.outlineVariant,
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
@@ -438,8 +525,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 const SizedBox(height: 2),
                 Text(
                   value,
-                  style: const TextStyle(
-                    color: AppColors.textPrimary,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),

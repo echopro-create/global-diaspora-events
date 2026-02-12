@@ -765,6 +765,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add to Calendar'**
   String get addToCalendar;
+
+  /// Theme section title in profile
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// System theme mode label
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get themeSystem;
+
+  /// Light theme mode label
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get themeLight;
+
+  /// Dark theme mode label
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get themeDark;
+
+  /// My Events button and screen title
+  ///
+  /// In en, this message translates to:
+  /// **'My Events'**
+  String get myEvents;
+
+  /// Empty state title for My Events screen
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t joined any events yet'**
+  String get myEventsEmpty;
+
+  /// Empty state subtitle for My Events screen
+  ///
+  /// In en, this message translates to:
+  /// **'Events you attend will appear here'**
+  String get myEventsEmptyHint;
+
+  /// Date filter chip: all events
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get filterAll;
+
+  /// Date filter chip: this week
+  ///
+  /// In en, this message translates to:
+  /// **'This Week'**
+  String get filterThisWeek;
+
+  /// Date filter chip: this month
+  ///
+  /// In en, this message translates to:
+  /// **'This Month'**
+  String get filterThisMonth;
 }
 
 class _AppLocalizationsDelegate

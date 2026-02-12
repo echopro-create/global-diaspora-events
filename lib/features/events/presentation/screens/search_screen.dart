@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gde/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/theme.dart';
 import '../providers/events_providers.dart';
@@ -99,7 +100,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     padding: const EdgeInsets.only(bottom: 100),
                     itemCount: filtered.length,
                     itemBuilder: (context, index) {
-                      return EventCard(event: filtered[index], onTap: () {});
+                      return EventCard(
+                        event: filtered[index],
+                        onTap: () =>
+                            context.push('/event/${filtered[index].id}'),
+                      );
                     },
                   );
                 },

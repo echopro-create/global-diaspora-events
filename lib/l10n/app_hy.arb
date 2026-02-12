@@ -85,5 +85,45 @@
   "dontHaveAccount": "Don't have an account? Sign Up",
   "locationPermissionDenied": "Location permission denied. Open Settings to grant access.",
   "locationServicesDisabled": "Location services are disabled. Please enable them.",
-  "noNearbyEvents": "No events found within {radius} km"
+  "noNearbyEvents": "No events found within {radius} km",
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme section title in profile"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "System theme mode label"
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Light theme mode label"
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Dark theme mode label"
+  },
+  "myEvents": "My Events",
+  "@myEvents": {
+    "description": "My Events button and screen title"
+  },
+  "myEventsEmpty": "You haven't joined any events yet",
+  "@myEventsEmpty": {
+    "description": "Empty state title for My Events screen"
+  },
+  "myEventsEmptyHint": "Events you attend will appear here",
+  "@myEventsEmptyHint": {
+    "description": "Empty state subtitle for My Events screen"
+  },
+  "filterAll": "All",
+  "@filterAll": {
+    "description": "Date filter chip: all events"
+  },
+  "filterThisWeek": "This Week",
+  "@filterThisWeek": {
+    "description": "Date filter chip: this week"
+  },
+  "filterThisMonth": "This Month",
+  "@filterThisMonth": {
+    "description": "Date filter chip: this month"
+  }
 }

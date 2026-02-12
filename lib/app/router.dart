@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../features/events/presentation/screens/event_detail_screen.dart';
 import '../features/events/presentation/screens/events_map_screen.dart';
 import '../features/events/presentation/screens/events_screen.dart';
+import '../features/events/presentation/screens/my_events_screen.dart';
 import '../features/events/presentation/screens/search_screen.dart';
 import '../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../features/profile/presentation/screens/profile_screen.dart';
@@ -57,6 +58,13 @@ abstract final class AppRouter {
         path: map,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const EventsMapScreen(),
+      ),
+
+      // My Events — full-screen
+      GoRoute(
+        path: '/my-events',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const MyEventsScreen(),
       ),
 
       // Основная навигация с BottomNavigationBar

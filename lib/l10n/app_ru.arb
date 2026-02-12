@@ -106,5 +106,45 @@
   "locationServicesDisabled": "Геолокация отключена. Пожалуйста, включите её.",
   "noNearbyEvents": "Нет событий в радиусе {radius} км",
   "loginToParticipate": "Войдите, чтобы отметить участие",
-  "addToCalendar": "Добавить в календарь"
+  "addToCalendar": "Добавить в календарь",
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme section title in profile"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "System theme mode label"
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Light theme mode label"
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Dark theme mode label"
+  },
+  "myEvents": "My Events",
+  "@myEvents": {
+    "description": "My Events button and screen title"
+  },
+  "myEventsEmpty": "You haven't joined any events yet",
+  "@myEventsEmpty": {
+    "description": "Empty state title for My Events screen"
+  },
+  "myEventsEmptyHint": "Events you attend will appear here",
+  "@myEventsEmptyHint": {
+    "description": "Empty state subtitle for My Events screen"
+  },
+  "filterAll": "All",
+  "@filterAll": {
+    "description": "Date filter chip: all events"
+  },
+  "filterThisWeek": "This Week",
+  "@filterThisWeek": {
+    "description": "Date filter chip: this week"
+  },
+  "filterThisMonth": "This Month",
+  "@filterThisMonth": {
+    "description": "Date filter chip: this month"
+  }
 }

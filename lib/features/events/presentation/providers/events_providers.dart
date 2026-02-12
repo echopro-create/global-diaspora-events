@@ -111,3 +111,41 @@ final isParticipatingProvider =
         return false;
       }
     });
+
+/// Перечисление вариантов фильтрации по дате.
+enum DateFilter { all, thisWeek, thisMonth }
+
+/// StateProvider для текущего фильтра по дате.
+final dateFilterProvider = StateProvider<DateFilter>((_) => DateFilter.all);
+
+/// Provider для списка «Мои события» (демо: первые 2 мок-события).
+/// TODO: Заменить на реальную фильтрацию по isParticipating из Supabase.
+final myEventsProvider = FutureProvider<List<Event>>((ref) async {
+  final allEvents = await ref.watch(eventsProvider(null).future);
+  // Demo: возвращаем первые 2 события как «записанные»
+  return allEvents.take(2).toList();
+});
+
+/// Provider для отфильтрованных по дате событий.
+final filteredEventsProvider = FutureProvider.family<List<Event>, String?>((
+  ref,
+  categoryId,
+) async {
+  final events = await ref.watch(eventsProvider(categoryId).future);
+  final filter = ref.watch(dateFilterProvider);
+
+  if (filter == DateFilter.all) return events;
+
+  final now = DateTime.now();
+  return events.where((e) {
+    switch (filter) {
+      case DateFilter.thisWeek:
+        final diff = e.dateStart.difference(now).inDays;
+        return diff >= 0 && diff <= 7;
+      case DateFilter.thisMonth:
+        return e.dateStart.year == now.year && e.dateStart.month == now.month;
+      case DateFilter.all:
+        return true;
+    }
+  }).toList();
+});

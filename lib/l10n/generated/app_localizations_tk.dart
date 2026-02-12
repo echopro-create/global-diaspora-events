@@ -361,4 +361,34 @@ class AppLocalizationsTk extends AppLocalizations {
 
   @override
   String get addToCalendar => 'Add to Calendar';
+
+  @override
+  String get theme => 'Theme';
+
+  @override
+  String get themeSystem => 'System';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
+
+  @override
+  String get myEvents => 'My Events';
+
+  @override
+  String get myEventsEmpty => 'You haven\'t joined any events yet';
+
+  @override
+  String get myEventsEmptyHint => 'Events you attend will appear here';
+
+  @override
+  String get filterAll => 'All';
+
+  @override
+  String get filterThisWeek => 'This Week';
+
+  @override
+  String get filterThisMonth => 'This Month';
 }
