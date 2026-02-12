@@ -104,5 +104,7 @@
   "dontHaveAccount": "Нет аккаунта? Зарегистрироваться",
   "locationPermissionDenied": "Доступ к геолокации запрещён. Откройте настройки.",
   "locationServicesDisabled": "Геолокация отключена. Пожалуйста, включите её.",
-  "noNearbyEvents": "Нет событий в радиусе {radius} км"
+  "noNearbyEvents": "Нет событий в радиусе {radius} км",
+  "loginToParticipate": "Войдите, чтобы отметить участие",
+  "addToCalendar": "Добавить в календарь"
 }

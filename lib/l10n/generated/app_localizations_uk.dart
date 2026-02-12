@@ -359,4 +359,10 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get offlineMode => 'Офлайн режим — показано збережені дані';
+
+  @override
+  String get loginToParticipate => 'Увійдіть, щоб відмітити участь';
+
+  @override
+  String get addToCalendar => 'Додати до календаря';
 }

@@ -31,7 +31,7 @@ class EventCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: AppColors.cardDark,
+          color: AppColors.adaptiveCard(context),
           borderRadius: BorderRadius.circular(16),
           border: event.isPromoted
               ? Border.all(
@@ -44,8 +44,13 @@ class EventCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Изображение + Countdown
-            Stack(children: [_buildImage(), _buildCountdown()]),
+            // Изображение + Countdown (Hero for smooth transition)
+            Stack(
+              children: [
+                Hero(tag: 'event-image-${event.id}', child: _buildImage()),
+                _buildCountdown(context),
+              ],
+            ),
 
             Padding(
               padding: const EdgeInsets.all(16),
@@ -360,19 +365,32 @@ class EventCard extends StatelessWidget {
     );
   }
 
-  Widget _buildCountdown() {
+  Widget _buildCountdown(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final now = DateTime.now();
     final diff = event.dateStart.difference(now);
 
-    if (diff.isNegative) return const SizedBox.shrink();
-
+    // Determine label and color
     String label;
-    if (diff.inDays > 0) {
-      label = 'in ${diff.inDays}d';
+    Color badgeColor;
+
+    if (event.dateEnd != null && now.isAfter(event.dateEnd!)) {
+      // Event ended
+      label = l10n.eventEnded;
+      badgeColor = Colors.black54;
+    } else if (diff.isNegative) {
+      // Happening now
+      label = l10n.happeningNow;
+      badgeColor = AppColors.success.withValues(alpha: 0.85);
+    } else if (diff.inDays > 0) {
+      label = l10n.startsIn(l10n.daysShort(diff.inDays));
+      badgeColor = Colors.black.withValues(alpha: 0.5);
     } else if (diff.inHours > 0) {
-      label = 'in ${diff.inHours}h';
+      label = l10n.startsIn(l10n.hoursShort(diff.inHours));
+      badgeColor = AppColors.primary.withValues(alpha: 0.8);
     } else {
-      label = 'soon';
+      label = l10n.startsIn(l10n.minutesShort(diff.inMinutes.clamp(1, 59)));
+      badgeColor = AppColors.secondary.withValues(alpha: 0.85);
     }
 
     return Positioned(
@@ -381,7 +399,7 @@ class EventCard extends StatelessWidget {
       child: GlassContainer(
         borderRadius: BorderRadius.circular(12),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        color: Colors.black.withValues(alpha: 0.3),
+        color: badgeColor,
         child: Text(
           label,
           style: const TextStyle(

@@ -71,15 +71,43 @@ final eventDetailProvider = FutureProvider.family<Event, String>((
   }
 });
 
-/// Provider для переключения участия.
+/// Provider для переключения участия (toggle + invalidate).
 final toggleParticipationProvider =
     FutureProvider.family<bool, ({String eventId, String profileId})>((
       ref,
       params,
     ) async {
       final repo = ref.watch(eventsRepositoryProvider);
-      return repo.toggleParticipation(
+      final result = await repo.toggleParticipation(
         eventId: params.eventId,
         profileId: params.profileId,
       );
+      // Invalidate cached participation status
+      ref.invalidate(
+        isParticipatingProvider((
+          eventId: params.eventId,
+          profileId: params.profileId,
+        )),
+      );
+      // Refresh event detail to update participant count
+      ref.invalidate(eventDetailProvider(params.eventId));
+      return result;
+    });
+
+/// Provider для проверки участия текущего пользователя в событии.
+/// Fallback: false если Supabase недоступен.
+final isParticipatingProvider =
+    FutureProvider.family<bool, ({String eventId, String profileId})>((
+      ref,
+      params,
+    ) async {
+      try {
+        final repo = ref.watch(eventsRepositoryProvider);
+        return await repo.isParticipating(
+          eventId: params.eventId,
+          profileId: params.profileId,
+        );
+      } catch (_) {
+        return false;
+      }
     });

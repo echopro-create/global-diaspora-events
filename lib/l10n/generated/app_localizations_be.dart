@@ -357,4 +357,10 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get offlineMode => 'Offline mode — showing cached data';
+
+  @override
+  String get loginToParticipate => 'Log in to mark attendance';
+
+  @override
+  String get addToCalendar => 'Add to Calendar';
 }

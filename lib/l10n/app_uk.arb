@@ -104,5 +104,7 @@
   "dontHaveAccount": "Немає акаунту? Зареєструватися",
   "locationPermissionDenied": "Доступ до геолокації заборонено. Відкрийте налаштування.",
   "locationServicesDisabled": "Геолокацію вимкнено. Будь ласка, увімкніть її.",
-  "noNearbyEvents": "Немає подій у радіусі {radius} км"
+  "noNearbyEvents": "Немає подій у радіусі {radius} км",
+  "loginToParticipate": "Увійдіть, щоб відмітити участь",
+  "addToCalendar": "Додати до календаря"
 }

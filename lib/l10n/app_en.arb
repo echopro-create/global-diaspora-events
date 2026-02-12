@@ -465,5 +465,13 @@
   "offlineMode": "Offline mode — showing cached data",
   "@offlineMode": {
     "description": "Banner shown in offline mode"
+  },
+  "loginToParticipate": "Log in to mark attendance",
+  "@loginToParticipate": {
+    "description": "Snackbar hint when unauthenticated user tries to attend"
+  },
+  "addToCalendar": "Add to Calendar",
+  "@addToCalendar": {
+    "description": "Button label to add event to device calendar"
   }
 }

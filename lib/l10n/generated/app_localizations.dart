@@ -753,6 +753,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Offline mode — showing cached data'**
   String get offlineMode;
+
+  /// Snackbar hint when unauthenticated user tries to attend
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to mark attendance'**
+  String get loginToParticipate;
+
+  /// Button label to add event to device calendar
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Calendar'**
+  String get addToCalendar;
 }
 
 class _AppLocalizationsDelegate

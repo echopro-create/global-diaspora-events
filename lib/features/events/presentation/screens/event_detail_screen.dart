@@ -4,8 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../../app/theme.dart';
+import '../../../../core/providers/core_providers.dart';
+import '../../domain/entities/event.dart';
 import '../providers/events_providers.dart';
 
 /// Экран детальной информации о событии.
@@ -50,7 +53,9 @@ class EventDetailScreen extends ConsumerWidget {
               SliverAppBar(
                 expandedHeight: 280,
                 pinned: true,
-                backgroundColor: AppColors.backgroundDark,
+                backgroundColor: AppColors.isDark(context)
+                    ? AppColors.backgroundDark
+                    : AppColors.backgroundLight,
                 leading: IconButton(
                   icon: Container(
                     padding: const EdgeInsets.all(8),
@@ -65,33 +70,54 @@ class EventDetailScreen extends ConsumerWidget {
                   ),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
+                actions: [
+                  IconButton(
+                    icon: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.black45,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(
+                        Icons.share_rounded,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                    onPressed: () => _shareEvent(context, event),
+                  ),
+                  const SizedBox(width: 4),
+                ],
                 flexibleSpace: FlexibleSpaceBar(
-                  background: event.imageUrl != null
-                      ? CachedNetworkImage(
-                          imageUrl: event.imageUrl!,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) =>
-                              Container(color: AppColors.surfaceDark),
-                        )
-                      : Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                AppColors.primary.withValues(alpha: 0.4),
-                                AppColors.secondary.withValues(alpha: 0.4),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
+                  background: Hero(
+                    tag: 'event-image-${event.id}',
+                    child: event.imageUrl != null
+                        ? CachedNetworkImage(
+                            imageUrl: event.imageUrl!,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) =>
+                                Container(color: AppColors.surfaceDark),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  AppColors.primary.withValues(alpha: 0.4),
+                                  AppColors.secondary.withValues(alpha: 0.4),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            child: const Center(
+                              child: Icon(
+                                Icons.event_rounded,
+                                size: 64,
+                                color: AppColors.textMuted,
+                              ),
                             ),
                           ),
-                          child: const Center(
-                            child: Icon(
-                              Icons.event_rounded,
-                              size: 64,
-                              color: AppColors.textMuted,
-                            ),
-                          ),
-                        ),
+                  ),
                 ),
               ),
 
@@ -207,41 +233,20 @@ class EventDetailScreen extends ConsumerWidget {
                       const SizedBox(height: 32),
 
                       // Action buttons
-                      Row(
-                        children: [
-                          Expanded(
-                            child: ElevatedButton.icon(
-                              onPressed: () {
-                                // Toggle participation
-                              },
-                              icon: const Icon(Icons.check_circle_rounded),
-                              label: Text(
-                                AppLocalizations.of(context)!.imGoing,
-                              ),
-                            ),
+                      _buildActionButtons(context, ref, event),
+
+                      const SizedBox(height: 12),
+
+                      // Add to Calendar
+                      SizedBox(
+                        width: double.infinity,
+                        child: OutlinedButton.icon(
+                          onPressed: () => _addToCalendar(context, event),
+                          icon: const Icon(Icons.calendar_month_rounded),
+                          label: Text(
+                            AppLocalizations.of(context)!.addToCalendar,
                           ),
-                          const SizedBox(width: 12),
-                          if (event.buyLink != null)
-                            Expanded(
-                              child: OutlinedButton.icon(
-                                onPressed: () async {
-                                  final uri = Uri.parse(event.buyLink!);
-                                  if (await canLaunchUrl(uri)) {
-                                    await launchUrl(
-                                      uri,
-                                      mode: LaunchMode.externalApplication,
-                                    );
-                                  }
-                                },
-                                icon: const Icon(
-                                  Icons.confirmation_number_rounded,
-                                ),
-                                label: Text(
-                                  AppLocalizations.of(context)!.buyTicket,
-                                ),
-                              ),
-                            ),
-                        ],
+                        ),
                       ),
 
                       const SizedBox(height: 40),
@@ -255,6 +260,104 @@ class EventDetailScreen extends ConsumerWidget {
       ),
     );
   }
+
+  /// Action buttons: I'm Going (toggle) + Buy Ticket.
+  Widget _buildActionButtons(BuildContext context, WidgetRef ref, Event event) {
+    final l10n = AppLocalizations.of(context)!;
+    final user = ref.watch(currentUserProvider);
+    final profileId = user?.id;
+
+    // Watch participation status (only if logged in)
+    final isGoingAsync = profileId != null
+        ? ref.watch(
+            isParticipatingProvider((eventId: event.id, profileId: profileId)),
+          )
+        : const AsyncValue<bool>.data(false);
+
+    final isGoing = isGoingAsync.valueOrNull ?? false;
+
+    return Row(
+      children: [
+        Expanded(
+          child: ElevatedButton.icon(
+            onPressed: () {
+              if (profileId == null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(l10n.loginToParticipate)),
+                );
+                return;
+              }
+              ref.read(
+                toggleParticipationProvider((
+                  eventId: event.id,
+                  profileId: profileId,
+                )),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: isGoing
+                  ? AppColors.success
+                  : Theme.of(context).colorScheme.primary,
+            ),
+            icon: Icon(
+              isGoing ? Icons.check_circle : Icons.check_circle_outline,
+            ),
+            label: Text(isGoing ? l10n.going : l10n.imGoing),
+          ),
+        ),
+        const SizedBox(width: 12),
+        if (event.buyLink != null)
+          Expanded(
+            child: OutlinedButton.icon(
+              onPressed: () async {
+                final uri = Uri.parse(event.buyLink!);
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                }
+              },
+              icon: const Icon(Icons.confirmation_number_rounded),
+              label: Text(l10n.buyTicket),
+            ),
+          ),
+      ],
+    );
+  }
+
+  /// Share event via system share dialog.
+  void _shareEvent(BuildContext context, Event event) {
+    final dateFormat = DateFormat('d MMM yyyy, HH:mm');
+    final text =
+        '${event.title}\n'
+        '${dateFormat.format(event.dateStart)}\n'
+        '${event.venueName}\n\n'
+        'Global Diaspora Events';
+    SharePlus.instance.share(ShareParams(text: text));
+  }
+
+  /// Open calendar intent.
+  Future<void> _addToCalendar(BuildContext context, Event event) async {
+    final start = event.dateStart;
+    final end = event.dateEnd ?? start.add(const Duration(hours: 2));
+    // Google Calendar URL scheme
+    final uri = Uri.parse(
+      'https://calendar.google.com/calendar/render'
+      '?action=TEMPLATE'
+      '&text=${Uri.encodeComponent(event.title)}'
+      '&dates=${_calendarDate(start)}/${_calendarDate(end)}'
+      '&location=${Uri.encodeComponent(event.venueName)}'
+      '&details=${Uri.encodeComponent(event.description.length > 200 ? event.description.substring(0, 200) : event.description)}',
+    );
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
+
+  String _calendarDate(DateTime dt) {
+    return '${dt.year}${_pad(dt.month)}${_pad(dt.day)}'
+        'T${_pad(dt.hour)}${_pad(dt.minute)}00';
+  }
+
+  String _pad(int n) => n.toString().padLeft(2, '0');
 
   Widget _buildInfoTile(IconData icon, Color color, String text) {
     return Row(
