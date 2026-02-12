@@ -29,14 +29,19 @@ abstract final class AppConstants {
 ///   --dart-define=SUPABASE_ANON_KEY=eyJ...
 /// ```
 abstract final class SupabaseConfig {
-  static const supabaseUrl = String.fromEnvironment(
-    'SUPABASE_URL',
-    defaultValue: '',
-  );
-  static const supabaseAnonKey = String.fromEnvironment(
-    'SUPABASE_ANON_KEY',
-    defaultValue: '',
-  );
+  static const _envUrl = String.fromEnvironment('SUPABASE_URL');
+  static const _envKey = String.fromEnvironment('SUPABASE_ANON_KEY');
+
+  static String? _runtimeUrl;
+  static String? _runtimeKey;
+
+  static void setRuntimeConfig(String url, String key) {
+    _runtimeUrl = url;
+    _runtimeKey = key;
+  }
+
+  static String get supabaseUrl => _runtimeUrl ?? _envUrl;
+  static String get supabaseAnonKey => _runtimeKey ?? _envKey;
 
   /// Проверка, что ключи сконфигурированы.
   static bool get isConfigured =>

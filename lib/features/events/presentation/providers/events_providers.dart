@@ -118,12 +118,18 @@ enum DateFilter { all, thisWeek, thisMonth }
 /// StateProvider для текущего фильтра по дате.
 final dateFilterProvider = StateProvider<DateFilter>((_) => DateFilter.all);
 
-/// Provider для списка «Мои события» (демо: первые 2 мок-события).
-/// TODO: Заменить на реальную фильтрацию по isParticipating из Supabase.
+/// Provider для списка «Мои события» (события, где пользователь записан).
 final myEventsProvider = FutureProvider<List<Event>>((ref) async {
-  final allEvents = await ref.watch(eventsProvider(null).future);
-  // Demo: возвращаем первые 2 события как «записанные»
-  return allEvents.take(2).toList();
+  final user = ref.watch(currentUserProvider);
+  if (user == null) return [];
+
+  try {
+    final repo = ref.watch(eventsRepositoryProvider);
+    return await repo.getParticipatingEvents(user.id);
+  } catch (_) {
+    // Fallback: пустой список или мок-данные при ошибке
+    return [];
+  }
 });
 
 /// Provider для отфильтрованных по дате событий.

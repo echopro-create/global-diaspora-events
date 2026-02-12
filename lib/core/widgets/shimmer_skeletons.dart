@@ -15,12 +15,13 @@ class EventCardSkeleton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Container(
-          height: 320,
+          // height removed to wrap content
           decoration: BoxDecoration(
             color: AppColors.cardDark,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Изображение

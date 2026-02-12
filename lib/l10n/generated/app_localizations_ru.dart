@@ -378,13 +378,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get themeDark => 'Dark';
 
   @override
-  String get myEvents => 'My Events';
+  String get myEvents => 'Мои события';
 
   @override
-  String get myEventsEmpty => 'You haven\'t joined any events yet';
+  String get myEventsEmpty => 'Вы еще не записались на события';
 
   @override
-  String get myEventsEmptyHint => 'Events you attend will appear here';
+  String get myEventsEmptyHint =>
+      'События, которые вы посетите, появятся здесь';
 
   @override
   String get filterAll => 'All';

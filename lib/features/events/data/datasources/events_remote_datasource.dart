@@ -136,6 +136,20 @@ class EventsRemoteDataSource {
         .toList();
   }
 
+  /// Получить события, в которых участвует пользователь.
+  Future<List<Event>> getParticipatingEvents(String profileId) async {
+    final response = await _client
+        .from('event_participants')
+        .select('events(*, event_tags(tags(name)))')
+        .eq('profile_id', profileId)
+        .order('created_at', ascending: false);
+
+    return (response as List).map((json) {
+      final eventJson = json['events'] as Map<String, dynamic>;
+      return _mapEventWithTags(eventJson);
+    }).toList();
+  }
+
   /// Маппинг события с вложенными тегами из Supabase join.
   Event _mapEventWithTags(Map<String, dynamic> json) {
     final eventTags = json['event_tags'] as List<dynamic>? ?? [];

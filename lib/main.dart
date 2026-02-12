@@ -7,7 +7,6 @@ import 'core/constants/app_constants.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   // Проверка конфигурации Supabase
   if (!SupabaseConfig.isConfigured) {
     debugPrint(

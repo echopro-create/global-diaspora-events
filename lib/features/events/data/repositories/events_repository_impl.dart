@@ -66,4 +66,8 @@ class EventsRepository {
       limit: limit,
     );
   }
+
+  Future<List<Event>> getParticipatingEvents(String profileId) {
+    return _remoteDataSource.getParticipatingEvents(profileId);
+  }
 }
