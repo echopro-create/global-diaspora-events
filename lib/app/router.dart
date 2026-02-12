@@ -18,6 +18,7 @@ abstract final class AppRouter {
   static final _discoverKey = GlobalKey<NavigatorState>(debugLabel: 'discover');
   static final _searchKey = GlobalKey<NavigatorState>(debugLabel: 'search');
   static final _profileKey = GlobalKey<NavigatorState>(debugLabel: 'profile');
+  static final _myEventsKey = GlobalKey<NavigatorState>(debugLabel: 'myEvents');
 
   /// Именованные маршруты.
   static const splash = '/splash';
@@ -91,6 +92,17 @@ abstract final class AppRouter {
               GoRoute(
                 path: '/search',
                 builder: (context, state) => const SearchScreen(),
+              ),
+            ],
+          ),
+
+          // My Events branch
+          StatefulShellBranch(
+            navigatorKey: _myEventsKey,
+            routes: [
+              GoRoute(
+                path: '/my-events',
+                builder: (context, state) => const MyEventsScreen(),
               ),
             ],
           ),

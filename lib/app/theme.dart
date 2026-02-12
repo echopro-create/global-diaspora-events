@@ -227,6 +227,26 @@ abstract final class AppTheme {
         type: BottomNavigationBarType.fixed,
         elevation: 0,
       ),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: AppColors.surfaceDark,
+        indicatorColor: AppColors.primary.withValues(alpha: 0.2),
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return const IconThemeData(color: Colors.white);
+          }
+          return const IconThemeData(color: AppColors.textMuted);
+        }),
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 12,
+            );
+          }
+          return const TextStyle(color: AppColors.textMuted, fontSize: 12);
+        }),
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.resolveWith((states) {
@@ -261,9 +281,11 @@ abstract final class AppTheme {
         ),
       ),
       chipTheme: ChipThemeData(
-        backgroundColor: AppColors.cardDark,
+        backgroundColor: AppColors.surfaceDark,
         selectedColor: AppColors.primary.withValues(alpha: 0.2),
         labelStyle: const TextStyle(color: AppColors.textSecondary),
+        secondaryLabelStyle: const TextStyle(color: AppColors.primary),
+        brightness: Brightness.dark,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: const BorderSide(color: AppColors.dividerDark),
@@ -421,6 +443,29 @@ abstract final class AppTheme {
         type: BottomNavigationBarType.fixed,
         elevation: 0,
       ),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: AppColors.surfaceLight,
+        indicatorColor: AppColors.primary.withValues(alpha: 0.1),
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return const IconThemeData(color: AppColors.primary);
+          }
+          return const IconThemeData(color: AppColors.textSecondaryLight);
+        }),
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return const TextStyle(
+              color: AppColors.primary,
+              fontWeight: FontWeight.w600,
+              fontSize: 12,
+            );
+          }
+          return const TextStyle(
+            color: AppColors.textSecondaryLight,
+            fontSize: 12,
+          );
+        }),
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.resolveWith((states) {
@@ -455,9 +500,11 @@ abstract final class AppTheme {
         ),
       ),
       chipTheme: ChipThemeData(
-        backgroundColor: AppColors.cardLight,
+        backgroundColor: AppColors.surfaceLight,
         selectedColor: AppColors.primary.withValues(alpha: 0.15),
         labelStyle: const TextStyle(color: AppColors.textSecondaryLight),
+        secondaryLabelStyle: const TextStyle(color: AppColors.primary),
+        brightness: Brightness.light,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: const BorderSide(color: AppColors.dividerLight),

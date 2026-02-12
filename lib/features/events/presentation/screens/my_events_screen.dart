@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gde/l10n/generated/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../app/theme.dart';
 import '../../../../core/widgets/ambient_background.dart';
 import '../providers/events_providers.dart';
 import '../widgets/event_card.dart';
@@ -66,13 +65,17 @@ class MyEventsScreen extends ConsumerWidget {
                               Icon(
                                 Icons.event_busy_rounded,
                                 size: 64,
-                                color: AppColors.primary.withValues(alpha: 0.5),
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.primary.withValues(alpha: 0.5),
                               ),
                               const SizedBox(height: 16),
                               Text(
                                 l10n.myEventsEmpty,
                                 style: TextStyle(
-                                  color: cs.onSurface,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -81,7 +84,8 @@ class MyEventsScreen extends ConsumerWidget {
                               Text(
                                 l10n.myEventsEmptyHint,
                                 style: TextStyle(
-                                  color: cs.outlineVariant,
+                                  color: Theme.of(context).colorScheme.onSurface
+                                      .withValues(alpha: 0.6),
                                   fontSize: 14,
                                 ),
                               ),

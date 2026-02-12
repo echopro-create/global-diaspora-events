@@ -45,17 +45,7 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppColors.backgroundDark,
-              AppColors.primary.withValues(alpha: 0.05),
-              AppColors.secondary.withValues(alpha: 0.05),
-            ],
-          ),
-        ),
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: SafeArea(
           child: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) => [
@@ -83,8 +73,10 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                                   AppLocalizations.of(
                                     context,
                                   )!.discoverSubtitle,
-                                  style: const TextStyle(
-                                    color: AppColors.textSecondary,
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
                                     fontSize: 14,
                                   ),
                                 ),
@@ -133,9 +125,13 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                             vertical: 14,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.cardDark,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.surfaceContainerHighest,
                             borderRadius: BorderRadius.circular(14),
-                            border: Border.all(color: AppColors.divider),
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.outline,
+                            ),
                           ),
                           child: Row(
                             children: [
@@ -169,14 +165,6 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                   TabBar(
                     controller: _tabController,
                     labelColor: AppColors.primary,
-                    unselectedLabelColor: AppColors.textMuted,
-                    indicatorColor: AppColors.primary,
-                    indicatorWeight: 3,
-                    indicatorSize: TabBarIndicatorSize.label,
-                    labelStyle: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
-                    ),
                     tabs: [
                       Tab(text: AppLocalizations.of(context)!.forYou),
                       Tab(text: AppLocalizations.of(context)!.nearby),
@@ -211,15 +199,15 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
+            Icon(
               Icons.cloud_off_rounded,
               size: 48,
-              color: AppColors.textMuted,
+              color: Theme.of(context).colorScheme.outline,
             ),
             const SizedBox(height: 16),
             Text(
               l10n.failedToLoad,
-              style: const TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
             ),
             const SizedBox(height: 8),
             TextButton(
@@ -497,7 +485,8 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
                             style: TextStyle(
                               color: isSelected
                                   ? Colors.white
-                                  : AppColors.textSecondary,
+                                  : Theme.of(context).colorScheme.onSurface
+                                        .withValues(alpha: 0.8),
                               fontSize: 14,
                               fontWeight: isSelected
                                   ? FontWeight.w600
@@ -563,7 +552,9 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
       selectedColor: AppColors.primary.withValues(alpha: 0.2),
       checkmarkColor: AppColors.primary,
       labelStyle: TextStyle(
-        color: isSelected ? AppColors.primary : AppColors.textSecondary,
+        color: isSelected
+            ? AppColors.primary
+            : Theme.of(context).colorScheme.onSurface,
         fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
       ),
       side: BorderSide(
@@ -578,16 +569,16 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(
+          Icon(
             Icons.event_busy_rounded,
             size: 64,
-            color: AppColors.textMuted,
+            color: Theme.of(context).colorScheme.outline,
           ),
           const SizedBox(height: 16),
           Text(
             AppLocalizations.of(context)!.noEventsYet,
-            style: const TextStyle(
-              color: AppColors.textPrimary,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
@@ -595,8 +586,10 @@ class _EventsScreenState extends ConsumerState<EventsScreen>
           const SizedBox(height: 8),
           Text(
             AppLocalizations.of(context)!.checkBackLater,
-            style: const TextStyle(
-              color: AppColors.textSecondary,
+            style: TextStyle(
+              color: Theme.of(
+                context,
+              ).colorScheme.onSurface.withValues(alpha: 0.6),
               fontSize: 14,
             ),
           ),
@@ -624,7 +617,10 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    return Container(color: AppColors.backgroundDark, child: tabBar);
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: tabBar,
+    );
   }
 
   @override

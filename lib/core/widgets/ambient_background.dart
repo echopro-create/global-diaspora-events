@@ -110,6 +110,11 @@ class _OrbPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    // Fill background with theme color
+    final bgPaint = Paint()
+      ..color = isDark ? AppColors.backgroundDark : AppColors.backgroundLight;
+    canvas.drawRect(Offset.zero & size, bgPaint);
+
     for (final orb in orbs) {
       final x = orb.dx * size.width + sin(progress * pi * 2 * orb.speed) * 40;
       final y = orb.dy * size.height + cos(progress * pi * 2 * orb.speed) * 30;
@@ -118,7 +123,7 @@ class _OrbPainter extends CustomPainter {
       final adjustedRadius = orb.radius * scaleFactor;
 
       final paint = Paint()
-        ..color = isDark ? orb.color : orb.color.withValues(alpha: 0.05)
+        ..color = isDark ? orb.color : orb.color.withValues(alpha: 0.15)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 50);
 
       canvas.drawCircle(Offset(x, y), adjustedRadius, paint);

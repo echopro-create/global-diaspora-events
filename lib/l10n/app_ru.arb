@@ -123,15 +123,15 @@
   "@themeDark": {
     "description": "Dark theme mode label"
   },
-  "myEvents": "My Events",
+  "myEvents": "Мои события",
   "@myEvents": {
     "description": "My Events button and screen title"
   },
-  "myEventsEmpty": "You haven't joined any events yet",
+  "myEventsEmpty": "Вы еще не записались на события",
   "@myEventsEmpty": {
     "description": "Empty state title for My Events screen"
   },
-  "myEventsEmptyHint": "Events you attend will appear here",
+  "myEventsEmptyHint": "События, которые вы посетите, появятся здесь",
   "@myEventsEmptyHint": {
     "description": "Empty state subtitle for My Events screen"
   },

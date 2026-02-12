@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gde/l10n/generated/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../app/theme.dart';
-
 /// Shell-обёртка с BottomNavigationBar для основных разделов.
 class MainShell extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
@@ -15,9 +13,14 @@ class MainShell extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          color: AppColors.surfaceDark,
-          border: Border(top: BorderSide(color: AppColors.divider, width: 0.5)),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
+          border: Border(
+            top: BorderSide(
+              color: Theme.of(context).colorScheme.outline,
+              width: 0.5,
+            ),
+          ),
         ),
         child: NavigationBar(
           selectedIndex: navigationShell.currentIndex,
@@ -29,7 +32,9 @@ class MainShell extends StatelessWidget {
           },
           backgroundColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
-          indicatorColor: AppColors.primary.withValues(alpha: 0.15),
+          indicatorColor: Theme.of(
+            context,
+          ).colorScheme.primary.withValues(alpha: 0.15),
           labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
           destinations: [
             NavigationDestination(
@@ -41,6 +46,11 @@ class MainShell extends StatelessWidget {
               icon: const Icon(Icons.search_outlined),
               selectedIcon: const Icon(Icons.search_rounded),
               label: AppLocalizations.of(context)!.navSearch,
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.bookmark_border_rounded),
+              selectedIcon: const Icon(Icons.bookmark_rounded),
+              label: AppLocalizations.of(context)!.myEvents,
             ),
             NavigationDestination(
               icon: const Icon(Icons.person_outline_rounded),
