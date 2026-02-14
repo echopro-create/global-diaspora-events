@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:global_diaspora_events/features/events/presentation/providers/event_providers.dart';
 import 'package:global_diaspora_events/features/events/presentation/widgets/event_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -30,10 +31,14 @@ class _EventsFeedScreenState extends ConsumerState<EventsFeedScreen> {
           _buildSectionHeader(theme, 'Nearby Events'),
           eventsAsync.when(
             data: (events) => SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => EventCard(event: events[index]),
-                childCount: events.length,
-              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final event = events[index];
+                return EventCard(
+                  event: event,
+                  onTap: () =>
+                      context.push('/events/${event.id}', extra: event),
+                );
+              }, childCount: events.length),
             ),
             loading: () => const SliverFillRemaining(
               child: Center(child: CircularProgressIndicator()),

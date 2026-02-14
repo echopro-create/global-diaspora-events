@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Event {
 
- String get id; String get title; String? get description;@JsonKey(name: 'category_id') String get categoryId;@JsonKey(name: 'date_start') DateTime get dateStart;@JsonKey(name: 'date_end') DateTime? get dateEnd;@JsonKey(name: 'venue_name') String get venueName;@JsonKey(name: 'venue_address') String? get venueAddress;@JsonKey(name: 'image_url') String? get imageUrl;@JsonKey(name: 'buy_link') String? get buyLink;@JsonKey(name: 'participants_count') int get participantsCount;@JsonKey(name: 'external_id') String? get externalId; String? get source; double? get latitude; double? get longitude;@JsonKey(name: 'is_promoted') bool get isPromoted;@JsonKey(name: 'created_at') DateTime? get createdAt;
+ String get id; String get title; String? get description;@JsonKey(name: 'category_id') String get categoryId;@JsonKey(name: 'date_start') DateTime get dateStart;@JsonKey(name: 'date_end') DateTime? get dateEnd;@JsonKey(name: 'venue_name') String get venueName;@JsonKey(name: 'venue_address') String? get venueAddress;@JsonKey(name: 'image_url') String? get imageUrl;@JsonKey(name: 'buy_link') String? get buyLink;@JsonKey(name: 'participants_count') int get participantsCount;@JsonKey(name: 'external_id') String? get externalId; String? get source; double? get latitude; double? get longitude;@JsonKey(name: 'is_promoted') bool get isPromoted;@JsonKey(name: 'created_at') DateTime? get createdAt;@JsonKey(name: 'is_attending') bool get isAttending;
 /// Create a copy of Event
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $EventCopyWith<Event> get copyWith => _$EventCopyWithImpl<Event>(this as Event, 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Event&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.dateStart, dateStart) || other.dateStart == dateStart)&&(identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd)&&(identical(other.venueName, venueName) || other.venueName == venueName)&&(identical(other.venueAddress, venueAddress) || other.venueAddress == venueAddress)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.buyLink, buyLink) || other.buyLink == buyLink)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.externalId, externalId) || other.externalId == externalId)&&(identical(other.source, source) || other.source == source)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.isPromoted, isPromoted) || other.isPromoted == isPromoted)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Event&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.dateStart, dateStart) || other.dateStart == dateStart)&&(identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd)&&(identical(other.venueName, venueName) || other.venueName == venueName)&&(identical(other.venueAddress, venueAddress) || other.venueAddress == venueAddress)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.buyLink, buyLink) || other.buyLink == buyLink)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.externalId, externalId) || other.externalId == externalId)&&(identical(other.source, source) || other.source == source)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.isPromoted, isPromoted) || other.isPromoted == isPromoted)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.isAttending, isAttending) || other.isAttending == isAttending));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,categoryId,dateStart,dateEnd,venueName,venueAddress,imageUrl,buyLink,participantsCount,externalId,source,latitude,longitude,isPromoted,createdAt);
+int get hashCode => Object.hash(runtimeType,id,title,description,categoryId,dateStart,dateEnd,venueName,venueAddress,imageUrl,buyLink,participantsCount,externalId,source,latitude,longitude,isPromoted,createdAt,isAttending);
 
 @override
 String toString() {
-  return 'Event(id: $id, title: $title, description: $description, categoryId: $categoryId, dateStart: $dateStart, dateEnd: $dateEnd, venueName: $venueName, venueAddress: $venueAddress, imageUrl: $imageUrl, buyLink: $buyLink, participantsCount: $participantsCount, externalId: $externalId, source: $source, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, createdAt: $createdAt)';
+  return 'Event(id: $id, title: $title, description: $description, categoryId: $categoryId, dateStart: $dateStart, dateEnd: $dateEnd, venueName: $venueName, venueAddress: $venueAddress, imageUrl: $imageUrl, buyLink: $buyLink, participantsCount: $participantsCount, externalId: $externalId, source: $source, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, createdAt: $createdAt, isAttending: $isAttending)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $EventCopyWith<$Res>  {
   factory $EventCopyWith(Event value, $Res Function(Event) _then) = _$EventCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String? description,@JsonKey(name: 'category_id') String categoryId,@JsonKey(name: 'date_start') DateTime dateStart,@JsonKey(name: 'date_end') DateTime? dateEnd,@JsonKey(name: 'venue_name') String venueName,@JsonKey(name: 'venue_address') String? venueAddress,@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'buy_link') String? buyLink,@JsonKey(name: 'participants_count') int participantsCount,@JsonKey(name: 'external_id') String? externalId, String? source, double? latitude, double? longitude,@JsonKey(name: 'is_promoted') bool isPromoted,@JsonKey(name: 'created_at') DateTime? createdAt
+ String id, String title, String? description,@JsonKey(name: 'category_id') String categoryId,@JsonKey(name: 'date_start') DateTime dateStart,@JsonKey(name: 'date_end') DateTime? dateEnd,@JsonKey(name: 'venue_name') String venueName,@JsonKey(name: 'venue_address') String? venueAddress,@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'buy_link') String? buyLink,@JsonKey(name: 'participants_count') int participantsCount,@JsonKey(name: 'external_id') String? externalId, String? source, double? latitude, double? longitude,@JsonKey(name: 'is_promoted') bool isPromoted,@JsonKey(name: 'created_at') DateTime? createdAt,@JsonKey(name: 'is_attending') bool isAttending
 });
 
 
@@ -65,7 +65,7 @@ class _$EventCopyWithImpl<$Res>
 
 /// Create a copy of Event
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? categoryId = null,Object? dateStart = null,Object? dateEnd = freezed,Object? venueName = null,Object? venueAddress = freezed,Object? imageUrl = freezed,Object? buyLink = freezed,Object? participantsCount = null,Object? externalId = freezed,Object? source = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? isPromoted = null,Object? createdAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? categoryId = null,Object? dateStart = null,Object? dateEnd = freezed,Object? venueName = null,Object? venueAddress = freezed,Object? imageUrl = freezed,Object? buyLink = freezed,Object? participantsCount = null,Object? externalId = freezed,Object? source = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? isPromoted = null,Object? createdAt = freezed,Object? isAttending = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -84,7 +84,8 @@ as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: 
 as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
 as double?,isPromoted: null == isPromoted ? _self.isPromoted : isPromoted // ignore: cast_nullable_to_non_nullable
 as bool,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as DateTime?,isAttending: null == isAttending ? _self.isAttending : isAttending // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -169,10 +170,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String? description, @JsonKey(name: 'category_id')  String categoryId, @JsonKey(name: 'date_start')  DateTime dateStart, @JsonKey(name: 'date_end')  DateTime? dateEnd, @JsonKey(name: 'venue_name')  String venueName, @JsonKey(name: 'venue_address')  String? venueAddress, @JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'buy_link')  String? buyLink, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'external_id')  String? externalId,  String? source,  double? latitude,  double? longitude, @JsonKey(name: 'is_promoted')  bool isPromoted, @JsonKey(name: 'created_at')  DateTime? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String? description, @JsonKey(name: 'category_id')  String categoryId, @JsonKey(name: 'date_start')  DateTime dateStart, @JsonKey(name: 'date_end')  DateTime? dateEnd, @JsonKey(name: 'venue_name')  String venueName, @JsonKey(name: 'venue_address')  String? venueAddress, @JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'buy_link')  String? buyLink, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'external_id')  String? externalId,  String? source,  double? latitude,  double? longitude, @JsonKey(name: 'is_promoted')  bool isPromoted, @JsonKey(name: 'created_at')  DateTime? createdAt, @JsonKey(name: 'is_attending')  bool isAttending)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Event() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.categoryId,_that.dateStart,_that.dateEnd,_that.venueName,_that.venueAddress,_that.imageUrl,_that.buyLink,_that.participantsCount,_that.externalId,_that.source,_that.latitude,_that.longitude,_that.isPromoted,_that.createdAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.categoryId,_that.dateStart,_that.dateEnd,_that.venueName,_that.venueAddress,_that.imageUrl,_that.buyLink,_that.participantsCount,_that.externalId,_that.source,_that.latitude,_that.longitude,_that.isPromoted,_that.createdAt,_that.isAttending);case _:
   return orElse();
 
 }
@@ -190,10 +191,10 @@ return $default(_that.id,_that.title,_that.description,_that.categoryId,_that.da
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String? description, @JsonKey(name: 'category_id')  String categoryId, @JsonKey(name: 'date_start')  DateTime dateStart, @JsonKey(name: 'date_end')  DateTime? dateEnd, @JsonKey(name: 'venue_name')  String venueName, @JsonKey(name: 'venue_address')  String? venueAddress, @JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'buy_link')  String? buyLink, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'external_id')  String? externalId,  String? source,  double? latitude,  double? longitude, @JsonKey(name: 'is_promoted')  bool isPromoted, @JsonKey(name: 'created_at')  DateTime? createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String? description, @JsonKey(name: 'category_id')  String categoryId, @JsonKey(name: 'date_start')  DateTime dateStart, @JsonKey(name: 'date_end')  DateTime? dateEnd, @JsonKey(name: 'venue_name')  String venueName, @JsonKey(name: 'venue_address')  String? venueAddress, @JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'buy_link')  String? buyLink, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'external_id')  String? externalId,  String? source,  double? latitude,  double? longitude, @JsonKey(name: 'is_promoted')  bool isPromoted, @JsonKey(name: 'created_at')  DateTime? createdAt, @JsonKey(name: 'is_attending')  bool isAttending)  $default,) {final _that = this;
 switch (_that) {
 case _Event():
-return $default(_that.id,_that.title,_that.description,_that.categoryId,_that.dateStart,_that.dateEnd,_that.venueName,_that.venueAddress,_that.imageUrl,_that.buyLink,_that.participantsCount,_that.externalId,_that.source,_that.latitude,_that.longitude,_that.isPromoted,_that.createdAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.categoryId,_that.dateStart,_that.dateEnd,_that.venueName,_that.venueAddress,_that.imageUrl,_that.buyLink,_that.participantsCount,_that.externalId,_that.source,_that.latitude,_that.longitude,_that.isPromoted,_that.createdAt,_that.isAttending);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -210,10 +211,10 @@ return $default(_that.id,_that.title,_that.description,_that.categoryId,_that.da
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String? description, @JsonKey(name: 'category_id')  String categoryId, @JsonKey(name: 'date_start')  DateTime dateStart, @JsonKey(name: 'date_end')  DateTime? dateEnd, @JsonKey(name: 'venue_name')  String venueName, @JsonKey(name: 'venue_address')  String? venueAddress, @JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'buy_link')  String? buyLink, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'external_id')  String? externalId,  String? source,  double? latitude,  double? longitude, @JsonKey(name: 'is_promoted')  bool isPromoted, @JsonKey(name: 'created_at')  DateTime? createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String? description, @JsonKey(name: 'category_id')  String categoryId, @JsonKey(name: 'date_start')  DateTime dateStart, @JsonKey(name: 'date_end')  DateTime? dateEnd, @JsonKey(name: 'venue_name')  String venueName, @JsonKey(name: 'venue_address')  String? venueAddress, @JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'buy_link')  String? buyLink, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'external_id')  String? externalId,  String? source,  double? latitude,  double? longitude, @JsonKey(name: 'is_promoted')  bool isPromoted, @JsonKey(name: 'created_at')  DateTime? createdAt, @JsonKey(name: 'is_attending')  bool isAttending)?  $default,) {final _that = this;
 switch (_that) {
 case _Event() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.categoryId,_that.dateStart,_that.dateEnd,_that.venueName,_that.venueAddress,_that.imageUrl,_that.buyLink,_that.participantsCount,_that.externalId,_that.source,_that.latitude,_that.longitude,_that.isPromoted,_that.createdAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.categoryId,_that.dateStart,_that.dateEnd,_that.venueName,_that.venueAddress,_that.imageUrl,_that.buyLink,_that.participantsCount,_that.externalId,_that.source,_that.latitude,_that.longitude,_that.isPromoted,_that.createdAt,_that.isAttending);case _:
   return null;
 
 }
@@ -225,7 +226,7 @@ return $default(_that.id,_that.title,_that.description,_that.categoryId,_that.da
 @JsonSerializable()
 
 class _Event implements Event {
-  const _Event({required this.id, required this.title, this.description, @JsonKey(name: 'category_id') required this.categoryId, @JsonKey(name: 'date_start') required this.dateStart, @JsonKey(name: 'date_end') this.dateEnd, @JsonKey(name: 'venue_name') required this.venueName, @JsonKey(name: 'venue_address') this.venueAddress, @JsonKey(name: 'image_url') this.imageUrl, @JsonKey(name: 'buy_link') this.buyLink, @JsonKey(name: 'participants_count') this.participantsCount = 0, @JsonKey(name: 'external_id') this.externalId, this.source, this.latitude, this.longitude, @JsonKey(name: 'is_promoted') this.isPromoted = false, @JsonKey(name: 'created_at') this.createdAt});
+  const _Event({required this.id, required this.title, this.description, @JsonKey(name: 'category_id') required this.categoryId, @JsonKey(name: 'date_start') required this.dateStart, @JsonKey(name: 'date_end') this.dateEnd, @JsonKey(name: 'venue_name') required this.venueName, @JsonKey(name: 'venue_address') this.venueAddress, @JsonKey(name: 'image_url') this.imageUrl, @JsonKey(name: 'buy_link') this.buyLink, @JsonKey(name: 'participants_count') this.participantsCount = 0, @JsonKey(name: 'external_id') this.externalId, this.source, this.latitude, this.longitude, @JsonKey(name: 'is_promoted') this.isPromoted = false, @JsonKey(name: 'created_at') this.createdAt, @JsonKey(name: 'is_attending') this.isAttending = false});
   factory _Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
 
 @override final  String id;
@@ -245,6 +246,7 @@ class _Event implements Event {
 @override final  double? longitude;
 @override@JsonKey(name: 'is_promoted') final  bool isPromoted;
 @override@JsonKey(name: 'created_at') final  DateTime? createdAt;
+@override@JsonKey(name: 'is_attending') final  bool isAttending;
 
 /// Create a copy of Event
 /// with the given fields replaced by the non-null parameter values.
@@ -259,16 +261,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Event&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.dateStart, dateStart) || other.dateStart == dateStart)&&(identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd)&&(identical(other.venueName, venueName) || other.venueName == venueName)&&(identical(other.venueAddress, venueAddress) || other.venueAddress == venueAddress)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.buyLink, buyLink) || other.buyLink == buyLink)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.externalId, externalId) || other.externalId == externalId)&&(identical(other.source, source) || other.source == source)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.isPromoted, isPromoted) || other.isPromoted == isPromoted)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Event&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.dateStart, dateStart) || other.dateStart == dateStart)&&(identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd)&&(identical(other.venueName, venueName) || other.venueName == venueName)&&(identical(other.venueAddress, venueAddress) || other.venueAddress == venueAddress)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.buyLink, buyLink) || other.buyLink == buyLink)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.externalId, externalId) || other.externalId == externalId)&&(identical(other.source, source) || other.source == source)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.isPromoted, isPromoted) || other.isPromoted == isPromoted)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.isAttending, isAttending) || other.isAttending == isAttending));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,categoryId,dateStart,dateEnd,venueName,venueAddress,imageUrl,buyLink,participantsCount,externalId,source,latitude,longitude,isPromoted,createdAt);
+int get hashCode => Object.hash(runtimeType,id,title,description,categoryId,dateStart,dateEnd,venueName,venueAddress,imageUrl,buyLink,participantsCount,externalId,source,latitude,longitude,isPromoted,createdAt,isAttending);
 
 @override
 String toString() {
-  return 'Event(id: $id, title: $title, description: $description, categoryId: $categoryId, dateStart: $dateStart, dateEnd: $dateEnd, venueName: $venueName, venueAddress: $venueAddress, imageUrl: $imageUrl, buyLink: $buyLink, participantsCount: $participantsCount, externalId: $externalId, source: $source, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, createdAt: $createdAt)';
+  return 'Event(id: $id, title: $title, description: $description, categoryId: $categoryId, dateStart: $dateStart, dateEnd: $dateEnd, venueName: $venueName, venueAddress: $venueAddress, imageUrl: $imageUrl, buyLink: $buyLink, participantsCount: $participantsCount, externalId: $externalId, source: $source, latitude: $latitude, longitude: $longitude, isPromoted: $isPromoted, createdAt: $createdAt, isAttending: $isAttending)';
 }
 
 
@@ -279,7 +281,7 @@ abstract mixin class _$EventCopyWith<$Res> implements $EventCopyWith<$Res> {
   factory _$EventCopyWith(_Event value, $Res Function(_Event) _then) = __$EventCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String? description,@JsonKey(name: 'category_id') String categoryId,@JsonKey(name: 'date_start') DateTime dateStart,@JsonKey(name: 'date_end') DateTime? dateEnd,@JsonKey(name: 'venue_name') String venueName,@JsonKey(name: 'venue_address') String? venueAddress,@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'buy_link') String? buyLink,@JsonKey(name: 'participants_count') int participantsCount,@JsonKey(name: 'external_id') String? externalId, String? source, double? latitude, double? longitude,@JsonKey(name: 'is_promoted') bool isPromoted,@JsonKey(name: 'created_at') DateTime? createdAt
+ String id, String title, String? description,@JsonKey(name: 'category_id') String categoryId,@JsonKey(name: 'date_start') DateTime dateStart,@JsonKey(name: 'date_end') DateTime? dateEnd,@JsonKey(name: 'venue_name') String venueName,@JsonKey(name: 'venue_address') String? venueAddress,@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'buy_link') String? buyLink,@JsonKey(name: 'participants_count') int participantsCount,@JsonKey(name: 'external_id') String? externalId, String? source, double? latitude, double? longitude,@JsonKey(name: 'is_promoted') bool isPromoted,@JsonKey(name: 'created_at') DateTime? createdAt,@JsonKey(name: 'is_attending') bool isAttending
 });
 
 
@@ -296,7 +298,7 @@ class __$EventCopyWithImpl<$Res>
 
 /// Create a copy of Event
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? categoryId = null,Object? dateStart = null,Object? dateEnd = freezed,Object? venueName = null,Object? venueAddress = freezed,Object? imageUrl = freezed,Object? buyLink = freezed,Object? participantsCount = null,Object? externalId = freezed,Object? source = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? isPromoted = null,Object? createdAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? categoryId = null,Object? dateStart = null,Object? dateEnd = freezed,Object? venueName = null,Object? venueAddress = freezed,Object? imageUrl = freezed,Object? buyLink = freezed,Object? participantsCount = null,Object? externalId = freezed,Object? source = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? isPromoted = null,Object? createdAt = freezed,Object? isAttending = null,}) {
   return _then(_Event(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -315,7 +317,8 @@ as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: 
 as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
 as double?,isPromoted: null == isPromoted ? _self.isPromoted : isPromoted // ignore: cast_nullable_to_non_nullable
 as bool,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as DateTime?,isAttending: null == isAttending ? _self.isAttending : isAttending // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

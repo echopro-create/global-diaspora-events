@@ -23,6 +23,7 @@ abstract class Event with _$Event {
     double? longitude,
     @JsonKey(name: 'is_promoted') @Default(false) bool isPromoted,
     @JsonKey(name: 'created_at') DateTime? createdAt,
+    @JsonKey(name: 'is_attending') @Default(false) bool isAttending,
   }) = _Event;
 
   factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);

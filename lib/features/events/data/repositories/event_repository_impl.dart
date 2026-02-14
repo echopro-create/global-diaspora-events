@@ -15,7 +15,10 @@ class EventRepositoryImpl implements EventRepository {
         .order('date_start', ascending: true)
         .range(offset, offset + limit - 1);
 
-    return (response as List).map((json) => Event.fromJson(json)).toList();
+    final events = (response as List)
+        .map((json) => Event.fromJson(json))
+        .toList();
+    return _populateAttendance(events);
   }
 
   @override
@@ -30,7 +33,10 @@ class EventRepositoryImpl implements EventRepository {
       params: {'lat': latitude, 'long': longitude, 'radius_km': radiusKm},
     );
 
-    return (response as List).map((json) => Event.fromJson(json)).toList();
+    final events = (response as List)
+        .map((json) => Event.fromJson(json))
+        .toList();
+    return _populateAttendance(events);
   }
 
   @override
@@ -44,7 +50,10 @@ class EventRepositoryImpl implements EventRepository {
         .order('created_at', ascending: false)
         .limit(10);
 
-    return (response as List).map((json) => Event.fromJson(json)).toList();
+    final events = (response as List)
+        .map((json) => Event.fromJson(json))
+        .toList();
+    return _populateAttendance(events);
   }
 
   @override
@@ -55,7 +64,9 @@ class EventRepositoryImpl implements EventRepository {
         .eq('id', id)
         .single();
 
-    return Event.fromJson(response);
+    final event = Event.fromJson(response);
+    final populated = await _populateAttendance([event]);
+    return populated.first;
   }
 
   @override
@@ -88,5 +99,25 @@ class EventRepositoryImpl implements EventRepository {
     } catch (e) {
       throw Exception('Failed to toggle attendance: $e');
     }
+  }
+
+  Future<List<Event>> _populateAttendance(List<Event> events) async {
+    final userId = _client.auth.currentUser?.id;
+    if (userId == null || events.isEmpty) return events;
+
+    final eventIds = events.map((e) => e.id).toList();
+    final response = await _client
+        .from('event_participants')
+        .select('event_id')
+        .eq('user_id', userId)
+        .filter('event_id', 'in', eventIds);
+
+    final attendingEventIds = (response as List)
+        .map((e) => e['event_id'] as String)
+        .toSet();
+
+    return events.map((e) {
+      return e.copyWith(isAttending: attendingEventIds.contains(e.id));
+    }).toList();
   }
 }

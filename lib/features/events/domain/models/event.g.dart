@@ -28,6 +28,7 @@ _Event _$EventFromJson(Map<String, dynamic> json) => _Event(
   createdAt: json['created_at'] == null
       ? null
       : DateTime.parse(json['created_at'] as String),
+  isAttending: json['is_attending'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$EventToJson(_Event instance) => <String, dynamic>{
@@ -48,4 +49,5 @@ Map<String, dynamic> _$EventToJson(_Event instance) => <String, dynamic>{
   'longitude': instance.longitude,
   'is_promoted': instance.isPromoted,
   'created_at': instance.createdAt?.toIso8601String(),
+  'is_attending': instance.isAttending,
 };
