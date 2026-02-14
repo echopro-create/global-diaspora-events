@@ -149,36 +149,114 @@ class _EventsFeedScreenState extends ConsumerState<EventsFeedScreen> {
   }
 
   Widget _buildRecommendedHorizontalList(ThemeData theme) {
-    // Placeholder horizontal list for high-impact recommended events
+    final recommendedEventsAsync = ref.watch(recommendedEventsProvider);
+
     return SliverToBoxAdapter(
       child: SizedBox(
         height: 200,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          itemCount: 5,
-          itemBuilder: (context, index) => Container(
-            width: 300,
-            margin: const EdgeInsets.only(right: 12),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24),
-              gradient: LinearGradient(
-                colors: [
-                  theme.colorScheme.primary,
-                  theme.colorScheme.secondary,
-                ],
-              ),
-            ),
-            child: const Center(
-              child: Text(
-                'Featured Event',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+        child: recommendedEventsAsync.when(
+          data: (events) {
+            if (events.isEmpty) {
+              return Center(
+                child: Text(
+                  'No recommended events yet',
+                  style: theme.textTheme.bodyMedium,
                 ),
-              ),
-            ),
-          ),
+              );
+            }
+            return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              itemCount: events.length,
+              itemBuilder: (context, index) {
+                final event = events[index];
+                return GestureDetector(
+                  onTap: () {
+                    // Navigation to detail screen to be implemented
+                  },
+                  child: Container(
+                    width: 300,
+                    margin: const EdgeInsets.only(right: 12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      image: event.imageUrl != null
+                          ? DecorationImage(
+                              image: NetworkImage(event.imageUrl!),
+                              fit: BoxFit.cover,
+                            )
+                          : null,
+                      gradient: event.imageUrl == null
+                          ? LinearGradient(
+                              colors: [
+                                theme.colorScheme.primary,
+                                theme.colorScheme.secondary,
+                              ],
+                            )
+                          : null,
+                    ),
+                    child: Stack(
+                      children: [
+                        if (event.imageUrl != null)
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(24),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.transparent,
+                                  Colors.black.withValues(alpha: 0.7),
+                                ],
+                              ),
+                            ),
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                event.title,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 4),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    FontAwesomeIcons.calendar,
+                                    color: Colors.white70,
+                                    size: 12,
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    // Use intl for formatting in production
+                                    event.dateStart.toString().split(' ')[0],
+                                    style: const TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (err, stack) => Center(child: Text('Error: $err')),
         ),
       ),
     );

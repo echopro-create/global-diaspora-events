@@ -7,6 +7,7 @@ import 'package:global_diaspora_events/generated/l10n/app_localizations.dart';
 import 'package:global_diaspora_events/core/constants/app_constants.dart';
 import 'package:global_diaspora_events/core/theme/app_theme.dart';
 import 'package:global_diaspora_events/core/router/app_router.dart';
+import 'package:global_diaspora_events/features/notifications/presentation/providers/notification_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,11 +30,28 @@ Future<void> main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    // Initialize notifications
+    // We use a post-frame callback or just run it, effectively firing and forgetting for init
+    // But since it's async and we want it to run, we can just call it.
+    // Using ref.read is safe in initState if we don't watch.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(notificationServiceProvider).initialize();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final router = ref.watch(appRouterProvider);
 
     return MaterialApp.router(
@@ -43,7 +61,7 @@ class MyApp extends ConsumerWidget {
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.system,
       routerConfig: router,
-      localizationsDelegates: [
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

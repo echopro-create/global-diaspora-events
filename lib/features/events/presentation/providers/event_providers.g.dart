@@ -130,3 +130,81 @@ final class EventsProvider
 }
 
 String _$eventsHash() => r'c39bc1d99fbfdacaa5b681aca78d85243093b279';
+
+@ProviderFor(nearbyEvents)
+final nearbyEventsProvider = NearbyEventsProvider._();
+
+final class NearbyEventsProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Event>>,
+          List<Event>,
+          FutureOr<List<Event>>
+        >
+    with $FutureModifier<List<Event>>, $FutureProvider<List<Event>> {
+  NearbyEventsProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'nearbyEventsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$nearbyEventsHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<Event>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<Event>> create(Ref ref) {
+    return nearbyEvents(ref);
+  }
+}
+
+String _$nearbyEventsHash() => r'6ac24d327286cd5c3637baa58393d21c53aa7c81';
+
+@ProviderFor(recommendedEvents)
+final recommendedEventsProvider = RecommendedEventsProvider._();
+
+final class RecommendedEventsProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Event>>,
+          List<Event>,
+          FutureOr<List<Event>>
+        >
+    with $FutureModifier<List<Event>>, $FutureProvider<List<Event>> {
+  RecommendedEventsProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'recommendedEventsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$recommendedEventsHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<Event>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<Event>> create(Ref ref) {
+    return recommendedEvents(ref);
+  }
+}
+
+String _$recommendedEventsHash() => r'36662ae562807edf1ca1a4ab4e27e3c357e34f97';

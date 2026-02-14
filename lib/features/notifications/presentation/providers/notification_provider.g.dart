@@ -26,7 +26,7 @@ final class NotificationServiceProvider
         argument: null,
         retry: null,
         name: r'notificationServiceProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -55,4 +55,4 @@ final class NotificationServiceProvider
 }
 
 String _$notificationServiceHash() =>
-    r'f29b423a4ef2d2795fe24fe23b996c033532c17d';
+    r'd1a17f1d44c27bdb07c2f781df9b1edb2c7e3f1e';
