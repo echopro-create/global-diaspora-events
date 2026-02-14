@@ -6,7 +6,7 @@ import 'package:global_diaspora_events/features/auth/presentation/screens/login_
 part 'app_router.g.dart';
 
 @riverpod
-GoRouter appRouter(AppRouterRef ref) {
+GoRouter appRouter(Ref ref) {
   return GoRouter(
     initialLocation: '/',
     routes: [

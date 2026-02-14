@@ -6,56 +6,127 @@ part of 'event_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$supabaseClientHash() => r'36e9cae00709545a85bfe4a5a2cb98d8686a01ea';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [supabaseClient].
 @ProviderFor(supabaseClient)
-final supabaseClientProvider = AutoDisposeProvider<SupabaseClient>.internal(
-  supabaseClient,
-  name: r'supabaseClientProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$supabaseClientHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final supabaseClientProvider = SupabaseClientProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SupabaseClientRef = AutoDisposeProviderRef<SupabaseClient>;
-String _$eventRepositoryHash() => r'f6e3d06330e8b6c1e3e45b8b24ce7f7bd8c22aac';
+final class SupabaseClientProvider
+    extends $FunctionalProvider<SupabaseClient, SupabaseClient, SupabaseClient>
+    with $Provider<SupabaseClient> {
+  SupabaseClientProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'supabaseClientProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [eventRepository].
+  @override
+  String debugGetCreateSourceHash() => _$supabaseClientHash();
+
+  @$internal
+  @override
+  $ProviderElement<SupabaseClient> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  SupabaseClient create(Ref ref) {
+    return supabaseClient(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SupabaseClient value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SupabaseClient>(value),
+    );
+  }
+}
+
+String _$supabaseClientHash() => r'834a58d6ae4b94e36f4e04a10d8a7684b929310e';
+
 @ProviderFor(eventRepository)
-final eventRepositoryProvider = AutoDisposeProvider<EventRepository>.internal(
-  eventRepository,
-  name: r'eventRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$eventRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final eventRepositoryProvider = EventRepositoryProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef EventRepositoryRef = AutoDisposeProviderRef<EventRepository>;
-String _$eventsHash() => r'564aedf7cefb95ed72d9a4edf353894fe47fd8ca';
+final class EventRepositoryProvider
+    extends
+        $FunctionalProvider<EventRepository, EventRepository, EventRepository>
+    with $Provider<EventRepository> {
+  EventRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'eventRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [events].
+  @override
+  String debugGetCreateSourceHash() => _$eventRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<EventRepository> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  EventRepository create(Ref ref) {
+    return eventRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(EventRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<EventRepository>(value),
+    );
+  }
+}
+
+String _$eventRepositoryHash() => r'9eb4cdb959bece6f34f6bff0d656a9848e5a1841';
+
 @ProviderFor(events)
-final eventsProvider = AutoDisposeFutureProvider<List<Event>>.internal(
-  events,
-  name: r'eventsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$eventsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final eventsProvider = EventsProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef EventsRef = AutoDisposeFutureProviderRef<List<Event>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class EventsProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Event>>,
+          List<Event>,
+          FutureOr<List<Event>>
+        >
+    with $FutureModifier<List<Event>>, $FutureProvider<List<Event>> {
+  EventsProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'eventsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$eventsHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<Event>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<Event>> create(Ref ref) {
+    return events(ref);
+  }
+}
+
+String _$eventsHash() => r'c39bc1d99fbfdacaa5b681aca78d85243093b279';

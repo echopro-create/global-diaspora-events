@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "appTitle": "Global Diaspora Events",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "loginTitle": "Welcome Back",
+  "loginSubtitle": "Connect with your community worldwide",
+  "emailLabel": "Email",
+  "passwordLabel": "Password",
+  "loginButton": "Sign In",
+  "signUpButton": "Create Account",
+  "googleSignIn": "Continue with Google",
+  "appleSignIn": "Continue with Apple",
+  "eventsFeedTitle": "Discovery",
+  "noEventsFound": "No events found in your area",
+  "profileTitle": "My Profile",
+  "interestsTitle": "Interests"
+}

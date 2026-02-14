@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:global_diaspora_events/generated/l10n/app_localizations.dart';
 import 'package:global_diaspora_events/features/auth/presentation/providers/auth_providers.dart';
 import 'dart:ui';
 
@@ -33,6 +34,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: Stack(
@@ -77,14 +79,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     const SizedBox(height: 32),
 
                     Text(
-                      'Global Diaspora',
+                      l10n.loginTitle,
                       style: theme.textTheme.headlineLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                         letterSpacing: -1,
                       ),
                     ),
                     Text(
-                      'Connect with your community',
+                      l10n.loginSubtitle,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
@@ -114,14 +116,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             children: [
                               _buildTextField(
                                 controller: _emailController,
-                                label: 'Email',
+                                label: l10n.emailLabel,
                                 icon: Icons.email_outlined,
                                 theme: theme,
                               ),
                               const SizedBox(height: 16),
                               _buildTextField(
                                 controller: _passwordController,
-                                label: 'Password',
+                                label: l10n.passwordLabel,
                                 icon: Icons.lock_outline,
                                 isPassword: true,
                                 theme: theme,
@@ -146,7 +148,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                           strokeWidth: 2,
                                         ),
                                       )
-                                    : const Text('Sign In'),
+                                    : Text(l10n.loginButton),
                               ),
 
                               const SizedBox(height: 24),
@@ -190,7 +192,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   FontAwesomeIcons.google,
                                   size: 18,
                                 ),
-                                label: const Text('Continue with Google'),
+                                label: Text(l10n.googleSignIn),
                               ),
                               const SizedBox(height: 12),
                               OutlinedButton.icon(
@@ -207,7 +209,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   FontAwesomeIcons.apple,
                                   size: 20,
                                 ),
-                                label: const Text('Continue with Apple'),
+                                label: Text(l10n.appleSignIn),
                               ),
                             ],
                           ),

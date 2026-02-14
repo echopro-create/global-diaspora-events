@@ -3,30 +3,27 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:global_diaspora_events/features/auth/domain/repositories/auth_repository.dart';
 import 'package:global_diaspora_events/features/auth/data/repositories/auth_repository_impl.dart';
-import 'package:global_diaspora_events/features/events/presentation/providers/event_providers.dart';
 
 part 'auth_providers.g.dart';
 
-@riverpod
-GoogleSignIn googleSignIn(GoogleSignInRef ref) {
-  return GoogleSignIn(
-    scopes: ['email', 'https://www.googleapis.com/auth/contacts.readonly'],
-  );
+@Riverpod(keepAlive: true)
+GoogleSignIn googleSignIn(Ref ref) {
+  return GoogleSignIn.instance;
 }
 
-@riverpod
-AuthRepository authRepository(AuthRepositoryRef ref) {
-  final client = ref.watch(supabaseClientProvider);
+@Riverpod(keepAlive: true)
+AuthRepository authRepository(Ref ref) {
+  final client = Supabase.instance.client;
   final google = ref.watch(googleSignInProvider);
   return AuthRepositoryImpl(client, google);
 }
 
 @riverpod
-Stream<User?> authStateChanges(AuthStateChangesRef ref) {
+Stream<User?> authStateChanges(Ref ref) {
   return ref.watch(authRepositoryProvider).authStateChanges;
 }
 
 @riverpod
-User? currentUser(CurrentUserRef ref) {
+User? currentUser(Ref ref) {
   return ref.watch(authRepositoryProvider).currentUser;
 }

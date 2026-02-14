@@ -1,0 +1,16 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Глобальные события диаспоры",
+  "loginTitle": "С возвращением",
+  "loginSubtitle": "Общайтесь со своим сообществом по всему миру",
+  "emailLabel": "Электронная почта",
+  "passwordLabel": "Пароль",
+  "loginButton": "Войти",
+  "signUpButton": "Создать аккаунт",
+  "googleSignIn": "Войти через Google",
+  "appleSignIn": "Войти через Apple",
+  "eventsFeedTitle": "Обзор",
+  "noEventsFound": "Событий не найдено",
+  "profileTitle": "Мой профиль",
+  "interestsTitle": "Интересы"
+}

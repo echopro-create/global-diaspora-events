@@ -18,22 +18,6 @@ class AuthRepositoryImpl implements AuthRepository {
   User? get currentUser => _client.auth.currentUser;
 
   @override
-  Future<Either<Failure, AuthResponse>> signInWithEmail({
-    required String email,
-    required String password,
-  }) async {
-    try {
-      final response = await _client.auth.signInWithPassword(
-        email: email,
-        password: password,
-      );
-      return right(response);
-    } catch (e) {
-      return left(AuthFailure(e.toString()));
-    }
-  }
-
-  @override
   Future<Either<Failure, AuthResponse>> signUpWithEmail({
     required String email,
     required String password,
@@ -50,26 +34,36 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<Either<Failure, AuthResponse>> signInWithEmail({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final response = await _client.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+      return right(response);
+    } catch (e) {
+      return left(AuthFailure(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, void>> signInWithGoogle() async {
     try {
-      final googleUser = await _googleSignIn.signIn();
-      if (googleUser == null)
-        return left(const AuthFailure('Google sign in cancelled'));
+      final googleUser = await _googleSignIn.authenticate();
 
-      final googleAuth = await googleUser.authentication;
-      final accessToken = googleAuth.accessToken;
+      final googleAuth = googleUser.authentication;
       final idToken = googleAuth.idToken;
 
-      if (accessToken == null || idToken == null) {
-        return left(
-          const AuthFailure('Missing idToken or accessToken from Google'),
-        );
+      if (idToken == null) {
+        return left(const AuthFailure('Missing idToken from Google'));
       }
 
       await _client.auth.signInWithIdToken(
         provider: OAuthProvider.google,
         idToken: idToken,
-        accessToken: accessToken,
       );
       return right(null);
     } catch (e) {
@@ -79,8 +73,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, void>> signInWithApple() async {
-    // Apple sign in typically requires native implementation details
-    // For now, we'll use the Supabase standard OAuth flow or placeholder
     try {
       await _client.auth.signInWithOAuth(OAuthProvider.apple);
       return right(null);

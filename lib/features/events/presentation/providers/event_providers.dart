@@ -7,18 +7,18 @@ import 'package:global_diaspora_events/features/events/data/repositories/event_r
 part 'event_providers.g.dart';
 
 @riverpod
-SupabaseClient supabaseClient(SupabaseClientRef ref) {
+SupabaseClient supabaseClient(Ref ref) {
   return Supabase.instance.client;
 }
 
 @riverpod
-EventRepository eventRepository(EventRepositoryRef ref) {
+EventRepository eventRepository(Ref ref) {
   final client = ref.watch(supabaseClientProvider);
   return EventRepositoryImpl(client);
 }
 
 @riverpod
-Future<List<Event>> events(EventsRef ref) async {
+Future<List<Event>> events(Ref ref) async {
   final repository = ref.watch(eventRepositoryProvider);
   return repository.getEvents();
 }
