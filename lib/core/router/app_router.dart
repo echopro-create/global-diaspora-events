@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:global_diaspora_events/features/notifications/presentation/screens/notifications_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:global_diaspora_events/features/events/presentation/screens/events_feed_screen.dart';
@@ -93,6 +94,11 @@ GoRouter appRouter(Ref ref) {
             ],
           ),
         ],
+      ),
+      GoRoute(
+        path: '/notifications',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const NotificationsScreen(),
       ),
       // Independent routes (if any, like full-screen modals)
       GoRoute(
