@@ -35,3 +35,9 @@ Future<List<Event>> recommendedEvents(Ref ref) async {
   final repository = ref.watch(eventRepositoryProvider);
   return repository.getRecommendedEvents();
 }
+
+@riverpod
+Future<List<Event>> myEvents(Ref ref) async {
+  final repository = ref.watch(eventRepositoryProvider);
+  return repository.getMyEvents();
+}

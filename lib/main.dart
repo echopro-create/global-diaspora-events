@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -8,6 +9,8 @@ import 'package:global_diaspora_events/core/constants/app_constants.dart';
 import 'package:global_diaspora_events/core/theme/app_theme.dart';
 import 'package:global_diaspora_events/core/router/app_router.dart';
 import 'package:global_diaspora_events/features/notifications/presentation/providers/notification_provider.dart';
+import 'package:global_diaspora_events/features/settings/presentation/providers/settings_provider.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +29,10 @@ Future<void> main() async {
     url: AppConstants.supabaseUrl,
     anonKey: AppConstants.supabaseAnonKey,
   );
+
+  // Initialize Hive
+  await Hive.initFlutter();
+  await Hive.openBox('settings');
 
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -54,20 +61,27 @@ class _MyAppState extends ConsumerState<MyApp> {
   Widget build(BuildContext context) {
     final router = ref.watch(appRouterProvider);
 
-    return MaterialApp.router(
-      title: 'Global Diaspora Events',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.system,
-      routerConfig: router,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
+    final settings = ref.watch(settingsProvider);
+
+    return DynamicColorBuilder(
+      builder: (lightDynamic, darkDynamic) {
+        return MaterialApp.router(
+          title: 'Global Diaspora Events',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.light(lightDynamic),
+          darkTheme: AppTheme.dark(darkDynamic),
+          themeMode: settings.themeMode,
+          routerConfig: router,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: settings.locale,
+        );
+      },
     );
   }
 }

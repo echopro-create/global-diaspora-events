@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:global_diaspora_events/features/events/domain/models/event.dart';
+import 'package:global_diaspora_events/features/social/presentation/widgets/comments_section.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:global_diaspora_events/features/events/presentation/providers/event_providers.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:global_diaspora_events/features/auth/presentation/providers/auth_providers.dart';
 
 class EventDetailsScreen extends ConsumerStatefulWidget {
   final Event event;
@@ -71,6 +74,112 @@ class _EventDetailsScreenState extends ConsumerState<EventDetailsScreen> {
     }
   }
 
+  Future<void> _toggleFavorite() async {
+    setState(() => _isLoading = true);
+    try {
+      final repository = ref.read(eventRepositoryProvider);
+      await repository.toggleFavorite(_event.id);
+      setState(() {
+        _event = _event.copyWith(isFavorite: !_event.isFavorite);
+      });
+
+      // Refresh event lists
+      ref.invalidate(eventsProvider);
+      ref.invalidate(nearbyEventsProvider);
+      ref.invalidate(recommendedEventsProvider);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              _event.isFavorite
+                  ? 'Event added to favorites!'
+                  : 'Event removed from favorites.',
+            ),
+            duration: const Duration(seconds: 1),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to update favorites: ${e.toString()}'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    }
+  }
+
+  Future<void> _deleteEvent() async {
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Event'),
+        content: const Text('Are you sure you want to delete this event?'),
+        actions: [
+          TextButton(
+            onPressed: () => context.pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => context.pop(true),
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm != true) return;
+
+    setState(() => _isLoading = true);
+    try {
+      await ref.read(eventRepositoryProvider).deleteEvent(_event.id);
+      ref.invalidate(eventsProvider);
+      ref.invalidate(myEventsProvider);
+      if (mounted) {
+        context.pop(); // Close details
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Event deleted successfully')),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to delete event: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _editEvent() async {
+    await context.push('/create-event', extra: _event);
+    // Refresh event data
+    try {
+      final updatedEvent = await ref
+          .read(eventRepositoryProvider)
+          .getEventById(_event.id);
+      if (mounted) {
+        setState(() {
+          _event = updatedEvent;
+        });
+      }
+    } catch (e) {
+      // Ignore error if event was deleted or fetch failed, or handle it
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final event = _event;
@@ -100,6 +209,8 @@ class _EventDetailsScreenState extends ConsumerState<EventDetailsScreen> {
                   _buildDescription(theme),
                   const SizedBox(height: 24),
                   _buildAttendees(theme),
+                  const SizedBox(height: 24),
+                  CommentsSection(eventId: widget.event.id),
                   const SizedBox(height: 100), // Spacing for FAB
                 ],
               ),
@@ -113,6 +224,9 @@ class _EventDetailsScreenState extends ConsumerState<EventDetailsScreen> {
   }
 
   Widget _buildSliverAppBar(BuildContext context, ThemeData theme) {
+    final currentUser = ref.watch(currentUserProvider);
+    final isOwner = currentUser?.id == _event.organizerId;
+
     return SliverAppBar(
       expandedHeight: 300,
       pinned: true,
@@ -130,7 +244,11 @@ class _EventDetailsScreenState extends ConsumerState<EventDetailsScreen> {
         IconButton(
           icon: const Icon(Icons.share, size: 20),
           onPressed: () {
-            // TODO: Implement share
+            // ignore: deprecated_member_use
+            Share.share(
+              'Check out ${_event.title} at ${_event.venueName}! ${_event.buyLink ?? ""}',
+              subject: 'Event Invitation: ${_event.title}',
+            );
           },
           style: IconButton.styleFrom(
             // ignore: deprecated_member_use
@@ -139,15 +257,39 @@ class _EventDetailsScreenState extends ConsumerState<EventDetailsScreen> {
         ),
         const SizedBox(width: 8),
         IconButton(
-          icon: const Icon(FontAwesomeIcons.heart, size: 20),
-          onPressed: () {
-            // TODO: Implement toggle favorite
-          },
+          icon: Icon(
+            _event.isFavorite
+                ? FontAwesomeIcons.solidHeart
+                : FontAwesomeIcons.heart,
+            size: 20,
+            color: _event.isFavorite ? Colors.red : null,
+          ),
+          onPressed: _isLoading ? null : _toggleFavorite,
           style: IconButton.styleFrom(
             // ignore: deprecated_member_use
             backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.5),
           ),
         ),
+        if (isOwner) ...[
+          const SizedBox(width: 8),
+          IconButton(
+            icon: const Icon(Icons.edit, size: 20),
+            onPressed: _editEvent,
+            style: IconButton.styleFrom(
+              // ignore: deprecated_member_use
+              backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.5),
+            ),
+          ),
+          const SizedBox(width: 8),
+          IconButton(
+            icon: const Icon(Icons.delete, size: 20, color: Colors.red),
+            onPressed: _isLoading ? null : _deleteEvent,
+            style: IconButton.styleFrom(
+              // ignore: deprecated_member_use
+              backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.5),
+            ),
+          ),
+        ],
         const SizedBox(width: 16),
       ],
       flexibleSpace: FlexibleSpaceBar(

@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:global_diaspora_events/features/events/presentation/widgets/event_card_skeleton.dart';
 import 'package:global_diaspora_events/features/events/presentation/providers/event_providers.dart';
 import 'package:global_diaspora_events/features/events/presentation/widgets/event_card.dart';
+import 'package:global_diaspora_events/features/events/domain/models/event.dart';
+import 'package:global_diaspora_events/features/events/domain/models/event_filter.dart';
+import 'package:global_diaspora_events/features/events/presentation/widgets/search_filter_modal.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+final searchQueryProvider = StateProvider<String>((ref) => '');
+final filterProvider = StateProvider<EventFilter?>((ref) => null);
+
+final filteredEventsProvider = FutureProvider.autoDispose<List<Event>>((ref) {
+  final searchQuery = ref.watch(searchQueryProvider);
+  final filter = ref.watch(filterProvider);
+  return ref
+      .watch(eventRepositoryProvider)
+      .getEvents(searchQuery: searchQuery, filter: filter);
+});
 
 class EventsFeedScreen extends ConsumerStatefulWidget {
   const EventsFeedScreen({super.key});
@@ -18,68 +34,175 @@ class _EventsFeedScreenState extends ConsumerState<EventsFeedScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final eventsAsync = ref.watch(eventsProvider);
+    final eventsAsync = ref.watch(filteredEventsProvider);
 
-    return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
-      body: CustomScrollView(
-        slivers: [
-          _buildAppBar(theme),
-          _buildCategoryFilter(theme),
-          _buildSectionHeader(theme, 'Recommended For You'),
-          _buildRecommendedHorizontalList(theme),
-          _buildSectionHeader(theme, 'Nearby Events'),
-          eventsAsync.when(
-            data: (events) => SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                final event = events[index];
-                return EventCard(
-                  event: event,
-                  onTap: () =>
-                      context.push('/events/${event.id}', extra: event),
-                );
-              }, childCount: events.length),
-            ),
-            loading: () => const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator()),
-            ),
-            error: (err, stack) =>
-                SliverFillRemaining(child: Center(child: Text('Error: $err'))),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isWide = constraints.maxWidth > 600;
+        final crossAxisCount = isWide
+            ? (constraints.maxWidth / 350).floor()
+            : 1;
+
+        return Container(
+          color: theme.colorScheme.surface,
+          child: CustomScrollView(
+            slivers: [
+              _buildAppBar(theme, ref),
+              _buildCategoryFilter(theme),
+              _buildSectionHeader(theme, 'Recommended For You'),
+              _buildRecommendedHorizontalList(theme),
+              _buildSectionHeader(theme, 'Nearby Events'),
+              eventsAsync.when(
+                data: (events) {
+                  if (isWide) {
+                    return SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: crossAxisCount,
+                        childAspectRatio: 0.8, // Adjust as needed
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: 20,
+                      ),
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        final event = events[index];
+                        return EventCard(
+                              event: event,
+                              onTap: () => context.push(
+                                '/events/${event.id}',
+                                extra: event,
+                              ),
+                            )
+                            .animate(delay: (50 * index).ms)
+                            .fadeIn(duration: 500.ms)
+                            .slideY(begin: 0.1, end: 0);
+                      }, childCount: events.length),
+                    );
+                  }
+                  return SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final event = events[index];
+                      return EventCard(
+                            event: event,
+                            onTap: () => context.push(
+                              '/events/${event.id}',
+                              extra: event,
+                            ),
+                          )
+                          .animate(delay: (100 * index).ms)
+                          .fadeIn(duration: 600.ms, curve: Curves.easeOut)
+                          .slideY(
+                            begin: 0.1,
+                            end: 0,
+                            duration: 400.ms,
+                            curve: Curves.easeOutQuad,
+                          );
+                    }, childCount: events.length),
+                  );
+                },
+                loading: () => isWide
+                    ? SliverGrid(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: crossAxisCount,
+                          childAspectRatio: 0.8,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 20,
+                        ),
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) => const EventCardSkeleton(),
+                          childCount: 6,
+                        ),
+                      )
+                    : SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) => const EventCardSkeleton(),
+                          childCount: 3,
+                        ),
+                      ),
+                error: (err, stack) => SliverFillRemaining(
+                  child: Center(child: Text('Error: $err')),
+                ),
+              ),
+              // Add bottom padding to avoid content being hidden by nav bar
+              const SliverPadding(padding: EdgeInsets.only(bottom: 80)),
+            ],
           ),
-        ],
-      ),
-      bottomNavigationBar: _buildBottomNavBar(theme),
+        );
+      },
     );
   }
 
-  Widget _buildAppBar(ThemeData theme) {
+  Widget _buildAppBar(ThemeData theme, WidgetRef ref) {
     return SliverAppBar(
-      expandedHeight: 120,
+      expandedHeight: 120, // Increased height for search bar
       floating: true,
       pinned: true,
       backgroundColor: theme.colorScheme.surface,
       flexibleSpace: FlexibleSpaceBar(
-        titlePadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        title: Text(
-          'Global Diaspora',
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.w900,
-            letterSpacing: -1,
+        titlePadding: EdgeInsets.zero,
+        background: Padding(
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 50,
+            bottom: 60,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Global Diaspora',
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: -1,
+                ),
+              ),
+              IconButton(
+                icon: const Icon(FontAwesomeIcons.circleUser, size: 24),
+                onPressed: () {}, // Profile navigation
+              ),
+            ],
           ),
         ),
-        centerTitle: false,
       ),
-      actions: [
-        IconButton(
-          icon: const Icon(FontAwesomeIcons.magnifyingGlass, size: 20),
-          onPressed: () {},
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  onChanged: (value) {
+                    ref.read(searchQueryProvider.notifier).state = value;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Search events...',
+                    prefixIcon: const Icon(Icons.search),
+                    filled: true,
+                    fillColor: theme.colorScheme.surfaceContainerHighest
+                        .withValues(alpha: 0.5),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              IconButton.filledTonal(
+                icon: const Icon(Icons.tune),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => const SearchFilterModal(),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
-        IconButton(
-          icon: const Icon(FontAwesomeIcons.circleUser, size: 24),
-          onPressed: () {},
-        ),
-        const SizedBox(width: 8),
-      ],
+      ),
     );
   }
 
@@ -263,40 +386,6 @@ class _EventsFeedScreenState extends ConsumerState<EventsFeedScreen> {
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (err, stack) => Center(child: Text('Error: $err')),
         ),
-      ),
-    );
-  }
-
-  Widget _buildBottomNavBar(ThemeData theme) {
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface.withValues(alpha: 0.8),
-        border: Border(
-          top: BorderSide(color: theme.colorScheme.outlineVariant),
-        ),
-      ),
-      child: BottomNavigationBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.house),
-            label: 'Feed',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.mapLocationDot),
-            label: 'Map',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.calendarCheck),
-            label: 'My Events',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.gear),
-            label: 'Settings',
-          ),
-        ],
       ),
     );
   }

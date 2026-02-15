@@ -4,8 +4,11 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   app_links
+  dynamic_color
+  file_selector_windows
   firebase_core
   geolocator_windows
+  share_plus
   url_launcher_windows
 )
 

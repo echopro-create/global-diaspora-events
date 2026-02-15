@@ -11,6 +11,7 @@ _Event _$EventFromJson(Map<String, dynamic> json) => _Event(
   title: json['title'] as String,
   description: json['description'] as String?,
   categoryId: json['category_id'] as String,
+  organizerId: json['organizer_id'] as String,
   dateStart: DateTime.parse(json['date_start'] as String),
   dateEnd: json['date_end'] == null
       ? null
@@ -29,6 +30,7 @@ _Event _$EventFromJson(Map<String, dynamic> json) => _Event(
       ? null
       : DateTime.parse(json['created_at'] as String),
   isAttending: json['is_attending'] as bool? ?? false,
+  isFavorite: json['is_favorite'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$EventToJson(_Event instance) => <String, dynamic>{
@@ -36,6 +38,7 @@ Map<String, dynamic> _$EventToJson(_Event instance) => <String, dynamic>{
   'title': instance.title,
   'description': instance.description,
   'category_id': instance.categoryId,
+  'organizer_id': instance.organizerId,
   'date_start': instance.dateStart.toIso8601String(),
   'date_end': instance.dateEnd?.toIso8601String(),
   'venue_name': instance.venueName,
@@ -50,4 +53,5 @@ Map<String, dynamic> _$EventToJson(_Event instance) => <String, dynamic>{
   'is_promoted': instance.isPromoted,
   'created_at': instance.createdAt?.toIso8601String(),
   'is_attending': instance.isAttending,
+  'is_favorite': instance.isFavorite,
 };

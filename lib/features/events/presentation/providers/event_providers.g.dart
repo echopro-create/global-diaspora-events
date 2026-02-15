@@ -208,3 +208,42 @@ final class RecommendedEventsProvider
 }
 
 String _$recommendedEventsHash() => r'36662ae562807edf1ca1a4ab4e27e3c357e34f97';
+
+@ProviderFor(myEvents)
+final myEventsProvider = MyEventsProvider._();
+
+final class MyEventsProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Event>>,
+          List<Event>,
+          FutureOr<List<Event>>
+        >
+    with $FutureModifier<List<Event>>, $FutureProvider<List<Event>> {
+  MyEventsProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'myEventsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$myEventsHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<Event>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<Event>> create(Ref ref) {
+    return myEvents(ref);
+  }
+}
+
+String _$myEventsHash() => r'6f191166c34525e50055bec5308da562575c511b';
