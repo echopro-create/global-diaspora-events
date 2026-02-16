@@ -1,0 +1,21 @@
+{
+  "@@locale": "uk",
+  "appTitle": "Global Diaspora Events",
+  "login": "Увійти",
+  "register": "Реєстрація",
+  "email": "Email",
+  "password": "Пароль",
+  "forgotPassword": "Забули пароль?",
+  "createAccount": "Створити акаунт",
+  "alreadyHaveAccount": "Вже є акаунт?",
+  "dontHaveAccount": "Немає акаунту?",
+  "eventsNearYou": "Події поблизу",
+  "mapView": "Карта",
+  "listView": "Список",
+  "saved": "Збережені",
+  "profile": "Профіль",
+  "settings": "Налаштування",
+  "logout": "Вийти",
+  "imGoing": "Я йду",
+  "peopleGoing": "{count} йдуть"
+}

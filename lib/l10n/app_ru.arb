@@ -1,0 +1,21 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Global Diaspora Events",
+  "login": "Войти",
+  "register": "Регистрация",
+  "email": "Email",
+  "password": "Пароль",
+  "forgotPassword": "Забыли пароль?",
+  "createAccount": "Создать аккаунт",
+  "alreadyHaveAccount": "Уже есть аккаунт?",
+  "dontHaveAccount": "Нет аккаунта?",
+  "eventsNearYou": "События рядом",
+  "mapView": "Карта",
+  "listView": "Список",
+  "saved": "Сохраненные",
+  "profile": "Профиль",
+  "settings": "Настройки",
+  "logout": "Выйти",
+  "imGoing": "Я иду",
+  "peopleGoing": "{count} идут"
+}

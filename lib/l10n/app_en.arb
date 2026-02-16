@@ -1,0 +1,28 @@
+{
+  "@@locale": "en",
+  "appTitle": "Global Diaspora Events",
+  "login": "Log In",
+  "register": "Sign Up",
+  "email": "Email",
+  "password": "Password",
+  "forgotPassword": "Forgot Password?",
+  "createAccount": "Create Account",
+  "alreadyHaveAccount": "Already have an account?",
+  "dontHaveAccount": "Don't have an account?",
+  "eventsNearYou": "Events Near You",
+  "mapView": "Map",
+  "listView": "List",
+  "saved": "Saved",
+  "profile": "Profile",
+  "settings": "Settings",
+  "logout": "Log Out",
+  "imGoing": "I'm Going",
+  "peopleGoing": "{count} people going",
+  "@peopleGoing": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}
