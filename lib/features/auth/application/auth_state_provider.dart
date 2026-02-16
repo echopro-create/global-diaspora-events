@@ -1,21 +1,21 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide User;
 import '../domain/repositories/auth_repository.dart';
 import '../domain/entities/user.dart';
-import 'supabase_auth_repository.dart';
+import '../data/supabase_auth_repository.dart';
 
 part 'auth_state_provider.g.dart';
 
 /// Provides the AuthRepository implementation.
 @riverpod
-AuthRepository authRepository(AuthRepositoryRef ref) {
+AuthRepository authRepository(Ref ref) {
   final supabase = Supabase.instance.client;
   return SupabaseAuthRepository(supabase);
 }
 
 /// Provides the current auth state (authenticated user or null).
 @riverpod
-Stream<User?> authState(AuthStateRef ref) {
+Stream<User?> authState(Ref ref) {
   final repository = ref.watch(authRepositoryProvider);
   return repository.authStateChanges;
 }

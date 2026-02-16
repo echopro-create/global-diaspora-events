@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../entities/user.dart';
-import '../exceptions/auth_exception.dart';
 
 /// Authentication repository interface.
 ///

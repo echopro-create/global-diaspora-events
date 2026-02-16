@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../shared/components/glass_container.dart';
-import '../../auth/application/auth_state_provider.dart';
+import '../../../../shared/components/glass_container.dart';
+import '../../application/auth_state_provider.dart';
 
 /// Registration screen for new users.
 class RegisterScreen extends ConsumerStatefulWidget {

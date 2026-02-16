@@ -52,7 +52,7 @@ final class AuthRepositoryProvider
   }
 }
 
-String _$authRepositoryHash() => r'ec9e63ea8114689246c221678373e43435f5cbf0';
+String _$authRepositoryHash() => r'3d743b98ec051705b4ca8eb55bce70aad81d4aaf';
 
 /// Provides the current auth state (authenticated user or null).
 
@@ -62,8 +62,8 @@ final authStateProvider = AuthStateProvider._();
 /// Provides the current auth state (authenticated user or null).
 
 final class AuthStateProvider
-    extends $FunctionalProvider<AsyncValue<dynamic>, dynamic, Stream<dynamic>>
-    with $FutureModifier<dynamic>, $StreamProvider<dynamic> {
+    extends $FunctionalProvider<AsyncValue<User?>, User?, Stream<User?>>
+    with $FutureModifier<User?>, $StreamProvider<User?> {
   /// Provides the current auth state (authenticated user or null).
   AuthStateProvider._()
       : super(
@@ -81,16 +81,16 @@ final class AuthStateProvider
 
   @$internal
   @override
-  $StreamProviderElement<dynamic> $createElement($ProviderPointer pointer) =>
+  $StreamProviderElement<User?> $createElement($ProviderPointer pointer) =>
       $StreamProviderElement(pointer);
 
   @override
-  Stream<dynamic> create(Ref ref) {
+  Stream<User?> create(Ref ref) {
     return authState(ref);
   }
 }
 
-String _$authStateHash() => r'34a41c7499f55a661d192878d349cbfab89c78c9';
+String _$authStateHash() => r'3287ebbacddb50a826fd28bc6d4a4708785c8891';
 
 /// Auth controller for authentication operations.
 

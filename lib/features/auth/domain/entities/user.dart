@@ -5,7 +5,7 @@ part 'user.g.dart';
 
 /// User entity representing an authenticated user.
 @freezed
-class User with _$User {
+abstract class User with _$User {
   const factory User({
     /// Unique user ID (from Supabase Auth).
     required String id,

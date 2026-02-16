@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
-import '../../../domain/entities/user.dart';
-import '../../../domain/repositories/auth_repository.dart';
-import '../../../domain/exceptions/auth_exception.dart';
+import '../domain/entities/user.dart';
+import '../domain/repositories/auth_repository.dart';
+import '../domain/exceptions/auth_exception.dart';
 
 /// Supabase implementation of [AuthRepository].
 class SupabaseAuthRepository implements AuthRepository {
@@ -103,9 +103,7 @@ class SupabaseAuthRepository implements AuthRepository {
       id: authUser.id,
       email: authUser.email ?? '',
       fullName: authUser.userMetadata?['full_name'] as String?,
-      createdAt: authUser.createdAt != null
-          ? DateTime.parse(authUser.createdAt)
-          : null,
+      createdAt: DateTime.tryParse(authUser.createdAt),
     );
   }
 
