@@ -4,6 +4,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/auth/application/auth_state_provider.dart';
+import '../../features/onboarding/presentation/screens/welcome_screen.dart';
+import '../../features/onboarding/presentation/screens/country_selection_screen.dart';
+import '../../features/onboarding/presentation/screens/city_selection_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -54,6 +57,23 @@ GoRouter goRouter(Ref ref) {
             child: Text('Events Screen - Coming in Week 2'),
           ),
         ),
+      ),
+
+      // Onboarding routes
+      GoRoute(
+        path: '/onboarding/welcome',
+        name: 'onboarding_welcome',
+        builder: (context, state) => const WelcomeScreen(),
+      ),
+      GoRoute(
+        path: '/onboarding/country',
+        name: 'onboarding_country',
+        builder: (context, state) => const CountrySelectionScreen(),
+      ),
+      GoRoute(
+        path: '/onboarding/city',
+        name: 'onboarding_city',
+        builder: (context, state) => const CitySelectionScreen(),
       ),
     ],
   );
